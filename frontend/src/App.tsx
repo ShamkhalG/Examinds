@@ -1,11 +1,19 @@
-import React from 'react';
 import './App.css';
+import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import Home from './pages/Home';
+import ErrorPage from './pages/ErrorPage';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <ErrorPage />
+  },
+]);
 
 function App() {
   return (
-    <div className = "App">
-      <p className = "welcome">Bonjour, Examind</p>
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
