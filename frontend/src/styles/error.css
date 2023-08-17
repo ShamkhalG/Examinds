@@ -1,0 +1,36 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.errorMain {
+  text-align: center;
+  color: #F2F2F2
+}
+
+.errorNumber {
+  font-size: 6rem;
+  margin-bottom: 0;
+}
+
+.errorInfo {
+  font-size: 1.5rem;
+}
+
+.toHome {
+  font-size: 1.5rem;
+  border-radius: 20px;
+  border-color: #F66D25;
+  border-bottom: 1px solid #F66D25;
+  border-right: 1px solid #F66D25;
+  background-color: #F66D25;
+  color: #F2F2F2;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  margin-top: 5rem;
+}
