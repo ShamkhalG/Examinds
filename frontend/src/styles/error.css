@@ -1,13 +1,12 @@
-body {
+.errorBody {
   display: flex;
+  position: fixed;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100%;
   margin: 0;
-}
-
-.errorMain {
-  text-align: center;
   color: #F2F2F2
 }
 
