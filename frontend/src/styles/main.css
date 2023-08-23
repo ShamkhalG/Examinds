@@ -1,3 +1,5 @@
+/* ! 1rem = 16px */
+
 div.mainBody {
   background-image: url('../assets/photos/mainBackground.png');
   background-size: cover;
@@ -5,22 +7,28 @@ div.mainBody {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  margin-top: 0.7rem;
+  margin-top: 0.5rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
 
-/* Navigation */
+/* ------------------- Navigation ------------------- */
 
 div.nav {
   color: #F2F2F2;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-top: 0.9375rem;
+  margin-left: 7.8125rem;
+  margin-right: 9.6875rem;
 }
 
 p.logo {
   color: #F66D25;
+  font-size: 1.0625rem;
   font-weight: bold;
+  margin-top: 0.2rem;
+  margin-bottom: 0;
 }
 
 span.logoEnd {
@@ -30,25 +38,25 @@ span.logoEnd {
 div.navSansLogo {
   display: flex;
   height: 4.5vh;
-  justify-content: space-around;
-  margin-top: 0.5rem;
-  width: 45%;
+  justify-content: space-between;
+  width: 50%;
 }
 
 button.navButton {
   background-color: transparent;
   border: none;
   color: #F2F2F2;
+  font-size: 0.9375rem;
+  font-family: 'Raleway', 'Inter', 'Helvetica', sans-serif;
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
 button.navButton:hover {
-  background-color: #4B42426a;
+  background-color: #5c51516a;
   border: none;
   border-radius: 0px 5px 0px 5px;
   cursor: pointer;
-  
 }
 
 button.logIn {
@@ -57,15 +65,51 @@ button.logIn {
   border-radius: 0px 5px 0px 5px;
   color: #F2F2F2;
   cursor: pointer;
-  font-weight: 600;
-  font-family: 'Inter';
-  font-size: 1rem;
-  height: 4.5vh;
-  margin-top: 0.5rem;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-  padding-top: 0;
-  padding-bottom: 0;
+  font-weight: 700;
+  font-family: 'Raleway', 'Inter', 'Helvetica', sans-serif;
+  font-size: 1.0625rem;
+  height: 5.2vh;
+  letter-spacing: 0.05rem;
+  padding-left: 2.4375rem;
+  padding-right: 2.4375rem;
 }
 
-/* MoreInfo */
+/* ------------------- MoreInfo (MI) ------------------- */
+
+div.moreInfoBody {
+  margin-top: 6.885rem;
+  margin-left: 7.8125rem;
+  margin-bottom: 12.5rem;
+}
+
+span.orangeTT {
+  color: #F66D25;
+}
+
+h2.MITitle {
+  color: #F2F2F2;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 1.875rem;
+}
+
+p.MIOpen {
+  color: #F2F2F2;
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1.875rem;
+}
+
+button.MIMore {
+  background-color: #F66D25;
+  border: none;
+  border-radius: 0px 5px 0px 5px;
+  color: #F2F2F2;
+  cursor: pointer;
+  font-family: 'Inter', 'Helvetica', sans-serif;
+  font-size: 1.2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
