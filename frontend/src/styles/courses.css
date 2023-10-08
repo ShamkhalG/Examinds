@@ -1,0 +1,63 @@
+.courses {
+  display: flex;
+  flex-direction: column;
+  margin-top: 6.25rem;
+  margin-left: 9rem;
+  margin-right: 8.125rem;
+}
+
+.courseDivs {
+  display: flex;
+  flex-direction: row;
+}
+
+.courseDivsBlocked {
+  cursor: not-allowed;
+  display: flex;
+  flex-direction: row;
+}
+
+.courseCard {
+  background-color: #FFFEEC;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.3rem;
+  padding-bottom: 2.6rem;
+  margin-bottom: 1.875rem;
+}
+
+.courseName {
+  font-family: 'Montserrat Bold', 'Montserrat', 'Raleway', 'Inter', 'Helvetica', sans-serif;
+  font-size: 1.5625rem;
+  margin-bottom: 2.5rem;
+}
+
+.courseSignUpDiv{
+  display: flex;
+  justify-content: center;
+}
+
+.courseSignUp {
+  background-color: #F66D25;
+  border: none;
+  border-radius: 500px;
+  color: #F2F2F2;
+  cursor: not-allowed;
+  font-family: 'Montserrat', 'Raleway', 'Inter', 'Helvetica', sans-serif;
+  flex-grow: 1;
+  max-width: 11.25rem;
+  padding-top: 0.5625rem;
+  padding-bottom: 0.5625rem;
+}
+
+.hurryUp {
+  justify-content: center;
+  color: #F2F2F2;
+  display: flex;
+  font-family: 'Inter', 'Helvetica', 'sans-serif';
+  font-size: 3rem;
+  font-weight: 600;
+  flex-direction: column;
+  margin-left: 7.8rem;
+}

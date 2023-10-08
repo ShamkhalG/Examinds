@@ -1,7 +1,7 @@
 /* ! 1rem = 16px */
 
 div.mainBody {
-  background-image: url('../assets/photos/mainBackground.png');
+  background-image: url('../../public/photos/mainBackground.png');
   background-size: cover;
   background-position: center;
   border-radius: 8px;
