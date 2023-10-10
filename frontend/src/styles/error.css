@@ -1,13 +1,13 @@
 .errorBody {
-  display: flex;
-  position: fixed;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  color: #F2F2F2;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  width: 100%;
+  justify-content: center;
   margin: 0;
-  color: #F2F2F2
+  position: fixed;
+  width: 100%;
 }
 
 .errorNumber {
@@ -20,17 +20,17 @@
 }
 
 .toHome {
-  font-size: 1.5rem;
   border-radius: 20px;
   border-color: #F66D25;
   border-bottom: 1px solid #F66D25;
   border-right: 1px solid #F66D25;
   background-color: #F66D25;
   color: #F2F2F2;
-  padding-top: 0.8rem;
+  cursor: pointer;
+  font-size: 1.5rem;
   padding-bottom: 0.8rem;
   padding-left: 4rem;
   padding-right: 4rem;
+  padding-top: 0.8rem;
   margin-top: 5rem;
-  cursor: pointer;
 }

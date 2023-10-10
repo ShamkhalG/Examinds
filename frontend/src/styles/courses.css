@@ -6,25 +6,61 @@
   margin-right: 8.125rem;
 }
 
-.courseDivs {
+.coursesDiv {
   display: flex;
   flex-direction: row;
 }
 
-.courseDivsBlocked {
+.coursesDivBlocked {
   cursor: not-allowed;
   display: flex;
+  position: relative;
   flex-direction: row;
 }
 
 .courseCard {
   background-color: #FFFEEC;
   border-radius: 10px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   padding: 1.3rem;
   padding-bottom: 2.6rem;
+  position: relative;
   margin-bottom: 1.875rem;
+}
+
+.soonDiv {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  box-sizing: border-box;
+  border-radius: 10px;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.blockedInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.lockImage {
+  max-height: 3rem;
+  max-width: 3rem;
+}
+
+.soonText {
+  color: #FFFEEC;
+  font-size: 0.9375rem;
+  font-family: 'Montserrat', 'Raleway', 'Inter', 'Helvetica', sans-serif;
+  font-weight: bold;
 }
 
 .courseName {
@@ -43,21 +79,20 @@
   border: none;
   border-radius: 500px;
   color: #F2F2F2;
-  cursor: not-allowed;
-  font-family: 'Montserrat', 'Raleway', 'Inter', 'Helvetica', sans-serif;
   flex-grow: 1;
+  font-family: 'Montserrat', 'Raleway', 'Inter', 'Helvetica', sans-serif;
   max-width: 11.25rem;
   padding-top: 0.5625rem;
   padding-bottom: 0.5625rem;
 }
 
 .hurryUp {
-  justify-content: center;
   color: #F2F2F2;
   display: flex;
   font-family: 'Inter', 'Helvetica', 'sans-serif';
   font-size: 3rem;
   font-weight: 600;
   flex-direction: column;
+  justify-content: center;
   margin-left: 7.8rem;
 }

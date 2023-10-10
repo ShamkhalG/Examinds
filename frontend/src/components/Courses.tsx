@@ -7,7 +7,7 @@ export default function Courses() {
   const lowerCourses = coursesList.slice(2, 6);
   return (
     <div className = "courses">
-      <div className = "courseDivs">
+      <div className = "coursesDiv">
         {upperCourses.map((course, index) => (
           <CourseCard
             key = {index}
@@ -21,11 +21,12 @@ export default function Courses() {
         </p>
       </div>
 
-      <div className = "courseDivsBlocked">
+      <div className = "coursesDivBlocked">
         {lowerCourses.map((course, index) => (
           <CourseCard
             key = {index}
             course = {course}
+            isBlocked = {true}
           />
         ))}
       </div>
