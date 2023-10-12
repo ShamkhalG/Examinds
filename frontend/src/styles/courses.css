@@ -1,4 +1,5 @@
 .courses {
+  /* FIXME: This must be centralized */
   display: flex;
   flex-direction: column;
   margin-top: 6.25rem;

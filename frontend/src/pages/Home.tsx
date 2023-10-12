@@ -7,7 +7,7 @@ import ContactUs from "../components/ContactUs"
 import "../styles/home.css"
 
 export default function Home() {
-  window.document.title = "Examinds" // FIXME: Change the name to the right one
+  window.document.title = "ExaMinds";
   return (
     <div className = "home">
       <Main />

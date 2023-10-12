@@ -1,0 +1,104 @@
+.registrationDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.registrationBox {
+  border-radius: 50px;
+  background: linear-gradient(226.19deg, #FF5800 24.78%, rgba(141, 63, 63, 0.38) 87.88%);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* padding-left: 2.188rem;
+  padding-right: 2.188rem; */
+  /* padding-top: 5rem;
+  padding-bottom: 5rem; */
+  width: 80%;
+}
+
+.startTextDiv {
+  background-image: url("../../public/photos/books.png");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 55%;
+}
+
+.startTextDivInternal {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  margin-left: 2.188rem;
+  width: 70%;
+}
+
+.startExaMindsText {
+  color: #FFFEEC;
+  font-family: 'Inter', 'Helvetica', sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.notMissText {
+  color: #FFFEEC;
+  font-family: 'Inter', 'Helvetica', sans-serif;
+  font-size: 1.25rem;
+}
+
+.inputsDiv {
+  color: #FFFEEC;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: space-around;
+  margin-right: 2.188rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  width: 50%;
+}
+
+.namesDiv, .numbersDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.label {
+  font-family: 'Inter', 'Helvetica', sans-serif;
+  font-size: 1.563rem;
+  margin-bottom: 1rem;
+}
+
+.registrationInput {
+  border: none;
+  font-size: 1.4rem;
+  padding-left: 0.4rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  width: 90%;
+  max-width: 90%;
+}
+
+.emailInput {
+  border: none;
+  font-size: 1.4rem;
+  padding-left: 0.4rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  width: 100%;
+}
+
+.submitButton {
+  background-color: #0E0E0E;
+  border-radius: 10px;
+  border: none;
+  color: #FFFEEC;
+  cursor: pointer;
+  font-family: 'Inter', 'Helvetica', sans-serif;
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+  padding-top: 0.813rem;
+  padding-bottom: 0.813rem;
+  width: 100%;
+}
