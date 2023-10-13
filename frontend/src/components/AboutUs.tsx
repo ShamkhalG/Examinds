@@ -8,6 +8,7 @@ export default function AboutUs() {
       <div className = "whyUsDiv">
         <p className = "whyUsText"> ПОЧЕМУ ИМЕННО МЫ ? </p>
       </div>
+      
       {aboutUsList.map((section, index) => (
         <AboutSection
           key = {index}

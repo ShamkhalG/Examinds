@@ -6,7 +6,7 @@
 
 .whyUsText {
   /* TODO: Add the blur to the bottom border */
-  border-bottom: 3px solid #F66D25;
+  border-bottom: solid 3px #f66e25;
   color: #FFFEEC;
   font-family: 'Inter';
   font-size: 1.9375rem;
@@ -19,6 +19,7 @@
 .sectionDiv {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .sectionNoImgDiv {
@@ -38,8 +39,6 @@
 .sectionNoNumDiv {
   display: flex;
   flex-direction: column;
-  /* FIXME: The text must be centralized with the image */
-  /* justify-content: center; */
   margin-left: 4rem;
   width: 56%;
 }

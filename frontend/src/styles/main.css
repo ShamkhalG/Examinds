@@ -15,7 +15,7 @@ div.mainBody {
 /* ------------------- Navigation ------------------- */
 
 div.nav {
-  color: #F2F2F2;
+  color: #FFFEEC;
   display: flex;
   justify-content: space-between;
   margin-top: 0.9375rem;
@@ -32,7 +32,7 @@ p.logo {
 }
 
 span.logoEnd {
-  color: #F2F2F2;
+  color: #FFFEEC;
 }
 
 div.navSansLogo {
@@ -45,7 +45,7 @@ div.navSansLogo {
 button.navButton {
   background-color: transparent;
   border: none;
-  color: #F2F2F2;
+  color: #FFFEEC;
   font-size: 0.9375rem;
   font-family: 'Raleway', 'Inter', 'Helvetica', sans-serif;
   padding-left: 1rem;
@@ -63,7 +63,7 @@ button.logIn {
   background-color: #F66D25;
   border: none;
   border-radius: 0px 5px 0px 5px;
-  color: #F2F2F2;
+  color: #FFFEEC;
   cursor: pointer;
   font-weight: 700;
   font-family: 'Raleway', 'Inter', 'Helvetica', sans-serif;
@@ -87,14 +87,14 @@ span.orangeTT {
 }
 
 h2.MITitle {
-  color: #F2F2F2;
+  color: #FFFEEC;
   font-size: 3rem;
   font-weight: 600;
   margin-bottom: 1.875rem;
 }
 
 p.MIOpen {
-  color: #F2F2F2;
+  color: #FFFEEC;
   font-size: 1.2rem;
   margin-top: 0;
   margin-bottom: 1.875rem;
@@ -104,7 +104,7 @@ button.MIMore {
   background-color: #F66D25;
   border: none;
   border-radius: 0px 5px 0px 5px;
-  color: #F2F2F2;
+  color: #FFFEEC;
   cursor: pointer;
   font-family: 'Inter', 'Helvetica', sans-serif;
   font-size: 1.2rem;

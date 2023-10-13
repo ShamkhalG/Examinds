@@ -1,7 +1,6 @@
 import "../styles/registration.css";
 
 export default function Registration() {
-  // TODO: 
   return (
     <div className = "registrationDiv">
       <div className = "registrationBox">

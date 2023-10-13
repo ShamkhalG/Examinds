@@ -1,0 +1,116 @@
+.teachersPart {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat', 'Raleway', 'Inter', 'Helvetica', sans-serif;
+  justify-content: center;
+  margin-bottom: 9.375rem;
+}
+
+.ourTeachersDiv {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.ourTeachersText {
+  /* TODO: Add the blur to the bottom border */
+  border-bottom: solid 3px #f66e25;
+  color: #FFFEEC;
+  font-family: 'Inter';
+  font-size: 1.9375rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  text-align: center;
+  width: 40%;
+}
+
+.teacherCardsDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.singleTeacherCardDiv {
+  background-color: #FFFEEC;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  max-width: 25%;
+  padding: 0.938rem;
+  padding-bottom: 1.875rem;
+}
+
+.teacherTop {
+  background-image: url("../../public/photos/teacherAvatar.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 50vh;
+}
+
+.teacherFullName {
+  color: #F66D25;
+  font-size: 1.563rem;
+  font-weight: bold;
+  margin-left: 0.938rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.singleTagContainer{ 
+  background-color: rgba(217, 217, 217, 0.3);
+  border-radius: 60% / 60%;
+  font-size: 0.938rem;
+  text-align: center;
+  padding: 0.6rem;
+}
+
+.motoText {
+  font-size: 1.25rem;
+}
+
+/*  --------------- Bottom part --------------- */
+
+.teacherBottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.experienceSection {
+  width: 50%;
+}
+
+.experienceYears {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.littleText {
+  font-size: 0.938rem;
+}
+
+.scoreSection {
+  width: 50%;
+}
+
+.scoreValue {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.individualTeacherButton {
+  background-color: #F66D25;
+  border: none;
+  border-radius: 10px;
+  color: #0E0E0E;
+  cursor: pointer;
+  width: 92%;
+  min-height: 4.5vh;
+}

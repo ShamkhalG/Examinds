@@ -1,5 +1,9 @@
+.cMainDiv {
+  display: flex;
+  justify-content: center;
+}
+
 .courses {
-  /* FIXME: This must be centralized */
   display: flex;
   flex-direction: column;
   margin-top: 6.25rem;
@@ -79,7 +83,7 @@
   background-color: #F66D25;
   border: none;
   border-radius: 500px;
-  color: #F2F2F2;
+  color: #FFFEEC;
   flex-grow: 1;
   font-family: 'Montserrat', 'Raleway', 'Inter', 'Helvetica', sans-serif;
   max-width: 11.25rem;
@@ -88,7 +92,7 @@
 }
 
 .hurryUp {
-  color: #F2F2F2;
+  color: #FFFEEC;
   display: flex;
   font-family: 'Inter', 'Helvetica', 'sans-serif';
   font-size: 3rem;
