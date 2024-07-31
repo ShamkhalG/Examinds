@@ -11,3 +11,17 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Inter-Bold';
+  src: url('../fonts/Inter-Bold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Geologica-Bold';
+  src: url('../fonts/Geologica-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
