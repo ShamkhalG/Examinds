@@ -58,9 +58,13 @@ export default {
 
 /* TODO Mobile styles */
 @media(max-width: 767px) {
+  .emblock {
+    width: 100%;
+  }
+
   /* ----- Above the bulb ----- */
   .examindsText {
-    font-size: 4.063rem;
+    font-size: 3.7rem;
     margin-bottom: 0;
     margin-top: 2rem;
   }
@@ -68,21 +72,51 @@ export default {
   .partTwoText {
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
   }
 
   .partThreeText {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     margin-top: 0.5rem;
   }
 
-  /* ----- Around the buld ----- */
+  /* ----- Around the bulb ----- */
+  .aroundBulb {
+    min-height: 160px;
+  }
   .emBigTexts {
-    font-size: 1.856rem;
+    font-size: 1.7rem;
+    margin-bottom: 0;
   }
 
   .emSmallTexts {
-    font-size: 0.742rem;
+    font-size: 0.7rem;
+    margin-top: 0;
+  }
+
+  .abyears {
+    min-width: 120px;
+    position: absolute;
+    top: -10px;
+    left: 20px;
+  }
+
+  .abhundredscores {
+    position: absolute;
+    top: -10px;
+    right: 30px;
+  }
+
+  .abgraduates {
+    position: absolute;
+    top: 50px;
+    left: 55px;
+  }
+
+  .abaveragescore {
+    position: absolute;
+    top: 50px;
+    right: 60px;
   }
 }
 
@@ -123,16 +157,29 @@ export default {
 /* ----- Around the bulb ----- */
 .aroundBulb {
   position: relative;
+  width: 100%;
 }
 
 .emBigTexts {
   font-family: 'Inter-Bold';
-  color: white;
+  text-align: center;
+
+  color: rgba(255, 255, 255, 1);
+  background: linear-gradient(
+    to right, 
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .emSmallTexts {
+  color: white;
   font-family: 'Inter-Regular';
   font-weight: normal;
-  color: white;
+  text-align: center;
 }
 </style>

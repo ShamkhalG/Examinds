@@ -1,13 +1,25 @@
 <template>
   <div class="nav">
-    <button class="navregular" :class="{ active: activeIndex === 0 }" @click="setActive(0)">Главная</button>
-    <button class="navregular" :class="{ active: activeIndex === 1 }" @click="setActive(1)">О нас</button>
-    <button class="navregular" :class="{ active: activeIndex === 2 }" @click="setActive(2)">Преподаватели</button>
-    <!-- LONGTODO Authentication -->
-    <button class="navsignin">ВОЙТИ</button>
-    <div class="circleOne" v-if="activeIndex === 0"></div>
-    <div class="circleTwo" v-if="activeIndex === 1"></div>
-    <div class="circleThree" v-if="activeIndex === 2"></div>
+    <div class="navButtons">
+      <button class="navregular" :class="{ active: activeIndex === 0 }" @click="setActive(0)">Главная</button>
+      <div class="circleOne" :class="{ noOpacity: activeIndex !== 0 }"></div>
+    </div>
+
+    <div class="navButtons">
+      <button class="navregular" :class="{ active: activeIndex === 1 }" @click="setActive(1)">О нас</button>
+      <div class="circleTwo" :class="{ noOpacity: activeIndex !== 1 }"></div>
+    </div>
+
+    <div class="navButtons">
+      <button class="navregular" :class="{ active: activeIndex === 2 }" @click="setActive(2)">Преподаватели</button>
+      <div class="circleThree" :class="{ noOpacity: activeIndex !== 2 }"></div>
+    </div>
+    
+    <div class="navButtons">
+      <!-- LONGTODO Authentication -->
+      <button class="navsignin">ВОЙТИ</button>
+      <div class="circleFour noOpacity"></div>
+    </div>
   </div>
 </template>
 
@@ -46,12 +58,11 @@ export default {
 
 /* Desktop styles */
 @media(min-width: 767px) {
-  
   .navregular, .navsignin {
     font-size: 1.25rem;
   }
   
-  .circleOne, .circleTwo, .circleThree {
+  .circleOne, .circleTwo, .circleThree, .circleFour {
     display: none;
   }
 
@@ -74,11 +85,10 @@ export default {
   .navregular {
     font-size: 0.875rem;
     position: relative;
+    margin-bottom: 1rem;
   }
 
-  .circleOne, .circleTwo, .circleThree {
-    position: absolute;
-    bottom: -7px;
+  .circleOne, .circleTwo, .circleThree, .circleFour {
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -86,16 +96,8 @@ export default {
     transition: left 0.3s ease;
   }
 
-  .circleOne {
-    left: 27px;
-  }
-
-  .circleTwo {
-    left: 108px;
-  }
-
-  .circleThree {
-    left: 215px;
+  .noOpacity {
+    opacity: 0;
   }
   
   .navsignin {
@@ -104,14 +106,23 @@ export default {
     padding-right: 2rem;
     padding-top: 0.688rem;
     padding-bottom: 0.688rem;
+    margin-bottom: 1rem;
   }
 }
 
+/* ----- Common styles ----- */
 .nav {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 4rem;
+}
+
+.navButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .navregular {
