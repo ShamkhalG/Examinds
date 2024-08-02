@@ -14,8 +14,8 @@
       </p>
     </div>
 
-    <!-- TODO Info around the light bulb -->
-    <div class="aroundBulb">
+    <!-- REVIEW Info around the light bulb -->
+    <!-- <div class="aroundBulb">
       <div class="abyears">
         <h3 class="emBigTexts">6 лет</h3>
         <h5 class="emSmallTexts">Готовим к экзамену</h5>
@@ -35,10 +35,10 @@
         <h3 class="emBigTexts">70+</h3>
         <h5 class="emSmallTexts">Средний балл</h5>
       </div>
-    </div>
+    </div> -->
 
     <!-- LONGTODO Registration button -->
-    <button>РЕГИСТРАЦИЯ</button>
+    <button class="registerButton">РЕГИСТРАЦИЯ</button>
   </div>
 </template>
 
@@ -52,7 +52,32 @@ export default {
 /* TODO Desktop styles */
 @media(min-width: 767px) {
   .emblock {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .examindsText {
+    font-size: 4.8rem;
+    margin-bottom: -0.5rem;
+    margin-top: 0;
+  }
+
+  .partTwoText {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+  }
+
+  .partThreeText {
+    font-size: 1rem;
+    margin-top: 0;
+  }
+
+  .emLineBreak {
+    display: none;
+  }
+
+  .registerButton {
+    font-size: 1rem;
   }
 }
 
@@ -80,10 +105,15 @@ export default {
     margin-top: 0.5rem;
   }
 
-  /* ----- Around the bulb ----- */
-  .aroundBulb {
+  .registerButton {
+    font-size: 0.8rem;
+  }
+
+  /* REVIEW Around the bulb ----- */
+  /* .aroundBulb {
     min-height: 160px;
   }
+  
   .emBigTexts {
     font-size: 1.7rem;
     margin-bottom: 0;
@@ -117,7 +147,7 @@ export default {
     position: absolute;
     top: 50px;
     right: 60px;
-  }
+  } */
 }
 
 .emblock {
@@ -154,8 +184,30 @@ export default {
   color: white;
 }
 
-/* ----- Around the bulb ----- */
-.aroundBulb {
+/* FIXME Button style and positioning is not complete */
+.registerButton {
+  font-family: 'Inter-Bold';
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(
+    to right, 
+    rgba(4, 107, 38, 1) 0%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(4, 107, 38, 1) 100%
+  );
+  border-radius: 6.96px;
+  border: none;
+  box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.8);
+  margin-top: 15rem;
+  padding-left: 4.6rem;
+  padding-right: 4.6rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* REVIEW Around the bulb ----- */
+/* .aroundBulb {
   position: relative;
   width: 100%;
 }
@@ -181,5 +233,5 @@ export default {
   font-family: 'Inter-Regular';
   font-weight: normal;
   text-align: center;
-}
+} */
 </style>
