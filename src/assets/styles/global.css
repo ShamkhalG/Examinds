@@ -25,3 +25,31 @@
   font-weight: bold;
   font-style: normal;
 }
+
+/* Relativity and Absoluteness */
+.relativity {
+  position: relative;
+}
+
+.absoluteness {
+  position: absolute;
+}
+
+.centralize {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Desktop and mobile <br> */
+@media(min-width: 767px) {
+  .mobileBr {
+    display: none;
+  }
+}
+
+@media(max-width: 767px) {
+  .desktopBr {
+    display: none;
+  }
+}

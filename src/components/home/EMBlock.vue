@@ -4,12 +4,12 @@
       <h1 class="examindsText">Exa<span class="minds">Minds</span></h1>
       <h4 class="partTwoText">
         Лучшие революционные курсы с топовыми
-        <br class="emLineBreak" />
+        <br class="mobileBr" />
         преподавателями и гибким графиком
       </h4>
       <p class="partThreeText">
         Меняем подход к образованию и
-        <br class="emLineBreak" />
+        <br class="mobileBr" />
         вдохновляем любовь к учёбе у детей
       </p>
     </div>
@@ -72,10 +72,6 @@ export default {
     margin-top: 0;
   }
 
-  .emLineBreak {
-    display: none;
-  }
-
   .registerButton {
     font-size: 1rem;
   }
@@ -85,6 +81,7 @@ export default {
 @media(max-width: 767px) {
   .emblock {
     width: 100%;
+    /* aspect-ratio: 1 / 4; */
   }
 
   /* ----- Above the bulb ----- */
@@ -107,6 +104,8 @@ export default {
 
   .registerButton {
     font-size: 0.8rem;
+    /* FIXME Temporary fix */
+    margin-top: 15rem;
   }
 
   /* REVIEW Around the bulb ----- */
@@ -150,10 +149,12 @@ export default {
   } */
 }
 
-.emblock {
+.emblock { /* FIXME Fix the styles */
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  height: 80%;
 }
 
 /* ----- Above the bulb ----- */
@@ -199,7 +200,7 @@ export default {
   border-radius: 6.96px;
   border: none;
   box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.8);
-  margin-top: 15rem;
+  /* margin-top: 15rem; */
   padding-left: 4.6rem;
   padding-right: 4.6rem;
   padding-top: 1rem;
