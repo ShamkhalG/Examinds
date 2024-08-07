@@ -77,7 +77,7 @@ export default {
   }
 }
 
-/* TODO Mobile styles */
+/* FIXME Mobile styles */
 @media(max-width: 767px) {
   .emblock {
     width: 100%;
@@ -167,10 +167,6 @@ export default {
 .examindsText {
   color: white;
   font-family: "Geologica-Bold";
-}
-
-.minds {
-  color: #F96F16;
 }
 
 .partTwoText {

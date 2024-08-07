@@ -1,7 +1,7 @@
 <template>
   <div class="whyUs">
     <div class="relativity centralize">
-      <img class="bookLampPaper" src="../../assets/images/book_lamp_paper.png" />
+      <img class="bookLampPaper" src="../../assets/images/why_us/book_lamp_paper.png" />
       <p class="whyUsText absoluteness">Почему мы?</p>
     </div>
 
@@ -137,6 +137,8 @@ export default {
   font-family: 'Inter-Bold';
   letter-spacing: 1.2px;
 }
+
+/* TODO Desktop styles */
 
 /* Mobile styles */
 @media(max-width: 767px) {

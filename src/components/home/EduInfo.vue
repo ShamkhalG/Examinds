@@ -1,52 +1,61 @@
 <template>
   <div class="eduinfo">
     <p class="eduInfoHeader">Как проходит обучение?</p>
-    <div class="laptopContainer relativity centralize upperMargin">
-      <img class="eduInfoImage" src="../../assets/images/laptop.png" />
-      <p class="eduInfoText">
-        На платформе размещается <br class="mobileBr" /> 
-        <span class="orangeText">видео-уроки</span> с разбором темы<br class="mobileBr" /> и практикой
-      </p>
-    </div>
-
-    <div class="notebookAndPenContainer relativity centralize upperMargin">
-      <img class="eduInfoImage" src="../../assets/images/notebook_and_pen.png" />
-      <p class="eduInfoText">
-        Домашние задания <span class="orangeText">после <br class="mobileBr" />каждого </span>
-        видео-урока
-      </p>
-    </div>
-
-    <div class="puzzleContainer relativity centralize upperMargin">
-      <img class="eduInfoImage" src="../../assets/images/puzzle.png" />
-      <p class="eduInfoText">
-        <span class="orangeText">Проверочная работа</span>, чтобы <br class="mobileBr" />
-        проверить насколько хорошо <br class="mobileBr" />изучен материал
-      </p>
-    </div>
-
-    <div class="chatAndHeartsContainer relativity centralize upperMargin">
-      <img class="eduInfoImage" src="../../assets/images/chat_and_hearts.png" />
-      <p class="eduInfoText">
-        <span class="orangeText">Обратная связь</span> и 
-        <span class="orangeText">поддержка <br class="mobileBr" /> от преподавателя 
-        и куратора</span>,<br class="mobileBr" /> чтобы улучшить результаты
-      </p>
-    </div>
-
-    <div class="PaperAndApprovedContainer relativity centralize upperMargin">
-      <img class="eduInfoImage" src="../../assets/images/paper_and_approved.png" />
-      <p class="eduInfoText">
-        <span class="orangeText">Разбор вопросов</span> и 
-        <span class="orangeText">ошибок</span><br class="mobileBr" />на прямом эфире
-      </p>
+    <div v-for="(eduInfo, index) in eduInfos" :key="index" class="relativity centralize upperMargin">
+      <img :src="eduInfo.img" class="eduInfoImage" />
+      <p v-html="eduInfo.text" class="eduInfoText"></p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "EduInfo"
+  name: "EduInfo",
+  data() {
+    return {
+      eduInfos: [
+        {
+          text: `
+          На платформе размещается<br class="mobileBr" /> 
+          <span class="orangeText">видео-уроки</span> с разбором темы<br class="mobileBr" />
+          и практикой
+          `,
+          img: require("../../assets/images/edu_info/laptop.png"),
+        },
+        {
+          text: `
+            Домашние задания <span class="orangeText">после
+            <br class="mobileBr" />каждого</span> видео-урока
+          `,
+          img: require("../../assets/images/edu_info/notebook_and_pen.png"),
+        },
+        {
+          text: `
+            <span class="orangeText">Проверочная работа</span>, чтобы<br class="mobileBr" />
+            проверить насколько хорошо<br class="mobileBr" />
+            изучен материал
+          `,
+          img: require("../../assets/images/edu_info/puzzle.png"),
+        },
+        {
+          text: `
+            <span class="orangeText">Обратная связь</span> и <span class="orangeText">поддержка<br class="mobileBr" />
+            от преподавателя и куратора</span>,<br class="mobileBr" />
+            чтобы улучшить результаты
+          `,
+          img: require("../../assets/images/edu_info/chat_and_hearts.png"),
+        },
+        {
+          text: `
+            <span class="orangeText">Разбор вопросов</span> и 
+            <span class="orangeText">ошибок</span><br class="mobileBr" />
+            на прямом эфире
+          `,
+          img: require("../../assets/images/edu_info/paper_and_approved.png"),
+        }
+      ]
+    }
+  }
 }
 </script>
 
@@ -71,6 +80,7 @@ export default {
 /* TODO Desktop styles */
 
 /* Mobile styles */
+/* FIXME Centralize the images */
 @media(max-width: 767px){
   .eduInfoHeader {
     font-size: 1.7rem;

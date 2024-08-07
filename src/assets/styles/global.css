@@ -42,6 +42,10 @@
   justify-content: center;
 }
 
+.minds {
+  color: #F96F16;
+}
+
 /* Desktop and mobile <br> */
 @media(min-width: 767px) {
   .mobileBr {
