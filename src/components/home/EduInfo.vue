@@ -68,6 +68,9 @@ export default {
   color: #F96F16;
 }
 
+/* TODO Desktop styles */
+
+/* Mobile styles */
 @media(max-width: 767px){
   .eduInfoHeader {
     font-size: 1.7rem;
@@ -76,6 +79,10 @@ export default {
   }
   .upperMargin {
     margin-top: 1rem;
+  }
+
+  .eduInfoImage {
+    width: 70%;
   }
 }
 </style>
