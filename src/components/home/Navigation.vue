@@ -42,14 +42,14 @@ export default {
 
 <style>
 /* Changing the width of the navigation panel */
-@media (min-width: 1100px) {
+@media(min-width: 1100px) {
   .nav {
     margin-top: 1rem;
     width: 60%;
   }
 }
 
-@media (min-width: 767px) and (max-width: 1100px) {
+@media(min-width: 767px) and (max-width: 1100px) {
   .nav {
     margin-top: 1rem;
     width: 80%;
@@ -74,7 +74,6 @@ export default {
   }
 }
 
-/* TODO Mobile styles */
 @media (max-width: 767px){ 
   .nav {
     position: relative;

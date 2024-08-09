@@ -14,8 +14,12 @@
       </p>
     </div>
 
-    <!-- REVIEW Info around the light bulb -->
-    <!-- <div class="aroundBulb">
+    <!-- Around the light bulb -->
+     <!-- FIXME Deal with the images -->
+    <img src="../../assets/images/bulb.png" />
+    <img src="../../assets//images//dust.png" />
+    <!-- FIXME Render this using v-for directive -->
+    <div class="aroundBulb relativity">
       <div class="abyears">
         <h3 class="emBigTexts">6 лет</h3>
         <h5 class="emSmallTexts">Готовим к экзамену</h5>
@@ -35,9 +39,9 @@
         <h3 class="emBigTexts">70+</h3>
         <h5 class="emSmallTexts">Средний балл</h5>
       </div>
-    </div> -->
-
-    <!-- LONGTODO Registration button -->
+    </div>
+    
+    <!-- Registration button -->
     <button class="registerButton">РЕГИСТРАЦИЯ</button>
   </div>
 </template>
@@ -49,6 +53,95 @@ export default {
 </script>
 
 <style>
+.emblock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 80%;
+}
+
+/* ----- Above the bulb ----- */
+.aboveBulb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.examindsText {
+  color: white;
+  font-family: "Geologica-Bold";
+}
+
+.partTwoText {
+  font-family: 'Inter-Bold';
+  text-align: center;
+  color: white;
+}
+
+.partThreeText {
+  font-family: 'Inter-Regular';
+  text-align: center;
+  color: white;
+}
+
+/* ----- Around the bulb ----- */
+.emBigTexts {
+  background: linear-gradient(
+    to right, 
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.5) 100%),
+    #FFFFFF;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 1.7rem;
+  font-family: 'Inter-Bold';
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.emSmallTexts {
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-family: 'Inter-Regular';
+  font-weight: normal;
+  text-align: center;
+  margin-top: 0;
+}
+
+/* FIXME Button positioning is not complete */
+.registerButton {
+  font-family: 'Inter-Bold';
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  color: white;
+  background: 
+  linear-gradient(
+    to right, 
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  ),
+  linear-gradient(
+    to right, 
+    rgba(255, 236, 224, 0) 0%,
+    rgba(255, 236, 224, 0.4) 47%,
+    rgba(255, 236, 224, 0) 100%
+  ),
+  #037328;
+  border-radius: 10px / 50px;
+  border: none;
+  box-shadow: 0px 3px 0px #046b26,
+              inset 0px 2.18px 11.06px rgba(255, 255, 255, 0.25); 
+}
+
+.registerButton:active {
+  box-shadow: 0px 0px 0px #046b26;
+  transform: translateY(2px);
+}
+
 /* TODO Desktop styles */
 @media(min-width: 767px) {
   .emblock {
@@ -81,7 +174,6 @@ export default {
 @media(max-width: 767px) {
   .emblock {
     width: 100%;
-    /* aspect-ratio: 1 / 4; */
   }
 
   /* ----- Above the bulb ----- */
@@ -102,15 +194,9 @@ export default {
     margin-top: 0.5rem;
   }
 
-  .registerButton {
-    font-size: 0.8rem;
-    /* FIXME Temporary fix */
-    margin-top: 15rem;
-  }
-
-  /* REVIEW Around the bulb ----- */
-  /* .aroundBulb {
-    min-height: 160px;
+  /* ----- Around the bulb ----- */
+  .aroundBulb {
+    margin-top: 2rem;
   }
   
   .emBigTexts {
@@ -124,111 +210,37 @@ export default {
   }
 
   .abyears {
-    min-width: 120px;
+    width: 120px;
     position: absolute;
     top: -10px;
-    left: 20px;
+    right: 40px;
   }
 
   .abhundredscores {
     position: absolute;
     top: -10px;
-    right: 30px;
+    left: 50px;
   }
 
   .abgraduates {
     position: absolute;
     top: 50px;
-    left: 55px;
+    right: 47px;
   }
 
   .abaveragescore {
+    width: 80px;
     position: absolute;
     top: 50px;
-    right: 60px;
-  } */
+    left: 25px;
+  }
+
+  .registerButton {
+    font-size: 0.8rem;
+    width: 250px;
+    height: 60px;
+    margin-top: 10rem;
+  }
+
 }
-
-.emblock { /* FIXME Fix the styles */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  height: 80%;
-}
-
-/* ----- Above the bulb ----- */
-.aboveBulb {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.examindsText {
-  color: white;
-  font-family: "Geologica-Bold";
-}
-
-.partTwoText {
-  font-family: 'Inter-Bold';
-  text-align: center;
-  color: white;
-}
-
-.partThreeText {
-  font-family: 'Inter-Regular';
-  text-align: center;
-  color: white;
-}
-
-/* FIXME Button style and positioning is not complete */
-.registerButton {
-  font-family: 'Inter-Bold';
-  letter-spacing: 1.5px;
-  cursor: pointer;
-  color: white;
-  background: linear-gradient(
-    to right, 
-    rgba(4, 107, 38, 1) 0%,
-    rgba(255, 255, 255, 0.7) 50%,
-    rgba(4, 107, 38, 1) 100%
-  );
-  border-radius: 6.96px;
-  border: none;
-  box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.8);
-  /* margin-top: 15rem; */
-  padding-left: 4.6rem;
-  padding-right: 4.6rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-/* REVIEW Around the bulb ----- */
-/* .aroundBulb {
-  position: relative;
-  width: 100%;
-}
-
-.emBigTexts {
-  font-family: 'Inter-Bold';
-  text-align: center;
-
-  color: rgba(255, 255, 255, 1);
-  background: linear-gradient(
-    to right, 
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(255, 255, 255, 0.4) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.emSmallTexts {
-  color: white;
-  font-family: 'Inter-Regular';
-  font-weight: normal;
-  text-align: center;
-} */
 </style>

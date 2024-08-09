@@ -48,8 +48,10 @@ export default {
 }
 
 .home {
+  /* FIXME Background is not perfect */
   background-size: cover;
   background-repeat: no-repeat;
+  /* background-position: center; */
   display: flex;
   flex-direction: column;
   align-items: center;

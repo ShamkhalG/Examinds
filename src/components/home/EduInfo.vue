@@ -2,7 +2,7 @@
   <div class="eduinfo">
     <p class="eduInfoHeader">Как проходит обучение?</p>
     <div v-for="(eduInfo, index) in eduInfos" :key="index" class="relativity centralize upperMargin">
-      <img :src="eduInfo.img" class="eduInfoImage" />
+      <img :src="eduInfo.img" class="eduInfoImage" :class="eduInfo.class" />
       <p v-html="eduInfo.text" class="eduInfoText"></p>
     </div>
   </div>
@@ -21,6 +21,7 @@ export default {
           и практикой
           `,
           img: require("../../assets/images/edu_info/laptop.png"),
+          class: "laptopImage"
         },
         {
           text: `
@@ -28,6 +29,7 @@ export default {
             <br class="mobileBr" />каждого</span> видео-урока
           `,
           img: require("../../assets/images/edu_info/notebook_and_pen.png"),
+          class: "notebookAndPenImage"
         },
         {
           text: `
@@ -36,6 +38,7 @@ export default {
             изучен материал
           `,
           img: require("../../assets/images/edu_info/puzzle.png"),
+          class: "puzzleImage"
         },
         {
           text: `
@@ -44,6 +47,7 @@ export default {
             чтобы улучшить результаты
           `,
           img: require("../../assets/images/edu_info/chat_and_hearts.png"),
+          class: "chatAndHeartsImage"
         },
         {
           text: `
@@ -52,6 +56,7 @@ export default {
             на прямом эфире
           `,
           img: require("../../assets/images/edu_info/paper_and_approved.png"),
+          class: "paperAndApprovedImage"
         }
       ]
     }
@@ -80,19 +85,41 @@ export default {
 /* TODO Desktop styles */
 
 /* Mobile styles */
-/* FIXME Centralize the images */
 @media(max-width: 767px){
   .eduInfoHeader {
     font-size: 1.7rem;
     padding-left: 0.7rem;
     padding-right: 0.7rem;
+    margin-bottom: 0.5rem;
   }
+
   .upperMargin {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .eduInfoText {
+    margin-top: 0rem;
   }
 
   .eduInfoImage {
-    width: 70%;
+    width: 80%;
+  }
+
+  .laptopImage {
+    margin-right: 2rem;
+  }
+
+  .notebookAndPenImage {
+    margin-left: 1rem;
+  }
+
+  .puzzleImage {
+    margin-right: 4rem;
+  }
+
+  .chatAndHeartsImage {
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
   }
 }
 </style>

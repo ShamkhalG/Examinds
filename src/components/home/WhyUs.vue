@@ -93,8 +93,8 @@ export default {
 .whyUsText {
   color: white;
   font-family: 'Geologica-bold';
-  /* FIXME Shadow is not fully matching the design */
-  text-shadow: 2px 3px 2px rgba(0, 0, 0, 1);
+  text-shadow:  0px 5px 4px rgba(0, 0, 0, 0.5), 0px 6px 10px rgba(0, 0, 0, 0.7);
+              
 }
 
 .reasonContainer {
@@ -114,7 +114,6 @@ export default {
   font-family: 'Inter-Bold';
 }
 
-/* FIXME Design of the button doesn't match */
 .finAidButton {
   color: #8D8D8D;
   cursor: pointer;
@@ -131,11 +130,17 @@ export default {
     rgba(137, 137, 137, 1) 100%
   ),
   rgba(255, 255, 255, 1);
-  border-radius: 6.97px;
+  border-radius: 7px / 40px;
   border: none;
+  box-shadow: 0px 2px 0px #8F8F8F;
   outline: none;
   font-family: 'Inter-Bold';
   letter-spacing: 1.2px;
+}
+
+.finAidButton:active {
+  box-shadow: 0px 0px 0px #8F8F8F;
+  transform: translateY(2px);
 }
 
 /* TODO Desktop styles */
@@ -148,7 +153,7 @@ export default {
 
   .whyUsText {
     bottom: 2.5rem;
-    font-size: 2.1rem;
+    font-size: 2rem;
   }
 
   .reasonContainer {

@@ -33,6 +33,7 @@ export default {
 .teachersHeader {
   color: white;
   font-family: 'Geologica-Bold';
+  text-align: center;
 }
 /* TODO Desktop styles */
 

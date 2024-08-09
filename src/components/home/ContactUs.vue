@@ -2,12 +2,13 @@
   <div class="contactUs centralize">
     <p class="contactUsHeader">Свяжитесь с нами</p>
     <img src="../../assets/images/contact_us_image.png" class="contactUsImage" />
-    <div class="registerContainer">
-      <form class="registerForm">
+    <div class="registerContainer relativity">
+      <img src="../../assets/backgrounds/register_bg.png" class="notebookImage" />
+      <form class="registerForm absoluteness">
         <p class="registerText">Имя/Фамилия</p>
         <input type="text" v-model="registerData.fullName" class="registerInputBox" />
   
-        <p class="registerText">Номер Телефона</p>
+        <p class="registerText">Номер телефона</p>
         <input type="text" v-model="registerData.number" class="registerInputBox" />
   
         <p class="registerText">Электронная почта</p>
@@ -16,11 +17,13 @@
         <p class="registerText">Пароль</p>
         <input type="text" v-model="registerData.password" class="registerInputBox" />
         
-        <p class="registerText">Номер Телефона Родителя</p>
+        <p class="registerText">Номер телефона Родителя</p>
         <input type="text" v-model="registerData.parentNumber" class="registerInputBox" /> 
+        <div class="buttonContainer centralize">
+          <button class="findOutPriceButton">УЗНАТЬ ЦЕНУ</button>
+        </div>
       </form>
     </div>
-    <button class="findOutPriceButton">УЗНАТЬ ЦЕНУ</button>
   </div>
 </template>
 
@@ -47,12 +50,6 @@ export default {
   font-family: 'Geologica-bold';
 }
 
-.registerContainer {
-  background-image: url("../../assets/backgrounds/register_bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .registerInputBox {
   border: 1px solid #D9D9D9;
   border-radius: 4px;
@@ -63,25 +60,34 @@ export default {
   font-style: italic;
 }
 
-/* FIXME Button's styling is not correct */
 .findOutPriceButton {
   font-family: 'Inter-Bold';
   letter-spacing: 1.5px;
   cursor: pointer;
   color: white;
-  background: linear-gradient(
+  background: 
+  linear-gradient(
     to right, 
-    rgba(4, 107, 38, 1) 0%,
-    rgba(255, 255, 255, 0.7) 50%,
-    rgba(4, 107, 38, 1) 100%
-  );
-  border-radius: 6.96px;
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  ),
+  linear-gradient(
+    to right, 
+    rgba(255, 236, 224, 0) 0%,
+    rgba(255, 236, 224, 0.4) 47%,
+    rgba(255, 236, 224, 0) 100%
+  ),
+  #037328;
+  border-radius: 10px / 50px;
   border: none;
-  box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.8);
-  padding-left: 4.6rem;
-  padding-right: 4.6rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  box-shadow: 0px 3px 0px #046b26,
+              inset 0px 2.18px 11.06px rgba(255, 255, 255, 0.25); 
+}
+
+.findOutPriceButton:active {
+  box-shadow: 0px 0px 0px #046b26;
+  transform: translateY(2px);
 }
 
 /* TODO Desktop styles */
@@ -90,6 +96,7 @@ export default {
 @media(max-width: 767px) {
   .contactUs {
     margin-top: 1rem;
+    margin-bottom: 5rem;
   }
 
   .contactUsHeader {
@@ -101,20 +108,19 @@ export default {
     width: 90%;
   }
 
-  /* FIXME Too many empty space on the bottom */
   .registerContainer {
     display: flex;
     justify-content: center;
     margin-top: -1.2rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    min-height: 442px;
+    min-height: 400px;
     width: 90%;
   }
 
   .registerForm {
     margin-top: 3rem;
-    width: 90%;
+    width: 290px;
   }
   
   .registerText {
@@ -130,8 +136,14 @@ export default {
     width: 98%;
   }
 
+  .buttonContainer {
+    margin-top: 1rem;
+  }
+
   .findOutPriceButton {
-    margin-top: -2rem;
+    margin-top: 1rem;
+    width: 250px;
+    height: 60px;
   }
 }
 </style>
