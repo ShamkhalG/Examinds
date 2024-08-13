@@ -1,12 +1,13 @@
 <template>
   <div class="home">
-    <!-- TODO Rest of the home page -->
     <Navigation />
     <EMBlock />
-    <EduInfo />
-    <WhyUs />
-    <Teachers />
-    <ContactUs />
+    <div class="subHome">
+      <EduInfo />
+      <WhyUs />
+      <Teachers />
+      <ContactUs />
+    </div>
   </div>
 </template>
 
@@ -45,13 +46,24 @@ export default {
   .home {
     background-image: url('../assets/backgrounds/main_bg_mobile.png');
   }
+
+  .subHome {
+    background-image: url('../assets/backgrounds/subhome_bg.png');
+    margin-top: -3.5rem;
+  }
 }
 
 .home {
-  /* FIXME Background is not perfect */
   background-size: cover;
   background-repeat: no-repeat;
-  /* background-position: center; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* TODO Add the new background "subhome_bg.png" */
+.subHome {
   display: flex;
   flex-direction: column;
   align-items: center;

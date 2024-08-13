@@ -15,40 +15,58 @@
     </div>
 
     <!-- Around the light bulb -->
-     <!-- FIXME Deal with the images -->
-    <img src="../../assets/images/bulb.png" />
-    <img src="../../assets//images//dust.png" />
-    <!-- FIXME Render this using v-for directive -->
     <div class="aroundBulb relativity">
-      <div class="abyears">
-        <h3 class="emBigTexts">6 лет</h3>
-        <h5 class="emSmallTexts">Готовим к экзамену</h5>
+      <div class="bulbImageContainer centralize">
+        <img :src="bulbPath" class="bulbImage" />
       </div>
-      
-      <div class="abhundredscores">
-        <h3 class="emBigTexts">20</h3>
-        <h5 class="emSmallTexts">Стобалльников</h5>
+
+
+      <div v-for="(achievement, index) in achievements" :key=index :class="achievement.class">
+        <h3 class="emBigTexts">{{ achievement.bigText }}</h3>
+        <h5 class="emSmallTexts">{{ achievement.smallText }}</h5>
       </div>
-      
-      <div class="abgraduates">
-        <h3 class="emBigTexts">600+</h3>
-        <h5 class="emSmallTexts">Выпускников</h5>
-      </div>
-      
-      <div class="abaveragescore">
-        <h3 class="emBigTexts">70+</h3>
-        <h5 class="emSmallTexts">Средний балл</h5>
-      </div>
+
+      <!-- Registration button -->
+      <button class="registerButton">РЕГИСТРАЦИЯ</button>
     </div>
-    
-    <!-- Registration button -->
-    <button class="registerButton">РЕГИСТРАЦИЯ</button>
+
+    <div class="dustImageContainer centralize">
+      <img :src="dustPath" class="dustImage" />
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "EMBlock"
+  name: "EMBlock",
+  data() {
+    return {
+      bulbPath: window.innerWidth < 767 ? require("../../assets/images/bulb.png") : require("../../assets/images/bulb_pc.png"),
+      dustPath: window.innerWidth < 767 ? require("../../assets/images/dust.png") : require("../../assets/images/dust_pc.png"),
+      achievements: [
+        {
+          class: "abyears",
+          bigText: "6 лет",
+          smallText: window.innerWidth < 767 ? "Готовим к экзамену" : "Профессионально готовим к экзаменам",
+        },
+        {
+          class: "abhundredscores",
+          bigText: "20",
+          smallText: "Стобалльников",
+        },
+        {
+          class: "abgraduates",
+          bigText: "600+",
+          smallText: "Выпускников",
+        },
+        {
+          class: "abaveragescore",
+          bigText: "70+",
+          smallText: window.innerWidth < 767 ? "Средний балл" : "Средний балл учеников",
+        }
+      ]
+    }
+  }
 }
 </script>
 
@@ -86,6 +104,19 @@ export default {
 }
 
 /* ----- Around the bulb ----- */
+.aroundBulb {
+  width: 100%;
+}
+
+.bulbImage {
+  mix-blend-mode: color-dodge;
+}
+
+.dustImage {
+  mix-blend-mode: lighten;
+  z-index: 1;
+}
+
 .emBigTexts {
   background: linear-gradient(
     to right, 
@@ -111,7 +142,6 @@ export default {
   margin-top: 0;
 }
 
-/* FIXME Button positioning is not complete */
 .registerButton {
   font-family: 'Inter-Bold';
   letter-spacing: 1.5px;
@@ -134,15 +164,16 @@ export default {
   border-radius: 10px / 50px;
   border: none;
   box-shadow: 0px 3px 0px #046b26,
-              inset 0px 2.18px 11.06px rgba(255, 255, 255, 0.25); 
+              inset 0px 2.18px 11.06px rgba(255, 255, 255, 0.25);
+  z-index: 2;
 }
 
 .registerButton:active {
   box-shadow: 0px 0px 0px #046b26;
-  transform: translateY(2px);
+  transform: translate(-50%, -48%);
 }
 
-/* TODO Desktop styles */
+/* Desktop styles */
 @media(min-width: 767px) {
   .emblock {
     margin-top: 0.5rem;
@@ -151,7 +182,7 @@ export default {
   .examindsText {
     font-size: 4.8rem;
     margin-bottom: -0.5rem;
-    margin-top: 0;
+    margin-top: 1rem;
   }
 
   .partTwoText {
@@ -165,12 +196,63 @@ export default {
     margin-top: 0;
   }
 
+  /* ----- Around the bulb ----- */
+  .aroundBulb {
+    max-width: 975px;
+  }
+  .dustImage {
+    margin-top: -4.5rem;
+    width: 100%;
+  }
+  
+  .emBigTexts {
+    font-size: 3.6rem;
+    margin-bottom: 0;
+  }
+
+  .emSmallTexts {
+    font-size: 1.1rem;
+    margin-top: 0;
+  }
+
+  .abyears {
+    width: 200px;
+    position: absolute;
+    top: 80px;
+    left: 20px;
+  }
+
+  .abhundredscores {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+  }
+
+  .abgraduates {
+    position: absolute;
+    top: 280px;
+    left: 120px;
+  }
+
+  .abaveragescore {
+    position: absolute;
+    top: 280px;
+    right: 85px;
+  }
+
   .registerButton {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    top: 520px;
     font-size: 1rem;
+    width: 379px;
+    height: 80px;
   }
 }
 
-/* FIXME Mobile styles */
+/* Mobile styles */
 @media(max-width: 767px) {
   .emblock {
     width: 100%;
@@ -196,7 +278,13 @@ export default {
 
   /* ----- Around the bulb ----- */
   .aroundBulb {
-    margin-top: 2rem;
+    max-width: 398px;
+  }
+
+  .dustImage {
+    margin-top: -3rem;
+    width: 100vw;
+    height: auto;
   }
   
   .emBigTexts {
@@ -212,35 +300,38 @@ export default {
   .abyears {
     width: 120px;
     position: absolute;
-    top: -10px;
-    right: 40px;
+    top: 30px;
+    left: 5px;
   }
 
   .abhundredscores {
     position: absolute;
-    top: -10px;
-    left: 50px;
+    top: 30px;
+    right: 10px;
   }
 
   .abgraduates {
     position: absolute;
-    top: 50px;
-    right: 47px;
+    top: 90px;
+    left: 40px;
   }
 
   .abaveragescore {
     width: 80px;
     position: absolute;
-    top: 50px;
-    left: 25px;
+    top: 90px;
+    right: 40px;
   }
 
   .registerButton {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 290px;
+    transform: translate(-50%, -50%);
     font-size: 0.8rem;
     width: 250px;
     height: 60px;
-    margin-top: 10rem;
   }
-
 }
 </style>

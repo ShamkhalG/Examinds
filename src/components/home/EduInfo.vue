@@ -1,5 +1,5 @@
 <template>
-  <div class="eduinfo">
+  <div class="eduInfo">
     <p class="eduInfoHeader">Как проходит обучение?</p>
     <div v-for="(eduInfo, index) in eduInfos" :key="index" class="relativity centralize upperMargin">
       <img :src="eduInfo.img" class="eduInfoImage" :class="eduInfo.class" />
@@ -86,6 +86,10 @@ export default {
 
 /* Mobile styles */
 @media(max-width: 767px){
+  .eduInfo {
+    margin-top: 4rem;
+  }
+  
   .eduInfoHeader {
     font-size: 1.7rem;
     padding-left: 0.7rem;
