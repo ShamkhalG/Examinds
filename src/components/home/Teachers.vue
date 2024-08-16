@@ -13,15 +13,16 @@ export default {
   name: "Teachers",
   data() {
     return {
+      screenWidth: window.innerWidth,
       teachers: [
         {
-          img: require("../../assets/images/teachers/sara_info.png")
+          img: this.screenWidth < 767 ? require("../../assets/images/teachers/sara_info.png") : require("../../assets/images/teachers/sara_info_pc.png")
         },
         {
-          img: require("../../assets/images/teachers/elnara_info.png")
+          img: this.screenWidth < 767 ? require("../../assets/images/teachers/elnara_info.png") : require("../../assets/images/teachers/elnara_info_pc.png")
         },
         {
-          img: require("../../assets/images/teachers/nina_info.png")
+          img: this.screenWidth < 767 ? require("../../assets/images/teachers/nina_info.png") : require("../../assets/images/teachers/nina_info_pc.png")
         }
       ]
     }
@@ -35,7 +36,19 @@ export default {
   font-family: 'Geologica-Bold';
   text-align: center;
 }
-/* TODO Desktop styles */
+
+/* Desktop styles */
+@media(min-width: 767px) {
+  .teachersHeader {
+    font-size: 5rem;
+    margin-bottom: 0;
+  }
+
+  .teacherImage {
+    width: 90%;
+    margin-bottom: 3rem;
+  }
+}
 
 /* Mobile styles */
 @media(max-width: 767px) {

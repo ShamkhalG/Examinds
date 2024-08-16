@@ -1,8 +1,8 @@
 <template>
   <div class="whyUs">
     <div class="relativity centralize">
-      <img class="bookLampPaper" src="../../assets/images/why_us/book_lamp_paper.png" />
-      <p class="whyUsText absoluteness">Почему мы?</p>
+      <img class="bookLampPaper" src="../../assets/images/why_us/book_lamp_paper.png" v-if="screenWidth < 767" />
+      <p class="whyUsHeader absoluteness">Почему мы?</p>
     </div>
 
     <div v-for="(reason, index) in reasons" :key="index" :style="{ backgroundImage: `url(${reason.bg_img})` }" class="reasonContainer relativity centralize">
@@ -21,6 +21,7 @@ export default {
   name: "WhyUs",
   data() {
     return {
+      screenWidth: window.innerWidth,
       reasons: [
         {
           number_img: require("../../assets/images/why_us/01.png"),
@@ -90,7 +91,7 @@ export default {
 </script>
 
 <style>
-.whyUsText {
+.whyUsHeader {
   color: white;
   font-family: 'Geologica-bold';
   text-shadow:  0px 5px 4px rgba(0, 0, 0, 0.5), 0px 6px 10px rgba(0, 0, 0, 0.7);
@@ -144,6 +145,12 @@ export default {
 }
 
 /* TODO Desktop styles */
+@media(min-width: 767px) {
+  .whyUsHeader {
+    z-index: 1;
+    font-size: 5rem;
+  } 
+}
 
 /* Mobile styles */
 @media(max-width: 767px) {
@@ -151,7 +158,7 @@ export default {
     width: 90%;
   }
 
-  .whyUsText {
+  .whyUsHeader {
     bottom: 2.5rem;
     font-size: 2rem;
   }
