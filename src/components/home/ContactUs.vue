@@ -1,9 +1,10 @@
 <template>
   <div class="contactUs centralize">
     <p class="contactUsHeader">Свяжитесь с нами</p>
-    <img src="../../assets/images/contact_us_image.png" class="contactUsImage" />
+    <img class="contactUsImage" v-if="screenWidth < 767" src="../../assets/images/contact_us_image.png" />
     <div class="registerContainer relativity">
-      <img src="../../assets/backgrounds/register_bg.png" class="notebookImage" />
+      <img class="contactUsImage" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
+      <img class="notebookImage" :src="screenWidth < 767 ? require('../../assets/backgrounds/register_bg.png') : require('../../assets/backgrounds/register_bg_pc.png')" />
       <form class="registerForm absoluteness">
         <p class="registerText">Имя/Фамилия</p>
         <input type="text" v-model="registerData.fullName" class="registerInputBox" />
@@ -19,6 +20,7 @@
         
         <p class="registerText">Номер телефона Родителя</p>
         <input type="text" v-model="registerData.parentNumber" class="registerInputBox" /> 
+        
         <div class="buttonContainer centralize">
           <button class="findOutPriceButton">УЗНАТЬ ЦЕНУ</button>
         </div>
@@ -32,6 +34,7 @@ export default {
   name: "ContactUs",
   data() {
     return {
+      screenWidth: window.innerWidth,
       registerData: {
         fullName: '',
         number: '',
@@ -90,7 +93,67 @@ export default {
   transform: translateY(2px);
 }
 
-/* TODO Desktop styles */
+@media(max-width: 1717px) {
+  .contactUsImage {
+    max-width: 100%;
+  }
+}
+
+/* Desktop styles */
+@media(min-width: 767px) {
+  .contactUs {
+    min-height: 1000px;
+  }
+
+  .contactUsHeader {
+    font-size: 5rem;
+    margin-bottom: -2.7rem;
+  }
+
+  .registerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .contactUsImage {
+    /* max-width: 100%; */
+    height: auto;
+  }
+
+  .notebookImage {
+    position: absolute;
+    top: 46%;
+  }
+
+  .registerForm {
+    margin-top: 27.5rem;
+    margin-left: 1rem;
+    width: 680px;
+  }
+
+  .registerText {
+    margin: 0;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    margin-left: 0.5rem;
+  }
+
+  .registerInputBox {
+    border-radius: 8px;
+    font-size: 1rem;
+    height: 2rem;
+    width: 96%;
+  }
+
+  .findOutPriceButton {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    width: 379px;
+    height: 90px;
+  }
+}
 
 /* Mobile styles */
 @media(max-width: 767px) {

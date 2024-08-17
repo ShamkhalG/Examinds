@@ -8,6 +8,7 @@
         <!-- The position of the text and the image is reversed for PC -->
         <img :src="eduInfo.img" class="eduInfoImage" :class="eduInfo.imgClass" v-if="index === 4 && screenWidth > 767" />
       </div>
+      
       <img src="../../assets/images/edu_info/lamp_book.png" class="lampBookImage" v-if="screenWidth > 767" />
     </div>
   </div>
@@ -18,6 +19,7 @@ export default {
   name: "EduInfo",
   data() {
     return {
+      // TODO Use Vuex store to fetch this value
       screenWidth: window.innerWidth,
       eduInfos: [
         {

@@ -62,7 +62,6 @@ export default {
   width: 100%;
 }
 
-/* TODO Add the new background "subhome_bg.png" */
 .subHome {
   display: flex;
   flex-direction: column;
