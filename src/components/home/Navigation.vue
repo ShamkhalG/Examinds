@@ -16,7 +16,6 @@
     </div>
     
     <div class="navButtons">
-      <!-- LONGTODO Authentication -->
       <button class="navsignin">ВОЙТИ</button>
       <div class="circleFour noOpacity"></div>
     </div>

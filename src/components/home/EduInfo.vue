@@ -2,14 +2,14 @@
   <div class="eduInfo">
     <p class="eduInfoHeader">Как проходит обучение?</p>
     <div class="relativity eduInfoContainers">
-      <div v-for="(eduInfo, index) in eduInfos" :key="index" :class="screenWidth < 767 ? 'centralize' : eduInfo.divClass" class="upperMargin">
-        <img :src="eduInfo.img" class="eduInfoImage" :class="eduInfo.imgClass" v-if="index !== 4 || screenWidth < 767" />
+      <div v-for="(eduInfo, index) in eduInfos" :key="index" :class="screenWidth < 1000 ? 'centralize' : eduInfo.divClass" class="upperMargin">
+        <img :src="eduInfo.img" class="eduInfoImage" :class="eduInfo.imgClass" v-if="index !== 4 || screenWidth < 1000" />
         <p v-html="eduInfo.text" class="eduInfoText"></p>
         <!-- The position of the text and the image is reversed for PC -->
-        <img :src="eduInfo.img" class="eduInfoImage" :class="eduInfo.imgClass" v-if="index === 4 && screenWidth > 767" />
+        <img :src="eduInfo.img" class="eduInfoImage" :class="eduInfo.imgClass" v-if="index === 4 && screenWidth > 1000" />
       </div>
       
-      <img src="../../assets/images/edu_info/lamp_book.png" class="lampBookImage" v-if="screenWidth > 767" />
+      <img src="../../assets/images/edu_info/lamp_book.png" class="lampBookImage" v-if="screenWidth > 1000" />
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   name: "EduInfo",
   data() {
     return {
-      // TODO Use Vuex store to fetch this value
+      // LONGTODO Use Vuex store to fetch this value
       screenWidth: window.innerWidth,
       eduInfos: [
         {
@@ -28,7 +28,7 @@ export default {
           <span class="orangeText">видео-уроки</span> с разбором<br class="desktopBr" /> темы<br class="mobileBr" />
           и практикой
           `,
-          img: window.innerWidth < 767 ? require("../../assets/images/edu_info/laptop.png") : require("../../assets/images/edu_info/laptop_pc.png"),
+          img: window.innerWidth < 1000 ? require("../../assets/images/edu_info/laptop.png") : require("../../assets/images/edu_info/laptop_pc.png"),
           imgClass: "laptopImage",
           divClass: "laptopContainer"
         },
@@ -37,7 +37,7 @@ export default {
             Домашние задания <span class="orangeText">после<br class="desktopBr" />
             <br class="mobileBr" />каждого</span> видео-урока
           `,
-          img: window.innerWidth < 767 ? require("../../assets/images/edu_info/notebook_pen.png") : require("../../assets/images/edu_info/notebook_pen_pc.png"),
+          img: window.innerWidth < 1000 ? require("../../assets/images/edu_info/notebook_pen.png") : require("../../assets/images/edu_info/notebook_pen_pc.png"),
           imgClass: "notebookAndPenImage",
           divClass: "notebookAndPenContainer"
         },
@@ -47,7 +47,7 @@ export default {
             проверить насколько хорошо<br class="mobileBr" /><br class="desktopBr" />
             изучен материал
           `,
-          img: window.innerWidth < 767 ? require("../../assets/images/edu_info/puzzle.png") : require("../../assets/images/edu_info/puzzle_pc.png"),
+          img: window.innerWidth < 1000 ? require("../../assets/images/edu_info/puzzle.png") : require("../../assets/images/edu_info/puzzle_pc.png"),
           imgClass: "puzzleImage",
           divClass: "puzzleContainer"
         },
@@ -57,7 +57,7 @@ export default {
             от<br class="desktopBr" /> преподавателя и куратора</span>,<br class="mobileBr" />
             чтобы<br class="desktopBr" /> улучшить результаты
           `,
-          img: window.innerWidth < 767 ? require("../../assets/images/edu_info/chat_hearts.png") : require("../../assets/images/edu_info/chat_hearts_pc.png"),
+          img: window.innerWidth < 1000 ? require("../../assets/images/edu_info/chat_hearts.png") : require("../../assets/images/edu_info/chat_hearts_pc.png"),
           imgClass: "chatAndHeartsImage",
           divClass: "chatAndHeartsContainer"
         },
@@ -67,7 +67,7 @@ export default {
             <span class="orangeText">ошибок</span><br class="mobileBr" />
             на прямом эфире
           `,
-          img: window.innerWidth < 767 ? require("../../assets/images/edu_info/papers_approved.png") : require("../../assets/images/edu_info/papers_approved_pc.png"),
+          img: window.innerWidth < 1000 ? require("../../assets/images/edu_info/papers_approved.png") : require("../../assets/images/edu_info/papers_approved_pc.png"),
           imgClass: "paperAndApprovedImage",
           divClass: "paperAndApprovedContainer"
         }
@@ -95,15 +95,15 @@ export default {
   color: #F96F16;
 }
 
-/* FIXME When screen size is less than 1000px, they don't fit */
 /* Desktop styles */
-@media(min-width: 767px) {
+@media(min-width: 1000px) {
   .eduInfo {
     min-height: 1930px;
   }
 
   .eduInfoHeader {
     font-size: 5rem;
+    max-width: 1010px;
   }
 
   .eduInfoText {
@@ -130,7 +130,7 @@ export default {
     position: absolute;
     top: 20rem;
     left: 30%;
-    z-index: 2;
+    z-index: 3;
   }
 
   .puzzleContainer {
@@ -154,7 +154,7 @@ export default {
 }
 
 /* Mobile styles */
-@media(max-width: 767px){
+@media(max-width: 1000px){
   .eduInfo {
     margin-top: 4rem;
   }

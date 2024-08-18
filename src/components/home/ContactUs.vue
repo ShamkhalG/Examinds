@@ -108,6 +108,7 @@ export default {
   .contactUsHeader {
     font-size: 5rem;
     margin-bottom: -2.7rem;
+    margin-top: 0;
   }
 
   .registerContainer {
