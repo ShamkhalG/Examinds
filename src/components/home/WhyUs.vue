@@ -26,21 +26,37 @@ export default {
   data() {
     return {
       screenWidth: window.innerWidth,
-      reasons: [
+      reasons: []
+    };
+  },
+  mounted() {
+    this.updateReasons(); // Initialize reasons based on screen width
+    window.addEventListener('resize', this.handleResize); // Listen to window resize
+  },
+  beforeMount() {
+    window.removeEventListener('resize', this.handleResize); // Clean up listener
+  },
+  methods: {
+    handleResize() {
+      this.screenWidth = window.innerWidth;
+      this.updateReasons(); // Update reasons when the screen size changes
+    },
+    updateReasons() {
+      this.reasons = [
         {
           class: "firstGray",
           number_img: require("../../assets/images/why_us/01.png"),
           text: this.screenWidth < 1000 ? `
-            <span class="boldText">Инновационная система обучения</span>-наша<br class="mobileBr" />
-            платформа и структура уроков помогают<br class="mobileBr" />
-            ребенку удобно сфокусироваться на теме,<br class="mobileBr" />
+            <span class="boldText">Инновационная система обучения</span>-наша<br />
+            платформа и структура уроков помогают<br />
+            ребенку удобно сфокусироваться на теме,<br />
             не пропускать уроки и сохранять интерес.
           ` : `
-            Лучшая инновационная система обучения<br class="desktopBr" />
-            в Азербайджане. Наша платформа<br class="desktopBr" />
-            и структура уроков помогают ребенку<br class="desktopBr" />
-            удобно сфокусироваться на теме, не<br class="desktopBr" />
-            пропускать уроки и сохранять интерес.<br class="desktopBr" />
+            Лучшая инновационная система обучения<br />
+            в Азербайджане. Наша платформа<br />
+            и структура уроков помогают ребенку<br />
+            удобно сфокусироваться на теме, не<br />
+            пропускать уроки и сохранять интерес.<br />
           `,
           image: require("../../assets/images/why_us/bottom_img_1.png"),
           bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/gray_rect_bg.png") : require("../../assets/backgrounds/gray_rect_bg_pc.png"),
@@ -49,14 +65,14 @@ export default {
           class: "secondGray",
           number_img: require("../../assets/images/why_us/02.png"),
           text: this.screenWidth < 1000 ? `
-            <span class="boldText">Удобный график работы.</span> Вы сами<br class="mobileBr" />
-            определяете удобное время и дни<br class="mobileBr" />
-            для учебы благодаря нашей гибкой<br class="mobileBr" />
+            <span class="boldText">Удобный график работы.</span> Вы сами<br />
+            определяете удобное время и дни<br />
+            для учебы благодаря нашей гибкой<br />
             структуре занятий.
           ` : `
-            Удобный график работы. Вы сами<br class="desktopBr" />
-            определяете удобное время и дни<br class="desktopBr" />
-            для учебы благодаря нашей гибкой<br class="desktopBr" />
+            Удобный график работы. Вы сами<br />
+            определяете удобное время и дни<br />
+            для учебы благодаря нашей гибкой<br />
             структуре занятий.
           `,
           image: require("../../assets/images/why_us/bottom_img_2.png"),
@@ -66,13 +82,13 @@ export default {
           class: "thirdGray",
           number_img: require("../../assets/images/why_us/03.png"),
           text: this.screenWidth < 1000 ? `
-            <span class="boldText">Постоянный контроль результатов<br class="mobileBr" /> 
-            и посещаемости ребенка</span>, чтобы<br class="mobileBr" />
-            родители были уверены в его<br class="mobileBr" />
+            <span class="boldText">Постоянный контроль результатов<br /> 
+            и посещаемости ребенка</span>, чтобы<br />
+            родители были уверены в его<br />
             прогрессе.
           ` : `
-            Постоянный контроль результатов и<br class="desktopBr" />
-            посещаемости ребенка, чтобы родители<br class="desktopBr" />
+            Постоянный контроль результатов и<br />
+            посещаемости ребенка, чтобы родители<br />
             были уверены в его прогрессе.
           `,
           image: require("../../assets/images/why_us/bottom_img_3.png"),
@@ -82,14 +98,14 @@ export default {
           class: "fourthGray",
           number_img: require("../../assets/images/why_us/04.png"),
           text: this.screenWidth < 1000 ? `
-            Лучшие <span class="boldText">молодые преподаватели<br class="mobileBr" />
-            с многолетним опытом</span> работы в<br class="mobileBr" />
-            ведущих курсах и частных школах<br class="mobileBr" />
+            Лучшие <span class="boldText">молодые преподаватели<br />
+            с многолетним опытом</span> работы в<br />
+            ведущих курсах и частных школах<br />
             Азербайджана.
           ` : `
-            Лучшие молодые преподаватели<br class="desktopBr" />
-            с многолетним опытом работы в<br class="desktopBr" />
-            ведущих курсах и частных школах<br class="desktopBr" />
+            Лучшие молодые преподаватели<br />
+            с многолетним опытом работы в<br />
+            ведущих курсах и частных школах<br />
             Азербайджана.
           `,
           image: require("../../assets/images/why_us/bottom_img_4.png"),
@@ -99,28 +115,28 @@ export default {
           class: "firstGreen",
           number_img: require("../../assets/images/why_us/05.png"),
           text: this.screenWidth < 1000 ? `
-            <span class="boldText">Мы предлагаем финансовую помощь всем<br class="mobileBr" />
-            нуждающимся, стремясь повысить уровень<br class="mobileBr" />
+            <span class="boldText">Мы предлагаем финансовую помощь всем<br />
+            нуждающимся, стремясь повысить уровень<br />
             образования в Азербайджане.
             </span>
-            <br class="mobileBr" />
-            <br class="mobileBr" />
-            Система грантов позволяет детям получать<br class="mobileBr" />
-            лучшее образование и поступать в ведущие<br class="mobileBr" />
-            университеты, освобождая от частичной или<br class="mobileBr" />
+            <br />
+            <br />
+            Система грантов позволяет детям получать<br />
+            лучшее образование и поступать в ведущие<br />
+            университеты, освобождая от частичной или<br />
             полной оплаты курса.
           ` : `
-          <span class="boldText">Мы предлагаем финансовую помощь всем нуждающимся, стремясь повысить уровень<br class="desktopBr" />
-          образования в Азербайджане. Система грантов позволяет детям получать лучшее образование<br class="desktopBr" />
+          <span class="boldText">Мы предлагаем финансовую помощь всем нуждающимся, стремясь повысить уровень<br />
+          образования в Азербайджане. Система грантов позволяет детям получать лучшее образование<br />
           и поступать в ведущие университеты, освобождая от частичной или полной оплаты курса.</span>
           `,
           image: require("../../assets/images/why_us/bottom_img_5.png"),
           bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/green_rect_bg.png") : require("../../assets/backgrounds/green_rect_bg_pc.png"),
         }
-      ]
+      ];
     }
   }
-}
+};
 </script>
 
 <style>
@@ -281,7 +297,7 @@ export default {
 
   .reasonContainer {
     max-width: 400px;
-    min-height: 204px;
+    min-height: 290px;
     position: relative;
     /* background-size: cover; */
     background-size: contain; 
@@ -291,19 +307,17 @@ export default {
     margin-bottom: 4rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    /* padding-top: 0.5rem;
-    padding-bottom: 1.8rem; */
   }
 
   .reasonText {
     font-size: 0.8rem;
     text-align: center;
-    max-width: 280px;
+    max-width: 360px;
   }
 
   .bookmarkImage {
     position: absolute;
-    bottom: -2.4rem;
+    bottom: 0rem;
     left: 1rem;
   }
   
@@ -319,6 +333,18 @@ export default {
     bottom: -2.4rem;
     width: 264px;
     height: 63px;
+  }
+}
+
+@media (min-width: 380px) and (max-width: 400px) {
+  .bookmarkImage {
+    bottom: 0.5rem !important;
+  }
+}
+
+@media (min-width: 340px) and (max-width: 380px) {
+  .bookmarkImage {
+    bottom: 1.1rem !important;
   }
 }
 </style>
