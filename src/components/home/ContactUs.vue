@@ -5,7 +5,7 @@
     <div class="registerContainer relativity">
       <img class="contactUsImage" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
       <img class="notebookImage" :src="screenWidth < 767 ? require('../../assets/backgrounds/register_bg.png') : require('../../assets/backgrounds/register_bg_pc.png')" />
-      <form class="registerForm absoluteness">
+      <div class="registerForm absoluteness">
         <p class="registerText">Имя/Фамилия</p>
         <input type="text" v-model="registerData.fullName" class="registerInputBox" />
   
@@ -22,26 +22,41 @@
         <input type="text" v-model="registerData.parentNumber" class="registerInputBox" /> 
         
         <div class="buttonContainer centralize">
-          <button class="findOutPriceButton">УЗНАТЬ ЦЕНУ</button>
+          <button class="findOutPriceButton" @click="signUp">УЗНАТЬ ЦЕНУ</button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "ContactUs",
   data() {
     return {
       screenWidth: window.innerWidth,
       registerData: {
-        fullName: '',
-        number: '',
+        name: '',
+        phonenumber: '',
         email: '',
         password: '',
-        parentNumber: ''
+        parentnumber: ''
       }
+    }
+  },
+  methods: {
+    signUp() {
+      const baseURL = "https://outdoor-dulciana-examinds-75547372.koyeb.app/"
+      const url = baseURL + "signup"
+      axios.post(url, this.registerData)
+        .then(response => {
+          console.log('Data sent: ', response.data);
+        })
+        .catch(error => {
+          console.error('There was an error!', error);
+        });
     }
   }
 }
