@@ -284,7 +284,7 @@ export default {
   }
 }
 
-/* FIXME Mobile styles */
+/* Mobile styles */
 @media(max-width: 1000px) {
   .bookLampPaper {
     width: 90%;

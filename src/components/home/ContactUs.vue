@@ -5,32 +5,49 @@
     <div class="registerContainer relativity">
       <img class="contactUsImage" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
       <img class="notebookImage" :src="screenWidth < 767 ? require('../../assets/backgrounds/register_bg.png') : require('../../assets/backgrounds/register_bg_pc.png')" />
-      <div class="registerForm absoluteness">
-        <p class="registerText">Имя/Фамилия</p>
-        <input type="text" v-model="registerData.fullName" class="registerInputBox" />
+      <form @submit.prevent="signUp" class="registerForm absoluteness">
+        <!-- Name/Surname -->
+        <div>
+          <p class="registerText">Имя/Фамилия</p>
+          <input type="text" v-model="registerData.name" class="registerInputBox" />
+        </div>
   
-        <p class="registerText">Номер телефона</p>
-        <input type="text" v-model="registerData.number" class="registerInputBox" />
+        <!-- Number -->
+        <div>
+          <p class="registerText">Номер телефона</p>
+          <input type="text" v-model="registerData.phonenumber" placeholder="Пример: +994501234567" class="registerInputBox" />
+        </div>
   
-        <p class="registerText">Электронная почта</p>
-        <input type="text" v-model="registerData.email" class="registerInputBox" />
+        <!-- Email -->
+        <div>
+          <p class="registerText">Электронная почта</p>
+          <input type="text" v-model="registerData.email" class="registerInputBox" />
+        </div>
   
-        <p class="registerText">Пароль</p>
-        <input type="text" v-model="registerData.password" class="registerInputBox" />
+        <!-- Password -->
+        <div>
+          <p class="registerText">Пароль</p>
+          <input type="text" v-model="registerData.password" class="registerInputBox" />
+        </div>
         
-        <p class="registerText">Номер телефона Родителя</p>
-        <input type="text" v-model="registerData.parentNumber" class="registerInputBox" /> 
+        <!-- Parent number -->
+        <div>
+          <p class="registerText">Номер телефона Родителя</p>
+          <input type="text" v-model="registerData.parentnumber" class="registerInputBox" /> 
+        </div>
         
         <div class="buttonContainer centralize">
-          <button class="findOutPriceButton" @click="signUp">УЗНАТЬ ЦЕНУ</button>
+          <button type="submit" class="findOutPriceButton">УЗНАТЬ ЦЕНУ</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
 
 export default {
   name: "ContactUs",
@@ -47,17 +64,80 @@ export default {
     }
   },
   methods: {
-    signUp() {
-      const baseURL = "https://outdoor-dulciana-examinds-75547372.koyeb.app/"
-      const url = baseURL + "signup"
-      axios.post(url, this.registerData)
-        .then(response => {
-          console.log('Data sent: ', response.data);
-        })
-        .catch(error => {
-          console.error('There was an error!', error);
-        });
-    }
+    showToast(toastType, toastMessage) {
+      Toastify({
+        text: toastMessage,
+        duration: 5000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        style: {
+          background: toastType === 0 ? "green" : "red",
+          fontFamily: 'Inter-Regular',
+          borderRadius: '6px'
+        },
+        stopOnFocus: true,
+      }).showToast();
+    },
+    
+    async validateData() {
+      // Required rule validation
+      if (Object.values(this.registerData).some(value => !value)) {
+        this.showToast(1, "Все поля должны быть заполнены!")
+        return false
+      }
+
+      // Number verification
+      if (this.registerData.phonenumber[0] !== '+') {
+        this.showToast(1, "Номер должен начатся с '+'!")
+        return false;
+      } else if (this.registerData.phonenumber.length !== 13 || !/^\+\d{12}$/.test(this.registerData.phonenumber)) {
+        this.showToast(1, "Номер должен состоять из 13 символов: + и 12 цифр")
+        return false;
+      }
+      
+      // Email validation
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.registerData.email)) {
+        this.showToast(1, "Введённый мейл недействительный!")
+        return false
+      }
+
+      // Password verification
+      if (this.registerData.password.length < 6) {
+        this.showToast(1, "Пароль должен состоять как минимум из 6 символов!")
+        return false
+      }
+
+      // Parent number verification
+      if (this.registerData.parentnumber[0] !== '+') {
+        this.showToast(1, "Номер родителя должен начатся с '+'!")
+        return false;
+      } else if (this.registerData.parentnumber.length !== 13 || !/^\+\d{12}$/.test(this.registerData.parentnumber)) {
+        this.showToast(1, "Номер родителя должен состоять из 13 символов: + и 12 цифр")
+        return false;
+      } else if (this.registerData.parentnumber === this.registerData.phonenumber) {
+        this.showToast(1, "Номер родителя не должен быть одинаковым с вашим номером!")
+        return false;
+      }
+
+      return true;
+    },
+
+    async signUp() {
+      const isValid = await this.validateData();
+      if (isValid) {
+        const baseURL = "https://outdoor-dulciana-examinds-75547372.koyeb.app/";
+        const url = baseURL + "signup";
+        axios.post(url, this.registerData)
+          .then(() => {
+            this.showToast(0, "Вы успешно зарегистрировались!");
+          })
+          .catch(error => {
+            console.error('Error: ', error.message);
+            this.showToast(1, "Произошла ошибка! Пожалуйста, повторите ещё раз.");
+          });
+      }
+    },
   }
 }
 </script>
