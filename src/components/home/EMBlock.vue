@@ -27,7 +27,7 @@
       </div>
 
       <!-- Registration button -->
-      <button class="registerButton">РЕГИСТРАЦИЯ</button>
+      <button class="registerButton" @click="toRegister">РЕГИСТРАЦИЯ</button>
     </div>
 
     <div class="dustImageContainer centralize">
@@ -65,6 +65,14 @@ export default {
           smallText: window.innerWidth < 767 ? "Средний балл" : "Средний балл учеников",
         }
       ]
+    }
+  },
+  methods: {
+    toRegister() {
+      const element = document.getElementById('registerForm');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   }
 }

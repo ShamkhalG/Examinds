@@ -13,7 +13,7 @@
       <img :src="reason.number_img" alt="Number Image" />
       <p v-html="reason.text" class="reasonText"></p>
       <img :src="reason.image" :class="index === reasons.length - 1 ? 'greenBookmarkImage' : 'bookmarkImage'" alt="Reason Image" />
-      <button v-if="index === reasons.length - 1" class="finAidButton">
+      <button v-if="index === reasons.length - 1" class="finAidButton" @click="showAidToast" >
         ФИН-ПОМОЩЬ
       </button>
     </div>
@@ -21,6 +21,9 @@
 </template>
 
 <script>
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
+
 export default {
   name: "WhyUs",
   data() {
@@ -134,6 +137,21 @@ export default {
           bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/green_rect_bg.png") : require("../../assets/backgrounds/green_rect_bg_pc.png"),
         }
       ];
+    },
+    showAidToast() {
+      Toastify({
+        text: "Информация по поводу финансовой помощи будет представлена позже",
+        duration: 5000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        style: {
+          background: "blue",
+          fontFamily: 'Inter-Regular',
+          borderRadius: '6px'
+        },
+        stopOnFocus: true,
+      }).showToast();
     }
   }
 };

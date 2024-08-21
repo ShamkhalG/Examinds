@@ -16,13 +16,16 @@
     </div>
     
     <div class="navButtons">
-      <button class="navsignin">ВОЙТИ</button>
+      <button class="navsignin" @click="showLoginToast">ВОЙТИ</button>
       <div class="circleFour noOpacity"></div>
     </div>
   </div>
 </template>
 
 <script>
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Navigation",
@@ -34,6 +37,21 @@ export default {
   methods: {
     setActive(index) {
       this.activeIndex = index;
+    },
+    showLoginToast() {
+      Toastify({
+        text: "Вход в аккаунт на данный момент невозможен!",
+        duration: 5000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        style: {
+          background: "red",
+          fontFamily: 'Inter-Regular',
+          borderRadius: '6px'
+        },
+        stopOnFocus: true,
+      }).showToast();
     }
   },
 }

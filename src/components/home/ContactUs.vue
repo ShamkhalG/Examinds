@@ -5,7 +5,7 @@
     <div class="registerContainer relativity">
       <img class="contactUsImage" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
       <img class="notebookImage" :src="screenWidth < 767 ? require('../../assets/backgrounds/register_bg.png') : require('../../assets/backgrounds/register_bg_pc.png')" />
-      <form @submit.prevent="signUp" class="registerForm absoluteness">
+      <form @submit.prevent="signUp" class="registerForm absoluteness" id="registerForm">
         <!-- Name/Surname -->
         <div>
           <p class="registerText">Имя/Фамилия</p>
@@ -37,7 +37,7 @@
         </div>
         
         <div class="buttonContainer centralize">
-          <button type="submit" class="findOutPriceButton">УЗНАТЬ ЦЕНУ</button>
+          <button type="submit" class="findOutPriceButton">ЗАРЕГИСТРИРОВАТСЯ</button>
         </div>
       </form>
     </div>
@@ -87,6 +87,19 @@ export default {
         return false
       }
 
+      // Name validation
+      const [name, surname] = this.registerData.name.trim().split(' ');
+      if (!this.registerData.name.includes(' ')) {
+        this.showToast(1, "Имя / Фамилия должно содержать имя и фамилию, разделенные пробелом!");
+        return false;
+      } else if (!name || name.length < 2) {
+        this.showToast(1, "Имя должно содержать как минимум 2 буквы!");
+        return false;
+      } else if (!surname || surname.length < 2) {
+        this.showToast(1, "Фамилия должна содержать как минимум 2 буквы!");
+        return false;
+      }
+
       // Number verification
       if (this.registerData.phonenumber[0] !== '+') {
         this.showToast(1, "Номер должен начатся с '+'!")
@@ -103,9 +116,25 @@ export default {
       }
 
       // Password verification
-      if (this.registerData.password.length < 6) {
-        this.showToast(1, "Пароль должен состоять как минимум из 6 символов!")
+      const commonPasswords = ["123456", "password", "qwerty", "111111"];
+      if (this.registerData.password.length < 10) { // Length check
+        this.showToast(1, "Пароль должен состоять как минимум из 10 символов!")
         return false
+      } else if (!/[A-Z]/.test(this.registerData.password)) { // Uppercase letter check
+        this.showToast(1, "Пароль должен содержать хотя бы одну заглавную букву (A-Z)!");
+        return false;
+      } else if (!/[a-z]/.test(this.registerData.password)) { // Lowercase letter check
+        this.showToast(1, "Пароль должен содержать хотя бы одну строчную букву (a-z)!");
+        return false;
+      } else if (!/[0-9]/.test(this.registerData.password)) { // Number check
+        this.showToast(1, "Пароль должен содержать хотя бы одну цифру (0-9)!");
+        return false;
+      } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(this.registerData.password)) { // Special character check
+        this.showToast(1, "Пароль должен содержать хотя бы один специальный символ (например, !@#$%^&*)!");
+        return false;
+      } else if (commonPasswords.includes(this.registerData.password)) { // Common passwords check
+        this.showToast(1, "Пароль слишком простой, выберите более сложный!");
+        return false;
       }
 
       // Parent number verification
@@ -126,8 +155,8 @@ export default {
     async signUp() {
       const isValid = await this.validateData();
       if (isValid) {
-        const baseURL = "https://outdoor-dulciana-examinds-75547372.koyeb.app/";
-        const url = baseURL + "signup";
+        const baseURL = "https://bold-aurelea-examinds-0e0bfd9d.koyeb.app/";
+        const url = baseURL + "auth/signup";
         axios.post(url, this.registerData)
           .then(() => {
             this.showToast(0, "Вы успешно зарегистрировались!");
@@ -138,7 +167,7 @@ export default {
           });
       }
     },
-  }
+  },
 }
 </script>
 
