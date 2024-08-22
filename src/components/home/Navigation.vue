@@ -37,6 +37,23 @@ export default {
   methods: {
     setActive(index) {
       this.activeIndex = index;
+      if (index === 1)
+        this.toWhyUs()
+      if (index === 2)
+        this.toTeachers()
+    },
+    toTeachers() {
+      const element = document.getElementById('teachers');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    },
+    toWhyUs() {
+      const whyID = window.innerWidth < 1000 ? 'whyUs' : 'whyUsHeader'
+      const element = document.getElementById(whyID);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     },
     showLoginToast() {
       Toastify({
@@ -48,7 +65,8 @@ export default {
         style: {
           background: "red",
           fontFamily: 'Inter-Regular',
-          borderRadius: '6px'
+          borderRadius: 
+          '6px'
         },
         stopOnFocus: true,
       }).showToast();

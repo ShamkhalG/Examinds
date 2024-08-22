@@ -1,5 +1,5 @@
 <template>
-  <div class="teachers centralize">
+  <div class="teachers centralize" id="teachers">
     <p class="teachersHeader">Преподаватели Exa<span class="minds">Minds</span></p>
     <div v-for="(teacher, index) in teachers" :key="index" class="centralize">
       <img :src="teacher.img" class="teacherImage" />

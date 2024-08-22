@@ -1,8 +1,8 @@
 <template>
-  <div class="whyUs">
+  <div class="whyUs" id="whyUs">
     <div class="aboveReasonsContainer relativity centralize">
       <img class="bookLampPaper" src="../../assets/images/why_us/book_lamp_paper.png" v-if="screenWidth < 1000" />
-      <p class="whyUsHeader absoluteness">Почему мы?</p>
+      <p class="whyUsHeader absoluteness" id="whyUsHeader">Почему мы?</p>
     </div>
 
     <div v-for="(reason, index) in reasons" :key="index" :style="{ backgroundImage: `url(${reason.bg_img})` }" class="centralize" 
