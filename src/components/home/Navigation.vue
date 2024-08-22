@@ -102,22 +102,22 @@ export default {
   }
 
   .navsignin {
-    padding-left: 3.375rem;
-    padding-right: 3.375rem;
-    padding-top: 1.125rem;
-    padding-bottom: 1.125rem;
+    width: 180px;
+    height: 60px;
   }
 }
 
+/* Mobile styles */
 @media (max-width: 767px){ 
   .nav {
     position: relative;
     margin-top: 1rem;
-    width: 90%;
+    width: 95%;
   }
 
   .navregular {
-    font-size: 0.875rem;
+    min-width: 50px;
+    font-size: 0.82rem;
     position: relative;
     margin-bottom: 1rem;
   }
@@ -136,10 +136,8 @@ export default {
   
   .navsignin {
     font-size: 0.768rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 0.688rem;
-    padding-bottom: 0.688rem;
+    width: 100px;
+    height: 37px;
     margin-bottom: 1rem;
   }
 }

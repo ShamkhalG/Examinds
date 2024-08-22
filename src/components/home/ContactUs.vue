@@ -37,7 +37,7 @@
         </div>
         
         <div class="buttonContainer centralize">
-          <button type="submit" class="findOutPriceButton">ЗАРЕГИСТРИРОВАТСЯ</button>
+          <button type="submit" class="findOutPriceButton">УЗНАТЬ ЦЕНУ</button>
         </div>
       </form>
     </div>
@@ -159,7 +159,7 @@ export default {
         const url = baseURL + "auth/signup";
         axios.post(url, this.registerData)
           .then(() => {
-            this.showToast(0, "Вы успешно зарегистрировались!");
+            this.showToast(0, "С вами в скором времени свяжутся.");
           })
           .catch(error => {
             console.error('Error: ', error.message);

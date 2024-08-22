@@ -16,13 +16,13 @@ export default {
       screenWidth: window.innerWidth,
       teachers: [
         {
-          img: this.screenWidth < 767 ? require("../../assets/images/teachers/sara_info.png") : require("../../assets/images/teachers/sara_info_pc.png")
+          img: window.innerWidth < 767 ? require("../../assets/images/teachers/sara_info.png") : require("../../assets/images/teachers/sara_info_pc.png")
         },
         {
-          img: this.screenWidth < 767 ? require("../../assets/images/teachers/elnara_info.png") : require("../../assets/images/teachers/elnara_info_pc.png")
+          img: window.innerWidth < 767 ? require("../../assets/images/teachers/elnara_info.png") : require("../../assets/images/teachers/elnara_info_pc.png")
         },
         {
-          img: this.screenWidth < 767 ? require("../../assets/images/teachers/nina_info.png") : require("../../assets/images/teachers/nina_info_pc.png")
+          img: window.innerWidth < 767 ? require("../../assets/images/teachers/nina_info.png") : require("../../assets/images/teachers/nina_info_pc.png")
         }
       ]
     }
