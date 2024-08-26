@@ -1,3 +1,4 @@
+<!-- FIXME This block fully and the button must be seen from the beginning -->
 <template>
   <div class="emblock">
     <div class="aboveBulb">

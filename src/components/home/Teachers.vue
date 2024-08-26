@@ -39,6 +39,10 @@ export default {
 
 /* Desktop styles */
 @media(min-width: 767px) {
+  .teachers {
+    margin-top: 4rem;
+  }
+
   .teachersHeader {
     font-size: 5rem;
     margin-bottom: 0;

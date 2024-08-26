@@ -243,7 +243,6 @@ export default {
   }
   
   .contactUsImage {
-    /* max-width: 100%; */
     height: auto;
   }
 
@@ -253,20 +252,21 @@ export default {
   }
 
   .registerForm {
-    margin-top: 27.5rem;
+    margin-top: 28.5rem;
     margin-left: 1rem;
-    width: 680px;
+    width: 660px;
   }
 
   .registerText {
     margin: 0;
-    margin-top: 0.1rem;
-    margin-bottom: 0.1rem;
+    margin-top: 0.4rem;
+    margin-bottom: 0.2rem;
     margin-left: 0.5rem;
   }
 
   .registerInputBox {
     border-radius: 8px;
+    border-width: 2px;
     font-size: 1rem;
     height: 2rem;
     width: 96%;

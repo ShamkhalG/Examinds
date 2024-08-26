@@ -1,3 +1,4 @@
+<!-- FIXME The positioning of the elements are scrambled -->
 <template>
   <div class="eduInfo">
     <p class="eduInfoHeader">Как проходит обучение?</p>
@@ -24,7 +25,7 @@ export default {
       eduInfos: [
         {
           text: `
-          На платформе размещается<br class="mobileBr" /><br class="desktopBr" />
+          На платформе размещаются<br class="mobileBr" /><br class="desktopBr" />
           <span class="orangeText">видео-уроки</span> с разбором<br class="desktopBr" /> темы<br class="mobileBr" />
           и практикой
           `,
@@ -99,10 +100,11 @@ export default {
 @media(min-width: 1000px) {
   .eduInfo {
     min-height: 1930px;
+    margin-top: -13rem;
   }
 
   .eduInfoHeader {
-    font-size: 5rem;
+    font-size: 4.8rem;
     max-width: 1010px;
   }
 

@@ -1,3 +1,4 @@
+<!-- FIXME The "Фин-помощь" button's, "РЕГИСТРАЦИЯ", "УЗНАЙ ЦЕНУ" shadow on the bottom must be bigger -->
 <template>
   <div class="whyUs" id="whyUs">
     <div class="aboveReasonsContainer relativity centralize">
@@ -61,7 +62,7 @@ export default {
             удобно сфокусироваться на теме, не<br />
             пропускать уроки и сохранять интерес.<br />
           `,
-          image: require("../../assets/images/why_us/bottom_img_1.png"),
+          image: require("../../assets/images/why_us/bottom_img_1.svg"),
           bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/gray_rect_bg.png") : require("../../assets/backgrounds/gray_rect_bg_pc.png"),
         },
         {
@@ -78,7 +79,7 @@ export default {
             для учебы благодаря нашей гибкой<br />
             структуре занятий.
           `,
-          image: require("../../assets/images/why_us/bottom_img_2.png"),
+          image: require("../../assets/images/why_us/bottom_img_2.svg"),
           bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/gray_rect_bg.png") : require("../../assets/backgrounds/gray_rect_bg_pc.png"),
         },
         {
@@ -94,7 +95,7 @@ export default {
             посещаемости ребенка, чтобы родители<br />
             были уверены в его прогрессе.
           `,
-          image: require("../../assets/images/why_us/bottom_img_3.png"),
+          image: require("../../assets/images/why_us/bottom_img_3.svg"),
           bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/gray_rect_bg.png") : require("../../assets/backgrounds/gray_rect_bg_pc.png"),
         },
         {
@@ -111,7 +112,7 @@ export default {
             ведущих курсах и частных школах<br />
             Азербайджана.
           `,
-          image: require("../../assets/images/why_us/bottom_img_4.png"),
+          image: require("../../assets/images/why_us/bottom_img_4.svg"),
           bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/gray_rect_bg.png") : require("../../assets/backgrounds/gray_rect_bg_pc.png"),
         },
         {
@@ -133,7 +134,7 @@ export default {
           образования в Азербайджане. Система грантов позволяет детям получать лучшее образование<br />
           и поступать в ведущие университеты, освобождая от частичной или полной оплаты курса.</span>
           `,
-          image: require("../../assets/images/why_us/bottom_img_5.png"),
+          image: require("../../assets/images/why_us/bottom_img_5.svg"),
           bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/green_rect_bg.png") : require("../../assets/backgrounds/green_rect_bg_pc.png"),
         }
       ];
@@ -164,7 +165,7 @@ export default {
 .whyUsHeader {
   color: white;
   font-family: 'Geologica-bold';
-  text-shadow:  0px 5px 4px rgba(0, 0, 0, 0.5), 0px 6px 10px rgba(0, 0, 0, 0.7);        
+  text-shadow:  0px 5px 4px rgba(0, 0, 0, 0.5), 0px 6px 10px rgba(0, 0, 0, 0.7);
 }
 
 .reasonText {
@@ -211,6 +212,7 @@ export default {
     width: 98%;
     min-height: 800px;
     max-width: 1060px;
+    margin-top: -7rem;
   }
   
   .whyUsHeader {
@@ -228,7 +230,7 @@ export default {
     min-height: 198px;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: 1;
+    z-index: 2;
   }
 
   .greenReasonContainer {
@@ -236,7 +238,7 @@ export default {
     max-width: 1045px;
     min-height: 250px;
     background-repeat: no-repeat;
-    z-index: 1;
+    z-index: 2;
   }
 
   .reasonText {
@@ -280,7 +282,7 @@ export default {
     position: absolute;
     bottom: -2.4rem;
     left: 3rem;
-    z-index: 2;
+    z-index: 1;
   }
   
   .greenBookmarkImage {
