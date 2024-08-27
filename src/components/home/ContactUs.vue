@@ -132,6 +132,9 @@ export default {
       } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(this.registerData.password)) { // Special character check
         this.showToast(1, "Пароль должен содержать хотя бы один специальный символ (например, !@#$%^&*)!");
         return false;
+      } else if (/(\d)\1{2}/.test(this.registerData.password)) {
+        this.showToast(1, "Пароль не должен содержать три одинаковых подряд идущих цифры!")
+        return false
       } else if (commonPasswords.includes(this.registerData.password)) { // Common passwords check
         this.showToast(1, "Пароль слишком простой, выберите более сложный!");
         return false;
