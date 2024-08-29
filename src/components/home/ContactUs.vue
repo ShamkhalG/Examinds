@@ -132,7 +132,7 @@ export default {
       } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(this.registerData.password)) { // Special character check
         this.showToast(1, "Пароль должен содержать хотя бы один специальный символ (например, !@#$%^&*)!");
         return false;
-      } else if (/(\d)\1{2}/.test(this.registerData.password)) {
+      } else if (/(\d)\1{2}/.test(this.registerData.password)) { // 3 consecutive numbers check
         this.showToast(1, "Пароль не должен содержать три одинаковых подряд идущих цифры!")
         return false
       } else if (commonPasswords.includes(this.registerData.password)) { // Common passwords check
@@ -211,7 +211,7 @@ export default {
   #037328;
   border-radius: 10px / 50px;
   border: none;
-  box-shadow: 0px 3px 0px #046b26,
+  box-shadow: 0px 4px 0px #046b26,
               inset 0px 2.18px 11.06px rgba(255, 255, 255, 0.25); 
 }
 

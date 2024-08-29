@@ -172,7 +172,7 @@ export default {
   #037328;
   border-radius: 10px / 50px;
   border: none;
-  box-shadow: 0px 3px 0px #046b26,
+  box-shadow: 0px 4px 0px #046b26,
               inset 0px 2.18px 11.06px rgba(255, 255, 255, 0.25);
   z-index: 2;
 }

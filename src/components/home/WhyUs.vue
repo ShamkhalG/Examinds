@@ -1,4 +1,4 @@
-<!-- FIXME The "Фин-помощь" button's, "РЕГИСТРАЦИЯ", "УЗНАЙ ЦЕНУ" shadow on the bottom must be bigger -->
+<!-- FIXME The little flags must be under the <div> -->
 <template>
   <div class="whyUs" id="whyUs">
     <div class="aboveReasonsContainer relativity centralize">
@@ -11,12 +11,12 @@
       [reason.class]: true, 
       reasonContainer: index !== 4 || screenWidth < 1000,
       greenReasonContainer: index === 4 && screenWidth > 1000}">
-      <img :src="reason.number_img" alt="Number Image" />
-      <p v-html="reason.text" class="reasonText"></p>
-      <img :src="reason.image" :class="index === reasons.length - 1 ? 'greenBookmarkImage' : 'bookmarkImage'" alt="Reason Image" />
-      <button v-if="index === reasons.length - 1" class="finAidButton" @click="showAidToast" >
-        ФИН-ПОМОЩЬ
-      </button>
+        <img :src="reason.number_img" alt="Number Image" />
+        <p v-html="reason.text" class="reasonText"></p>
+        <img :src="reason.image" :class="index === reasons.length - 1 ? 'greenBookmarkImage' : 'bookmarkImage'" alt="Reason Image" />
+        <button v-if="index === reasons.length - 1" class="finAidButton" @click="showAidToast" >
+          ФИН-ПОМОЩЬ
+        </button>
     </div>
   </div>
 </template>
@@ -195,7 +195,7 @@ export default {
   rgba(255, 255, 255, 1);
   border-radius: 7px / 40px;
   border: none;
-  box-shadow: 0px 2px 0px #8F8F8F;
+  box-shadow: 0px 4px 0px #8F8F8F;
   outline: none;
   font-family: 'Inter-Bold';
   letter-spacing: 1.2px;
@@ -225,6 +225,7 @@ export default {
   }
 
   .reasonContainer {
+    position: absolute;
     width: 100%;
     max-width: 460px;
     min-height: 198px;
@@ -234,6 +235,7 @@ export default {
   }
 
   .greenReasonContainer {
+    position: absolute;
     width: 100%;
     max-width: 1045px;
     min-height: 250px;
@@ -250,31 +252,26 @@ export default {
   }
 
   .firstGray {
-    position: absolute;
     top: 4rem;
     left: 1rem;
   }
 
   .secondGray {
-    position: absolute;
     top: 4rem;
     right: 1rem;
   }
 
   .thirdGray {
-    position: absolute;
     top: 21rem;
     left: 1rem;
   }
 
   .fourthGray {
-    position: absolute;
     top: 21rem;
     right: 1rem;
   }
 
   .firstGreen {
-    position: absolute;
     top: 37rem;
   }
 
@@ -282,7 +279,7 @@ export default {
     position: absolute;
     bottom: -2.4rem;
     left: 3rem;
-    z-index: 1;
+    z-index: -1;
   }
   
   .greenBookmarkImage {
@@ -319,7 +316,6 @@ export default {
     max-width: 400px;
     min-height: 290px;
     position: relative;
-    /* background-size: cover; */
     background-size: contain; 
     background-position: center;
     background-repeat: no-repeat;
@@ -327,6 +323,7 @@ export default {
     margin-bottom: 4rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
+    z-index: 2;
   }
 
   .reasonText {
@@ -339,13 +336,14 @@ export default {
     position: absolute;
     bottom: 0rem;
     left: 1rem;
+    z-index: 1;
   }
   
   .greenBookmarkImage {
     position: absolute;
     bottom: -5rem;
     left: 50%;
-    transform: translateX(-118px); 
+    transform: translateX(-118px);
   }
 
   .finAidButton {

@@ -20,7 +20,6 @@ export default {
   name: "EduInfo",
   data() {
     return {
-      // LONGTODO Use Vuex store to fetch this value
       screenWidth: window.innerWidth,
       eduInfos: [
         {
