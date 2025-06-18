@@ -16,6 +16,17 @@
 </template>
 
 <script>
+import laptopMobile from "../../assets/images/edu_info/laptop.png";
+import laptopDesktop from "../../assets/images/edu_info/laptop_pc.png";
+import notebookPenMobile from "../../assets/images/edu_info/notebook_pen.png";
+import notebookPenDesktop from "../../assets/images/edu_info/notebook_pen_pc.png";
+import puzzleMobile from "../../assets/images/edu_info/puzzle.png";
+import puzzleDesktop from "../../assets/images/edu_info/puzzle_pc.png";
+import chatHeartsMobile from "../../assets/images/edu_info/chat_hearts.png";
+import chatHeartsDesktop from "../../assets/images/edu_info/chat_hearts_pc.png";
+import papersApprovedMobile from "../../assets/images/edu_info/papers_approved.png";
+import papersApprovedDesktop from "../../assets/images/edu_info/papers_approved_pc.png";
+
 export default {
   name: "EduInfo",
   data() {
@@ -28,7 +39,7 @@ export default {
           <span class="orangeText">видео-уроки</span> с разбором<br class="desktopBr" /> темы<br class="mobileBr" />
           и практикой
           `,
-          img: window.innerWidth < 1000 ? require("../../assets/images/edu_info/laptop.png") : require("../../assets/images/edu_info/laptop_pc.png"),
+          img: window.innerWidth < 1000 ? laptopMobile : laptopDesktop,
           imgClass: "laptopImage",
           divClass: "laptopContainer"
         },
@@ -37,7 +48,7 @@ export default {
             Домашние задания <span class="orangeText">после<br class="desktopBr" />
             <br class="mobileBr" />каждого</span> видео-урока
           `,
-          img: window.innerWidth < 1000 ? require("../../assets/images/edu_info/notebook_pen.png") : require("../../assets/images/edu_info/notebook_pen_pc.png"),
+          img: window.innerWidth < 1000 ? notebookPenDesktop : notebookPenMobile,
           imgClass: "notebookAndPenImage",
           divClass: "notebookAndPenContainer"
         },
@@ -47,7 +58,7 @@ export default {
             проверить насколько хорошо<br class="mobileBr" /><br class="desktopBr" />
             изучен материал
           `,
-          img: window.innerWidth < 1000 ? require("../../assets/images/edu_info/puzzle.png") : require("../../assets/images/edu_info/puzzle_pc.png"),
+          img: window.innerWidth < 1000 ? puzzleMobile : puzzleDesktop,
           imgClass: "puzzleImage",
           divClass: "puzzleContainer"
         },
@@ -57,7 +68,7 @@ export default {
             от<br class="desktopBr" /> преподавателя и куратора</span>,<br class="mobileBr" />
             чтобы<br class="desktopBr" /> улучшить результаты
           `,
-          img: window.innerWidth < 1000 ? require("../../assets/images/edu_info/chat_hearts.png") : require("../../assets/images/edu_info/chat_hearts_pc.png"),
+          img: window.innerWidth < 1000 ? chatHeartsMobile : chatHeartsDesktop,
           imgClass: "chatAndHeartsImage",
           divClass: "chatAndHeartsContainer"
         },
@@ -67,7 +78,7 @@ export default {
             <span class="orangeText">ошибок</span><br class="mobileBr" />
             на прямом эфире
           `,
-          img: window.innerWidth < 1000 ? require("../../assets/images/edu_info/papers_approved.png") : require("../../assets/images/edu_info/papers_approved_pc.png"),
+          img: window.innerWidth < 1000 ? papersApprovedMobile : papersApprovedDesktop,
           imgClass: "paperAndApprovedImage",
           divClass: "paperAndApprovedContainer"
         }

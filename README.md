@@ -1,24 +1,9 @@
-# examinds
+# Examinds
+## Introduction
+A website of the Examinds platform, where future students can register and prepare for DIM exams.
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Commands
+- Setup: `npm install`
+- Compiling: `npm run dev`
+- Compiles and makes the build for production: `npm run build`
+- Lints and fixes files: `npm run lint`

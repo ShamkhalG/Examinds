@@ -3,6 +3,7 @@
   <div class="whyUs" id="whyUs">
     <div class="aboveReasonsContainer relativity centralize">
       <img class="bookLampPaper" src="../../assets/images/why_us/book_lamp_paper.png" v-if="screenWidth < 1000" />
+      <!-- FIXME The sign for the desktop is not in its correct place -->
       <p class="whyUsHeader absoluteness" id="whyUsHeader">Почему мы?</p>
     </div>
 
@@ -22,6 +23,22 @@
 </template>
 
 <script>
+import one_img from "../../assets/images/why_us/01.png";
+import one_bottom from "../../assets/images/why_us/bottom_img_1.svg";
+import two_img from "../../assets/images/why_us/02.png";
+import two_bottom from "../../assets/images/why_us/bottom_img_2.svg";
+import three_img from "../../assets/images/why_us/03.png";
+import three_bottom from "../../assets/images/why_us/bottom_img_3.svg";
+import four_img from "../../assets/images/why_us/04.png";
+import four_bottom from "../../assets/images/why_us/bottom_img_4.svg";
+import five_img from "../../assets/images/why_us/05.png";
+import five_bottom from "../../assets/images/why_us/bottom_img_5.svg";
+
+import grayRectBgMobile from "../../assets/backgrounds/gray_rect_bg.png";
+import grayRectBgDesktop from "../../assets/backgrounds/gray_rect_bg_pc.png";
+import greenRectBgMobile from "../../assets/backgrounds/green_rect_bg.png";
+import greenRectBgDesktop from "../../assets/backgrounds/green_rect_bg_pc.png";
+
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -49,7 +66,7 @@ export default {
       this.reasons = [
         {
           class: "firstGray",
-          number_img: require("../../assets/images/why_us/01.png"),
+          number_img: one_img,
           text: this.screenWidth < 1000 ? `
             <span class="boldText">Инновационная система обучения</span>-наша<br />
             платформа и структура уроков помогают<br />
@@ -62,12 +79,12 @@ export default {
             удобно сфокусироваться на теме, не<br />
             пропускать уроки и сохранять интерес.<br />
           `,
-          image: require("../../assets/images/why_us/bottom_img_1.svg"),
-          bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/gray_rect_bg.png") : require("../../assets/backgrounds/gray_rect_bg_pc.png"),
+          image: one_bottom,
+          bg_img: this.screenWidth < 1000 ? grayRectBgMobile : grayRectBgDesktop,
         },
         {
           class: "secondGray",
-          number_img: require("../../assets/images/why_us/02.png"),
+          number_img: two_img,
           text: this.screenWidth < 1000 ? `
             <span class="boldText">Удобный график работы.</span> Вы сами<br />
             определяете удобное время и дни<br />
@@ -79,12 +96,12 @@ export default {
             для учебы благодаря нашей гибкой<br />
             структуре занятий.
           `,
-          image: require("../../assets/images/why_us/bottom_img_2.svg"),
-          bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/gray_rect_bg.png") : require("../../assets/backgrounds/gray_rect_bg_pc.png"),
+          image: two_bottom,
+          bg_img: this.screenWidth < 1000 ? grayRectBgMobile : grayRectBgDesktop,
         },
         {
           class: "thirdGray",
-          number_img: require("../../assets/images/why_us/03.png"),
+          number_img: three_img,
           text: this.screenWidth < 1000 ? `
             <span class="boldText">Постоянный контроль результатов<br /> 
             и посещаемости ребенка</span>, чтобы<br />
@@ -95,12 +112,12 @@ export default {
             посещаемости ребенка, чтобы родители<br />
             были уверены в его прогрессе.
           `,
-          image: require("../../assets/images/why_us/bottom_img_3.svg"),
-          bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/gray_rect_bg.png") : require("../../assets/backgrounds/gray_rect_bg_pc.png"),
+          image: three_bottom,
+          bg_img: this.screenWidth < 1000 ? grayRectBgMobile : grayRectBgDesktop,
         },
         {
           class: "fourthGray",
-          number_img: require("../../assets/images/why_us/04.png"),
+          number_img: four_img,
           text: this.screenWidth < 1000 ? `
             Лучшие <span class="boldText">молодые преподаватели<br />
             с многолетним опытом</span> работы в<br />
@@ -112,12 +129,12 @@ export default {
             ведущих курсах и частных школах<br />
             Азербайджана.
           `,
-          image: require("../../assets/images/why_us/bottom_img_4.svg"),
-          bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/gray_rect_bg.png") : require("../../assets/backgrounds/gray_rect_bg_pc.png"),
+          image: four_bottom,
+          bg_img: this.screenWidth < 1000 ? grayRectBgMobile : grayRectBgDesktop,
         },
         {
           class: "firstGreen",
-          number_img: require("../../assets/images/why_us/05.png"),
+          number_img: five_img,
           text: this.screenWidth < 1000 ? `
             <span class="boldText">Мы предлагаем финансовую помощь всем<br />
             нуждающимся, стремясь повысить уровень<br />
@@ -134,8 +151,8 @@ export default {
           образования в Азербайджане. Система грантов позволяет детям получать лучшее образование<br />
           и поступать в ведущие университеты, освобождая от частичной или полной оплаты курса.</span>
           `,
-          image: require("../../assets/images/why_us/bottom_img_5.svg"),
-          bg_img: this.screenWidth < 1000 ? require("../../assets/backgrounds/green_rect_bg.png") : require("../../assets/backgrounds/green_rect_bg_pc.png"),
+          image: five_bottom,
+          bg_img: this.screenWidth < 1000 ? greenRectBgMobile : greenRectBgDesktop,
         }
       ];
     },

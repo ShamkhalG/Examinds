@@ -1,5 +1,6 @@
 <template>
   <div class="nav">
+    <!-- FIXME No circle is seen in PC version -->
     <div class="navButtons">
       <button class="navregular" :class="{ active: activeIndex === 0 }" @click="setActive(0)">Главная</button>
       <div class="circleOne" :class="{ noOpacity: activeIndex !== 0 }"></div>
@@ -15,9 +16,15 @@
       <div class="circleThree" :class="{ noOpacity: activeIndex !== 2 }"></div>
     </div>
     
+    <!-- TODO Style and functionality of "" -->
+    <div class="navButtons">
+      <button class="navregular" :class="{ active: activeIndex === 3 }" @click="setActive(3)">Пробные экзамены</button>
+      <div class="circleFour" :class="{ noOpacity: activeIndex !== 3 }"></div>
+    </div>
+
     <div class="navButtons">
       <button class="navsignin" @click="showLoginToast">ВОЙТИ</button>
-      <div class="circleFour noOpacity"></div>
+      <div class="circleFive noOpacity"></div>
     </div>
   </div>
 </template>
@@ -41,6 +48,8 @@ export default {
         this.toWhyUs()
       if (index === 2)
         this.toTeachers()
+      if (index === 3)
+        this.toEvaluation()
     },
     toTeachers() {
       const element = document.getElementById('teachers');
@@ -49,6 +58,14 @@ export default {
       }
     },
     toWhyUs() {
+      const whyID = window.innerWidth < 1000 ? 'whyUs' : 'whyUsHeader'
+      const element = document.getElementById(whyID);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    },
+    toEvaluation() {
+      // TODO Link to the Evaluation page
       const whyID = window.innerWidth < 1000 ? 'whyUs' : 'whyUsHeader'
       const element = document.getElementById(whyID);
       if (element) {
@@ -122,7 +139,7 @@ export default {
     margin-bottom: 1rem;
   }
 
-  .circleOne, .circleTwo, .circleThree, .circleFour {
+  .circleOne, .circleTwo, .circleThree, .circleFour, .circleFive {
     width: 12px;
     height: 12px;
     border-radius: 50%;

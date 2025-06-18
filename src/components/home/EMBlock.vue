@@ -38,12 +38,17 @@
 </template>
 
 <script>
+import bulbMobile from "../../assets/images/bulb.png";
+import bulbDesktop from "../../assets/images/bulb_pc.png";
+import dustMobile from "../../assets/images/dust.png";
+import dustDesktop from "../../assets/images/dust_pc.png";
+
 export default {
   name: "EMBlock",
   data() {
     return {
-      bulbPath: window.innerWidth < 767 ? require("../../assets/images/bulb.png") : require("../../assets/images/bulb_pc.png"),
-      dustPath: window.innerWidth < 767 ? require("../../assets/images/dust.png") : require("../../assets/images/dust_pc.png"),
+      bulbPath: window.innerWidth < 767 ? bulbMobile : bulbDesktop,
+      dustPath: window.innerWidth < 767 ? dustMobile : dustDesktop,
       achievements: [
         {
           class: "abyears",

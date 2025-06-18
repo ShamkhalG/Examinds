@@ -4,7 +4,7 @@
     <img class="contactUsImage" v-if="screenWidth < 767" src="../../assets/images/contact_us_image.png" />
     <div class="registerContainer relativity">
       <img class="contactUsImage" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
-      <img class="notebookImage" :src="screenWidth < 767 ? require('../../assets/backgrounds/register_bg.png') : require('../../assets/backgrounds/register_bg_pc.png')" />
+      <img class="notebookImage" :src="registerBg" />
       <form @submit.prevent="signUp" class="registerForm absoluteness" id="registerForm">
         <!-- Name/Surname -->
         <div>
@@ -49,6 +49,9 @@ import axios from 'axios';
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
+import registerBgMobile from "../../assets/backgrounds/register_bg.png";
+import registerBgDesktop from "../../assets/backgrounds/register_bg_pc.png";
+
 export default {
   name: "ContactUs",
   data() {
@@ -63,7 +66,22 @@ export default {
       }
     }
   },
+  computed: {
+    registerBg() {
+      return this.screenWidth < 767 ? registerBgMobile : registerBgDesktop;
+    }
+  },
+  mounted() {
+    window.addEventListener('resize', this.updateScreenWidth);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.updateScreenWidth);
+  },
   methods: {
+    updateScreenWidth() {
+      this.screenWidth = window.innerWidth;
+    },
+    
     showToast(toastType, toastMessage) {
       Toastify({
         text: toastMessage,

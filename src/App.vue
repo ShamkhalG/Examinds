@@ -4,7 +4,6 @@
 
 <script>
 import Home from './components/Home.vue'
-import './assets/styles/global.css'
 
 export default {
   name: 'App',
