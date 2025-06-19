@@ -1,30 +1,52 @@
 <template>
-  <div class="nav">
-    <!-- FIXME No circle is seen in PC version -->
-    <div class="navButtons">
-      <button class="navregular" :class="{ active: activeIndex === 0 }" @click="setActive(0)">Главная</button>
-      <div class="circleOne" :class="{ noOpacity: activeIndex !== 0 }"></div>
+  <div class="flex flex-row items-center justify-between h-16 mt-4 w-[95%] sm:w-[90%] lg:w-4/5">
+    <div class="flex flex-col items-center">
+      <button :class="['text-xs md:text-xl border-none cursor-pointer font-interRegular mb-2 md:mb-0',
+        activeIndex === 0 ? 'text-[#F96F16]' : 'text-white']" 
+        @click="setActive(0)">
+          Главная
+      </button>
+      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out md:hidden" :class="{ 'opacity-0': activeIndex !== 0 }"></div>
     </div>
 
-    <div class="navButtons">
-      <button class="navregular" :class="{ active: activeIndex === 1 }" @click="setActive(1)">О нас</button>
-      <div class="circleTwo" :class="{ noOpacity: activeIndex !== 1 }"></div>
+    <div class="flex flex-col items-center">
+      <button :class="['text-xs md:text-xl border-none cursor-pointer font-interRegular mb-2 md:mb-0',
+        activeIndex === 1 ? 'text-[#F96F16]' : 'text-white']" 
+        @click="setActive(1)">
+          О нас
+      </button>
+      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out md:hidden" :class="{ 'opacity-0': activeIndex !== 1 }"></div>
     </div>
 
-    <div class="navButtons">
-      <button class="navregular" :class="{ active: activeIndex === 2 }" @click="setActive(2)">Преподаватели</button>
-      <div class="circleThree" :class="{ noOpacity: activeIndex !== 2 }"></div>
+    <div class="flex flex-col items-center">
+      <button :class="['text-xs md:text-xl border-none cursor-pointer font-interRegular mb-2 md:mb-0',
+        activeIndex === 2 ? 'text-[#F96F16]' : 'text-white']" 
+        @click="setActive(2)">
+          Преподаватели
+      </button>
+      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out md:hidden" :class="{ 'opacity-0': activeIndex !== 2 }"></div>
     </div>
     
-    <!-- TODO Style and functionality of "" -->
-    <div class="navButtons">
-      <button class="navregular" :class="{ active: activeIndex === 3 }" @click="setActive(3)">Пробные экзамены</button>
-      <div class="circleFour" :class="{ noOpacity: activeIndex !== 3 }"></div>
+    <!-- TODO Functionality of "Evaluation" -->
+    <div class="flex flex-col items-center">
+      <button :class="['text-xs md:text-xl border-none cursor-pointer font-interRegular mb-2 md:mb-0',
+        activeIndex === 3 ? 'text-[#F96F16]' : 'text-white']" 
+        @click="setActive(3)">
+          Пробные <br v-if="screenWidth < 768" /> экзамены
+      </button>
+      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out md:hidden" :class="{ 'opacity-0': activeIndex !== 3 }"></div>
     </div>
 
-    <div class="navButtons">
-      <button class="navsignin" @click="showLoginToast">ВОЙТИ</button>
-      <div class="circleFive noOpacity"></div>
+    <!-- FIXME Button border colour is a linear-gradient -->
+    <div class="flex flex-col items-center">
+      <button class="navsignin bg-[rgba(217,217,217,0.3)] border-2 border-[#F96F16] 
+        rounded-[10px] text-[#F96F16] cursor-pointer font-interSemiBold
+        text-[0.768rem] w-[100px] h-[37px] mb-2 
+        md:text-xl md:w-[180px] md:h-[60px] md:mb-0" 
+        @click="showLoginToast">
+          ВОЙТИ
+      </button>
+      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out opacity-0"></div>
     </div>
   </div>
 </template>
@@ -38,6 +60,7 @@ export default {
   name: "Navigation",
   data() {
     return {
+      screenWidth: window.innerWidth,
       activeIndex: 0
     }
   },
@@ -58,7 +81,7 @@ export default {
       }
     },
     toWhyUs() {
-      const whyID = window.innerWidth < 1000 ? 'whyUs' : 'whyUsHeader'
+      const whyID = this.screenWidth < 1000 ? 'whyUs' : 'whyUsHeader'
       const element = document.getElementById(whyID);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -66,7 +89,7 @@ export default {
     },
     toEvaluation() {
       // TODO Link to the Evaluation page
-      const whyID = window.innerWidth < 1000 ? 'whyUs' : 'whyUsHeader'
+      const whyID = this.screenWidth < 1000 ? 'whyUs' : 'whyUsHeader'
       const element = document.getElementById(whyID);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -91,109 +114,3 @@ export default {
   },
 }
 </script>
-
-<style>
-/* Changing the width of the navigation panel */
-@media(min-width: 1100px) {
-  .nav {
-    margin-top: 1rem;
-    width: 60%;
-  }
-}
-
-@media(min-width: 767px) and (max-width: 1100px) {
-  .nav {
-    margin-top: 1rem;
-    width: 80%;
-  }
-}
-
-/* Desktop styles */
-@media(min-width: 767px) {
-  .navregular, .navsignin {
-    font-size: 1.25rem;
-  }
-  
-  .circleOne, .circleTwo, .circleThree, .circleFour {
-    display: none;
-  }
-
-  .navsignin {
-    width: 180px;
-    height: 60px;
-  }
-}
-
-/* Mobile styles */
-@media (max-width: 767px){ 
-  .nav {
-    position: relative;
-    margin-top: 1rem;
-    width: 95%;
-  }
-
-  .navregular {
-    min-width: 50px;
-    font-size: 0.82rem;
-    position: relative;
-    margin-bottom: 1rem;
-  }
-
-  .circleOne, .circleTwo, .circleThree, .circleFour, .circleFive {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #F96F16;
-    transition: left 0.3s ease;
-  }
-
-  .noOpacity {
-    opacity: 0;
-  }
-  
-  .navsignin {
-    font-size: 0.768rem;
-    width: 100px;
-    height: 37px;
-    margin-bottom: 1rem;
-  }
-}
-
-/* ----- Common styles ----- */
-.nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 4rem;
-}
-
-.navButtons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.navregular {
-  background: none;
-  border: none;
-  color: #FFFFFF;
-  cursor: pointer;
-  font-family: 'Inter-Regular';
-}
-
-.navregular:focus, .navregular.active {
-  outline: none;
-  color: #F96F16;
-}
-
-.navsignin {
-  background-color: rgb(217, 217, 217, 0.3);
-  border: solid 2px;
-  border-radius: 10px;
-  border-color: linear-gradient(to right, rgba(255, 255, 255, 0.55), #F96F16);
-  color: #F96F16;
-  cursor: pointer;
-  font-family: 'Inter-SemiBold';
-}
-</style>

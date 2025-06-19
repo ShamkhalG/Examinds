@@ -1,6 +1,8 @@
 <template>
+  <!-- FIXME The overall section must be seen (reduce the size of elements) -->
   <div class="contactUs centralize">
     <p class="contactUsHeader">Свяжитесь с нами</p>
+    <!-- FIXME Table must be on the ground, not floating -->
     <img class="contactUsImage" v-if="screenWidth < 767" src="../../assets/images/contact_us_image.png" />
     <div class="registerContainer relativity">
       <img class="contactUsImage" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
