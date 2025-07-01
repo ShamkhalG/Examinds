@@ -5,5 +5,5 @@ A website of the Examinds platform, where future students can register and prepa
 ## Commands
 - Setup: `npm install`
 - Compiling: `npm run dev`
-- Compiles and makes the build for production: `npm run build`
+- Making the build for production: `npm run build`
 - Lints and fixes files: `npm run lint`

@@ -9,6 +9,8 @@ module.exports = {
       fontFamily: {
         interRegular: ['Inter-Regular', 'sans-serif'],
         interSemiBold: ['Inter-SemiBold', 'sans-serif'],
+        interBold: ['Inter-Bold', 'sans-serif'],
+        geologicaBold: ['Geologica-Bold', 'sans-serif']
       },
     },
   },
