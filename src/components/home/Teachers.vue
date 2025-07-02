@@ -1,7 +1,7 @@
 <template>
-  <div class="teachers centralize" id="teachers">
-    <p class="teachersHeader">Преподаватели Exa<span class="minds">Minds</span></p>
-    <div v-for="(teacher, index) in teachers" :key="index" class="centralize">
+  <div class="teachers flex flex-col items-center justify-center" id="teachers">
+    <p class="teachersHeader">Преподаватели Exa<span class="text-minds">Minds</span></p>
+    <div v-for="(teacher, index) in teachers" :key="index" class="flex flex-col items-center justify-center">
       <img :src="teacher.img" class="teacherImage" />
     </div>
   </div>

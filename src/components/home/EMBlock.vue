@@ -5,7 +5,7 @@
     <div class="flex flex-col items-center">
       <h1 class="text-white font-geologicaBold 
         text-[3.7rem] md:text-[4.8rem] mb-0 md:mb-[-0.5rem] mt-[2rem] md:mt-[1rem]">
-        Exa<span class="text-[#F96F16]">Minds</span></h1>
+        Exa<span class="text-minds">Minds</span></h1>
       <h4 class="text-white text-center font-interBold
       text-[0.8rem] md:text-[1.2rem] mt-0 mb-0">
         Лучшие революционные курсы с топовыми
@@ -50,7 +50,7 @@
     </div>
 
     <!-- Dust image -->
-    <div class="centralize">
+    <div class="flex flex-col items-center justify-center">
       <img :src="dustPath" class="mix-blend-lighten z-1
       mt-[-3rem] md:mt-[-4.5rem] w-screen md:w-full h-auto" />
     </div>

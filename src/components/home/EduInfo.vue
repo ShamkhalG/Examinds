@@ -1,16 +1,17 @@
 <!-- FIXME The positioning of the elements are scrambled -->
+<!-- FIXME The size of images are too big (at least for mobile) -->
 <template>
-  <div class="eduInfo">
-    <p class="eduInfoHeader">Как проходит обучение?</p>
-    <div class="relativity eduInfoContainers">
-      <div v-for="(eduInfo, index) in eduInfos" :key="index" :class="screenWidth < 1000 ? 'centralize' : eduInfo.divClass" class="upperMargin">
-        <img :src="eduInfo.img" class="eduInfoImage" :class="eduInfo.imgClass" v-if="index !== 4 || screenWidth < 1000" />
-        <p v-html="eduInfo.text" class="eduInfoText"></p>
+  <div class="mt-[6rem] lg:mt-[-13rem] lg:min-h-[1930px]">
+    <p class="text-[1.3rem] lg:text-[4.8rem] lg:max-w-[1010px] mb-[0.5rem] text-white text-center font-geologicaBold">Как проходит обучение?</p>
+    <div class="relative min-h-[1100px] max-w-[1100px]">
+      <div v-for="(eduInfo, index) in eduInfos" :key="index" :class="screenWidth < 1000 ? 'flex flex-col items-center justify-center' : eduInfo.divClass" class="mt-[1.5rem] lg:m-auto">
+        <img :src="eduInfo.img" class="w-[80%] lg:w-auto" :class="eduInfo.imgClass" v-if="index !== 4 || screenWidth < 1000" />
+        <p v-html="eduInfo.text" class="text-white text-center mt-0 lg:mt-auto lg:text-[1.2rem] lg:mb-0 font-interRegular"></p>
         <!-- The position of the text and the image is reversed for PC -->
-        <img :src="eduInfo.img" class="eduInfoImage" :class="eduInfo.imgClass" v-if="index === 4 && screenWidth > 1000" />
+        <img :src="eduInfo.img" class="w-[80%] lg:w-auto" :class="eduInfo.imgClass" v-if="index === 4 && screenWidth > 1000" />
       </div>
       
-      <img src="../../assets/images/edu_info/lamp_book.png" class="lampBookImage" v-if="screenWidth > 1000" />
+      <img src="../../assets/images/edu_info/lamp_book.png" class="lg:absolute lg:top-[44rem] lg:left-[5%] lg:z-1" v-if="screenWidth > 1000" />
     </div>
   </div>
 </template>
@@ -33,178 +34,57 @@ export default {
     return {
       screenWidth: window.innerWidth,
       eduInfos: [
-        {
+        { // Laptop
           text: `
-          На платформе размещаются<br class="mobileBr" /><br class="desktopBr" />
-          <span class="orangeText">видео-уроки</span> с разбором<br class="desktopBr" /> темы<br class="mobileBr" />
+          На платформе размещаются<br class="lg:hidden" /><br class="hidden lg:inline" />
+          <span class="text-minds font-interSemiBold">видео-уроки</span> с разбором<br class="hidden lg:inline" /> темы<br class="lg:hidden" />
           и практикой
           `,
-          img: window.innerWidth < 1000 ? laptopMobile : laptopDesktop,
-          imgClass: "laptopImage",
-          divClass: "laptopContainer"
+          img: this.screenWidth < 1000 ? laptopMobile : laptopDesktop,
+          imgClass: "mr-[2rem] lg:mr-auto",
+          divClass: "lg:absolute lg:left-[1rem]"
         },
-        {
+        { // Notebook and Pen
           text: `
-            Домашние задания <span class="orangeText">после<br class="desktopBr" />
-            <br class="mobileBr" />каждого</span> видео-урока
+            Домашние задания <span class="text-minds font-interSemiBold">после<br class="hidden lg:inline" />
+            <br class="lg:hidden" />каждого</span> видео-урока
           `,
-          img: window.innerWidth < 1000 ? notebookPenDesktop : notebookPenMobile,
-          imgClass: "notebookAndPenImage",
-          divClass: "notebookAndPenContainer"
+          img: this.screenWidth < 1000 ? notebookPenDesktop : notebookPenMobile,
+          imgClass: "ml-[1rem] lg:ml-auto",
+          divClass: "lg:absolute lg:right-[1rem]"
         },
-        {
+        { // Puzzle
           text: `
-            <span class="orangeText">Проверочная работа</span>, чтобы<br class="mobileBr" /><br class="desktopBr" />
-            проверить насколько хорошо<br class="mobileBr" /><br class="desktopBr" />
+            <span class="text-minds font-interSemiBold">Проверочная работа</span>, чтобы<br class="lg:hidden" /><br class="hidden lg:inline" />
+            проверить насколько хорошо<br class="lg:hidden" /><br class="hidden lg:inline" />
             изучен материал
           `,
-          img: window.innerWidth < 1000 ? puzzleMobile : puzzleDesktop,
-          imgClass: "puzzleImage",
-          divClass: "puzzleContainer"
+          img: this.screenWidth < 1000 ? puzzleMobile : puzzleDesktop,
+          imgClass: "mr-[4rem] lg:mr-auto",
+          divClass: "lg:absolute lg:top-[55%] lg:left-[1rem]"
         },
-        {
+        { // Chat and Hearts
           text: `
-            <span class="orangeText">Обратная связь</span> и <span class="orangeText">поддержка<br class="mobileBr" />
-            от<br class="desktopBr" /> преподавателя и куратора</span>,<br class="mobileBr" />
-            чтобы<br class="desktopBr" /> улучшить результаты
+            <span class="text-minds font-interSemiBold">Обратная связь</span> и <span class="text-minds font-interSemiBold">поддержка<br class="lg:hidden" />
+            от<br class="hidden lg:inline" /> преподавателя и куратора</span>,<br class="lg:hidden" />
+            чтобы<br class="hidden lg:inline" /> улучшить результаты
           `,
-          img: window.innerWidth < 1000 ? chatHeartsMobile : chatHeartsDesktop,
-          imgClass: "chatAndHeartsImage",
-          divClass: "chatAndHeartsContainer"
+          img: this.screenWidth < 1000 ? chatHeartsMobile : chatHeartsDesktop,
+          imgClass: "mr-[0.5rem] mb-[1rem] lg:mr-auto lg:mb-auto",
+          divClass: "lg:absolute lg:top-[52%] lg:right-[1rem]"
         },
-        {
+        { // Paper and Approved
           text: `
-            <span class="orangeText">Разбор вопросов</span> и<br class="desktopBr" /> 
-            <span class="orangeText">ошибок</span><br class="mobileBr" />
+            <span class="text-minds font-interSemiBold">Разбор вопросов</span> и<br class="hidden lg:inline" /> 
+            <span class="text-minds font-interSemiBold">ошибок</span><br class="lg:hidden" />
             на прямом эфире
           `,
-          img: window.innerWidth < 1000 ? papersApprovedMobile : papersApprovedDesktop,
-          imgClass: "paperAndApprovedImage",
-          divClass: "paperAndApprovedContainer"
+          img: this.screenWidth < 1000 ? papersApprovedMobile : papersApprovedDesktop,
+          imgClass: "",
+          divClass: "lg:absolute lg:top-[20rem] lg:left-[30%] lg:z-3"
         }
       ]
     }
   }
 }
 </script>
-
-<style>
-.eduInfoHeader {
-  color: white;
-  font-family: 'Geologica-Bold';
-  text-align: center
-}
-
-.eduInfoText {
-  color: white;
-  font-family: 'Inter-Regular';
-  text-align: center;
-}
-
-.orangeText {
-  font-family: 'Inter-SemiBold';
-  color: #F96F16;
-}
-
-/* Desktop styles */
-@media(min-width: 1000px) {
-  .eduInfo {
-    min-height: 1930px;
-    margin-top: -13rem;
-  }
-
-  .eduInfoHeader {
-    font-size: 4.8rem;
-    max-width: 1010px;
-  }
-
-  .eduInfoText {
-    font-size: 1.2rem;
-    margin-bottom: 0;
-  }
-
-  .eduInfoContainers {
-    max-width: 1100px;
-    min-height: 1100px;
-  }
-
-  .laptopContainer {
-    position: absolute;
-    left: 1rem;
-  }
-
-  .notebookAndPenContainer {
-    position: absolute;
-    right: 1rem;
-  }
-
-  .paperAndApprovedContainer {
-    position: absolute;
-    top: 20rem;
-    left: 30%;
-    z-index: 3;
-  }
-
-  .puzzleContainer {
-    position: absolute;
-    left: 1rem;
-    top: 55%;
-  }
-
-  .chatAndHeartsContainer {
-    position: absolute;
-    top: 52%;
-    right: 1rem;
-  }
-
-  .lampBookImage {
-    position: absolute;
-    top: 44rem;
-    left: 5%;
-    z-index: 1;
-  }
-}
-
-/* Mobile styles */
-@media(max-width: 1000px){
-  .eduInfo {
-    margin-top: 4rem;
-  }
-  
-  .eduInfoHeader {
-    font-size: 1.7rem;
-    padding-left: 0.7rem;
-    padding-right: 0.7rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .upperMargin {
-    margin-top: 1.5rem;
-  }
-
-  .eduInfoText {
-    margin-top: 0rem;
-  }
-
-  .eduInfoImage {
-    width: 80%;
-  }
-
-  .laptopImage {
-    margin-right: 2rem;
-  }
-
-  .notebookAndPenImage {
-    margin-left: 1rem;
-  }
-
-  .puzzleImage {
-    margin-right: 4rem;
-  }
-
-  .chatAndHeartsImage {
-    margin-right: 0.5rem;
-    margin-bottom: 1rem;
-  }
-}
-</style>

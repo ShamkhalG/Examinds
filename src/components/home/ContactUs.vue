@@ -1,13 +1,13 @@
 <template>
   <!-- FIXME The overall section must be seen (reduce the size of elements) -->
-  <div class="contactUs centralize">
+  <div class="contactUs flex flex-col items-center justify-center">
     <p class="contactUsHeader">Свяжитесь с нами</p>
     <!-- FIXME Table must be on the ground, not floating -->
     <img class="contactUsImage" v-if="screenWidth < 767" src="../../assets/images/contact_us_image.png" />
-    <div class="registerContainer relativity">
+    <div class="registerContainer relative">
       <img class="contactUsImage" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
       <img class="notebookImage" :src="registerBg" />
-      <form @submit.prevent="signUp" class="registerForm absoluteness" id="registerForm">
+      <form @submit.prevent="signUp" class="registerForm absolute" id="registerForm">
         <!-- Name/Surname -->
         <div>
           <p class="registerText">Имя/Фамилия</p>
@@ -38,7 +38,7 @@
           <input type="text" v-model="registerData.parentnumber" class="registerInputBox" /> 
         </div>
         
-        <div class="buttonContainer centralize">
+        <div class="buttonContainer flex flex-col items-center justify-center">
           <button type="submit" class="findOutPriceButton">УЗНАТЬ ЦЕНУ</button>
         </div>
       </form>

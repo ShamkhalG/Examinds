@@ -1,13 +1,13 @@
 <!-- FIXME The little flags must be under the <div> -->
 <template>
   <div class="whyUs" id="whyUs">
-    <div class="aboveReasonsContainer relativity centralize">
+    <div class="aboveReasonsContainer relative flex flex-col items-center justify-center">
       <img class="bookLampPaper" src="../../assets/images/why_us/book_lamp_paper.png" v-if="screenWidth < 1000" />
       <!-- FIXME The sign for the desktop is not in its correct place -->
-      <p class="whyUsHeader absoluteness" id="whyUsHeader">Почему мы?</p>
+      <p class="whyUsHeader absolute" id="whyUsHeader">Почему мы?</p>
     </div>
 
-    <div v-for="(reason, index) in reasons" :key="index" :style="{ backgroundImage: `url(${reason.bg_img})` }" class="centralize" 
+    <div v-for="(reason, index) in reasons" :key="index" :style="{ backgroundImage: `url(${reason.bg_img})` }" class="flex flex-col items-center justify-center" 
     :class="{
       [reason.class]: true, 
       reasonContainer: index !== 4 || screenWidth < 1000,

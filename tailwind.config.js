@@ -12,6 +12,9 @@ module.exports = {
         interBold: ['Inter-Bold', 'sans-serif'],
         geologicaBold: ['Geologica-Bold', 'sans-serif']
       },
+      colors: {
+        minds: '#F96F16'
+      }
     },
   },
   plugins: [],
