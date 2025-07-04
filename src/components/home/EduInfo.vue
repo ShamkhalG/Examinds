@@ -2,11 +2,15 @@
 <!-- FIXME The size of images are too big (at least for mobile) -->
 <template>
   <div class="mt-[6rem] lg:mt-[-13rem] lg:min-h-[1930px]">
-    <p class="text-[1.3rem] lg:text-[4.8rem] lg:max-w-[1010px] mb-[0.5rem] text-white text-center font-geologicaBold">Как проходит обучение?</p>
+    <p class="text-[1.3rem] mb-[0.5rem] text-white text-center font-geologicaBold 
+    lg:text-[4.8rem] lg:max-w-[1010px]"
+    >
+      Как проходит обучение?
+    </p>
     <div class="relative min-h-[1100px] max-w-[1100px]">
       <div v-for="(eduInfo, index) in eduInfos" :key="index" :class="screenWidth < 1000 ? 'flex flex-col items-center justify-center' : eduInfo.divClass" class="mt-[1.5rem] lg:m-auto">
         <img :src="eduInfo.img" class="w-[80%] lg:w-auto" :class="eduInfo.imgClass" v-if="index !== 4 || screenWidth < 1000" />
-        <p v-html="eduInfo.text" class="text-white text-center mt-0 lg:mt-auto lg:text-[1.2rem] lg:mb-0 font-interRegular"></p>
+        <p v-html="eduInfo.text" class="text-white text-center mt-0 font-interRegular lg:mt-auto lg:text-[1.2rem] lg:mb-0"></p>
         <!-- The position of the text and the image is reversed for PC -->
         <img :src="eduInfo.img" class="w-[80%] lg:w-auto" :class="eduInfo.imgClass" v-if="index === 4 && screenWidth > 1000" />
       </div>

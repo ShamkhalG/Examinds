@@ -4,16 +4,16 @@
     <!-- Above bulb -->
     <div class="flex flex-col items-center">
       <h1 class="text-white font-geologicaBold 
-        text-[3.7rem] md:text-[4.8rem] mb-0 md:mb-[-0.5rem] mt-[2rem] md:mt-[1rem]">
+        text-[3.7rem] mb-0 mt-[2rem] md:text-[4.8rem] md:mb-[-0.5rem] md:mt-[1rem]">
         Exa<span class="text-minds">Minds</span></h1>
       <h4 class="text-white text-center font-interBold
-      text-[0.8rem] md:text-[1.2rem] mt-0 mb-0">
+      text-[0.8rem] mt-0 mb-0 md:text-[1.2rem]">
         Лучшие революционные курсы с топовыми
         <br v-if="screenWidth < 768" />
         преподавателями и гибким графиком
       </h4>
       <p class="text-white text-center font-interRegular
-      text-[0.7rem] md:text-base mt-[0.5rem] md:mt-0">
+      text-[0.7rem] mt-[0.5rem] md:text-base md:mt-0">
         Меняем подход к образованию и
         <br v-if="screenWidth < 768" />
         вдохновляем любовь к учёбе у детей
@@ -51,8 +51,8 @@
 
     <!-- Dust image -->
     <div class="flex flex-col items-center justify-center">
-      <img :src="dustPath" class="mix-blend-lighten z-1
-      mt-[-3rem] md:mt-[-4.5rem] w-screen md:w-full h-auto" />
+      <img :src="dustPath" class="mix-blend-lighten mt-[-3rem] h-auto
+      w-screen z-1 md:mt-[-4.5rem] md:w-full" />
     </div>
   </div>
 </template>
@@ -72,22 +72,22 @@ export default {
       dustPath: window.innerWidth < 767 ? dustMobile : dustDesktop,
       achievements: [
         {
-          class: "absolute w-[120px] md:w-[200px] top-[30px] md:top-[80px] left-[5px] md:left-[20px]",
+          class: "absolute w-[120px] top-[30px] left-[5px] md:w-[200px] md:top-[80px] md:left-[20px]",
           bigText: "6 лет",
           smallText: window.innerWidth < 767 ? "Готовим к экзамену" : "Профессионально готовим к экзаменам",
         },
         {
-          class: "absolute top-[30px] md:top-[80px] right-[10px] md:right-[20px]",
+          class: "absolute top-[30px] right-[10px] md:top-[80px] md:right-[20px]",
           bigText: "20",
           smallText: "Стобалльников",
         },
         {
-          class: "absolute top-[90px] md:top-[280px] left-[40px] md:left-[120px]",
+          class: "absolute top-[90px] left-[40px] md:top-[280px] md:left-[120px]",
           bigText: "600+",
           smallText: "Выпускников",
         },
         {
-          class: "absolute top-[90px] md:top-[280px] right-[40px] md:right-[85px] w-[80px] md:w-auto",
+          class: "absolute w-[80px] top-[90px] right-[40px] md:w-auto md:top-[280px] md:right-[85px]",
           bigText: "70+",
           smallText: window.innerWidth < 767 ? "Средний балл" : "Средний балл учеников",
         }

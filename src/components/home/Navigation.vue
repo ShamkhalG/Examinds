@@ -1,16 +1,19 @@
 <template>
   <div class="flex flex-row items-center justify-between h-16 mt-4 w-[95%] sm:w-[90%] lg:w-4/5">
     <div class="flex flex-col items-center">
-      <button :class="['text-xs md:text-xl border-none cursor-pointer font-interRegular mb-2 md:mb-0',
+      <button :class="['text-xs border-none cursor-pointer font-interRegular mb-2 md:text-xl md:mb-0',
         activeIndex === 0 ? 'text-[#F96F16]' : 'text-white']" 
         @click="setActive(0)">
           Главная
       </button>
-      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out md:hidden" :class="{ 'opacity-0': activeIndex !== 0 }"></div>
+      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] 
+      duration-300 ease-in-out md:hidden" 
+      :class="{ 'opacity-0': activeIndex !== 0 }">
+      </div>
     </div>
 
     <div class="flex flex-col items-center">
-      <button :class="['text-xs md:text-xl border-none cursor-pointer font-interRegular mb-2 md:mb-0',
+      <button :class="['text-xs border-none cursor-pointer font-interRegular mb-2 md:text-xl md:mb-0',
         activeIndex === 1 ? 'text-[#F96F16]' : 'text-white']" 
         @click="setActive(1)">
           О нас
@@ -19,7 +22,7 @@
     </div>
 
     <div class="flex flex-col items-center">
-      <button :class="['text-xs md:text-xl border-none cursor-pointer font-interRegular mb-2 md:mb-0',
+      <button :class="['text-xs border-none cursor-pointer font-interRegular mb-2 md:text-xl md:mb-0',
         activeIndex === 2 ? 'text-[#F96F16]' : 'text-white']" 
         @click="setActive(2)">
           Преподаватели
@@ -29,7 +32,7 @@
     
     <!-- TODO Functionality of "Evaluation" -->
     <div class="flex flex-col items-center">
-      <button :class="['text-xs md:text-xl border-none cursor-pointer font-interRegular mb-2 md:mb-0',
+      <button :class="['text-xs border-none cursor-pointer font-interRegular mb-2 md:text-xl md:mb-0',
         activeIndex === 3 ? 'text-[#F96F16]' : 'text-white']" 
         @click="setActive(3)">
           Пробные <br v-if="screenWidth < 768" /> экзамены

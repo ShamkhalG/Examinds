@@ -1,23 +1,44 @@
 <!-- FIXME The little flags must be under the <div> -->
 <template>
-  <div class="whyUs" id="whyUs">
-    <div class="aboveReasonsContainer relative flex flex-col items-center justify-center">
-      <img class="bookLampPaper" src="../../assets/images/why_us/book_lamp_paper.png" v-if="screenWidth < 1000" />
+  <div class="relative lg:w-[98%] lg:min-h-[800px] lg:max-w-[1060px] lg:mt-[-7rem]" id="whyUs">
+    <div class="relative flex flex-col items-center justify-center lg:mb-[7rem]">
+      <img class="w-[90%] lg:w-auto" src="../../assets/images/why_us/book_lamp_paper.png" 
+      v-if="screenWidth < 1024" />
       <!-- FIXME The sign for the desktop is not in its correct place -->
-      <p class="whyUsHeader absolute" id="whyUsHeader">Почему мы?</p>
+      <p class="whyUsHeader text-white font-geologicaBold 
+      text-[2rem] absolute bottom-[2.5rem] lg:text-[5rem] lg:bottom-auto lg:z-2" 
+      id="whyUsHeader"
+      >
+        Почему мы?
+      </p>
     </div>
 
-    <div v-for="(reason, index) in reasons" :key="index" :style="{ backgroundImage: `url(${reason.bg_img})` }" class="flex flex-col items-center justify-center" 
-    :class="{
-      [reason.class]: true, 
-      reasonContainer: index !== 4 || screenWidth < 1000,
-      greenReasonContainer: index === 4 && screenWidth > 1000}">
-        <img :src="reason.number_img" alt="Number Image" />
-        <p v-html="reason.text" class="reasonText"></p>
-        <img :src="reason.image" :class="index === reasons.length - 1 ? 'greenBookmarkImage' : 'bookmarkImage'" alt="Reason Image" />
-        <button v-if="index === reasons.length - 1" class="finAidButton" @click="showAidToast" >
-          ФИН-ПОМОЩЬ
-        </button>
+    <div v-for="(reason, index) in reasons" :key="index" 
+      :style="{ backgroundImage: `url(${reason.bg_img})` }" 
+      class="flex flex-col items-center justify-center" 
+      :class="{
+        [reason.class]: true, 
+        'bg-no-repeat bg-center z-[2]': true,
+        'relative max-w-[400px] min-h-[290px] bg-contain mt-8 mb-16 mx-2': index !== 4 || screenWidth < 1024,
+        'absolute w-[98vw] max-w-[1045px] min-h-[250px] bg-no-repeat z-[2]': index === 4 && screenWidth > 1024
+      }
+    ">
+      <img :src="reason.number_img" alt="Number Image" />
+      <p v-html="reason.text" class="text-center text-white font-interRegular 
+        max-w-[360px] text-[0.8rem] lg:w-auto lg:text-[1.1rem] lg:text-left"
+      ></p>
+      <img :src="reason.image" 
+        :class="index === reasons.length - 1 ? 
+        'absolute bottom-[-5rem] left-[50%] translate-x-[-118px] lg:bottom-[2.2rem] lg:left-[3.5rem]' 
+        : 'absolute bottom-0 left-[1rem] z-1 lg:bottom-[-2.4rem] lg:left-[3rem] lg:z-[-1]'" 
+      alt="Reason Image" />
+      <button v-if="index === reasons.length - 1" 
+        class="finAidButton absolute bottom-[-2.4rem] cursor-pointer w-[264px] h-[63px] 
+        font-interBold lg:static lg:bottom-auto lg:w-[379px] lg:h-[89px] lg:text-[1.1rem]" 
+        @click="showAidToast" 
+      >
+        ФИН-ПОМОЩЬ
+      </button>
     </div>
   </div>
 </template>
@@ -65,10 +86,10 @@ export default {
     updateReasons() {
       this.reasons = [
         {
-          class: "firstGray",
+          class: "lg:top-[4rem] lg:left-[1rem]",
           number_img: one_img,
-          text: this.screenWidth < 1000 ? `
-            <span class="boldText">Инновационная система обучения</span>-наша<br />
+          text: this.screenWidth < 1024 ? `
+            <span class="font-interBold">Инновационная система обучения</span>-наша<br />
             платформа и структура уроков помогают<br />
             ребенку удобно сфокусироваться на теме,<br />
             не пропускать уроки и сохранять интерес.
@@ -80,13 +101,13 @@ export default {
             пропускать уроки и сохранять интерес.<br />
           `,
           image: one_bottom,
-          bg_img: this.screenWidth < 1000 ? grayRectBgMobile : grayRectBgDesktop,
+          bg_img: this.screenWidth < 1024 ? grayRectBgMobile : grayRectBgDesktop,
         },
         {
-          class: "secondGray",
+          class: "lg:top-[4rem] lg:right-[1rem]",
           number_img: two_img,
-          text: this.screenWidth < 1000 ? `
-            <span class="boldText">Удобный график работы.</span> Вы сами<br />
+          text: this.screenWidth < 1024 ? `
+            <span class="font-interBold">Удобный график работы.</span> Вы сами<br />
             определяете удобное время и дни<br />
             для учебы благодаря нашей гибкой<br />
             структуре занятий.
@@ -97,13 +118,13 @@ export default {
             структуре занятий.
           `,
           image: two_bottom,
-          bg_img: this.screenWidth < 1000 ? grayRectBgMobile : grayRectBgDesktop,
+          bg_img: this.screenWidth < 1024 ? grayRectBgMobile : grayRectBgDesktop,
         },
         {
-          class: "thirdGray",
+          class: "lg:top-[21rem] lg:left-[1rem]",
           number_img: three_img,
-          text: this.screenWidth < 1000 ? `
-            <span class="boldText">Постоянный контроль результатов<br /> 
+          text: this.screenWidth < 1024 ? `
+            <span class="font-interBold">Постоянный контроль результатов<br /> 
             и посещаемости ребенка</span>, чтобы<br />
             родители были уверены в его<br />
             прогрессе.
@@ -113,13 +134,13 @@ export default {
             были уверены в его прогрессе.
           `,
           image: three_bottom,
-          bg_img: this.screenWidth < 1000 ? grayRectBgMobile : grayRectBgDesktop,
+          bg_img: this.screenWidth < 1024 ? grayRectBgMobile : grayRectBgDesktop,
         },
         {
-          class: "fourthGray",
+          class: "lg:top-[21rem] lg:right-[1rem]",
           number_img: four_img,
-          text: this.screenWidth < 1000 ? `
-            Лучшие <span class="boldText">молодые преподаватели<br />
+          text: this.screenWidth < 1024 ? `
+            Лучшие <span class="font-interBold">молодые преподаватели<br />
             с многолетним опытом</span> работы в<br />
             ведущих курсах и частных школах<br />
             Азербайджана.
@@ -130,13 +151,13 @@ export default {
             Азербайджана.
           `,
           image: four_bottom,
-          bg_img: this.screenWidth < 1000 ? grayRectBgMobile : grayRectBgDesktop,
+          bg_img: this.screenWidth < 1024 ? grayRectBgMobile : grayRectBgDesktop,
         },
         {
-          class: "firstGreen",
+          class: "lg:top-[37rem]",
           number_img: five_img,
-          text: this.screenWidth < 1000 ? `
-            <span class="boldText">Мы предлагаем финансовую помощь всем<br />
+          text: this.screenWidth < 1024 ? `
+            <span class="font-interBold">Мы предлагаем финансовую помощь всем<br />
             нуждающимся, стремясь повысить уровень<br />
             образования в Азербайджане.
             </span>
@@ -147,12 +168,12 @@ export default {
             университеты, освобождая от частичной или<br />
             полной оплаты курса.
           ` : `
-          <span class="boldText">Мы предлагаем финансовую помощь всем нуждающимся, стремясь повысить уровень<br />
+          <span class="font-interBold">Мы предлагаем финансовую помощь всем нуждающимся, стремясь повысить уровень<br />
           образования в Азербайджане. Система грантов позволяет детям получать лучшее образование<br />
           и поступать в ведущие университеты, освобождая от частичной или полной оплаты курса.</span>
           `,
           image: five_bottom,
-          bg_img: this.screenWidth < 1000 ? greenRectBgMobile : greenRectBgDesktop,
+          bg_img: this.screenWidth < 1024 ? greenRectBgMobile : greenRectBgDesktop,
         }
       ];
     },
@@ -176,27 +197,12 @@ export default {
 </script>
 
 <style>
-.whyUs {
-  position: relative;
-}
 .whyUsHeader {
-  color: white;
-  font-family: 'Geologica-bold';
-  text-shadow:  0px 5px 4px rgba(0, 0, 0, 0.5), 0px 6px 10px rgba(0, 0, 0, 0.7);
-}
-
-.reasonText {
-  color: white;
-  font-family: 'Inter-Regular';
-}
-
-.boldText {
-  font-family: 'Inter-Bold';
+  text-shadow: 0px 5px 4px rgba(0, 0, 0, 0.5), 0px 6px 10px rgba(0, 0, 0, 0.7);
 }
 
 .finAidButton {
   color: #8D8D8D;
-  cursor: pointer;
   background: linear-gradient(
     to right, 
     rgba(255, 255, 255, 0) 0%,
@@ -214,172 +220,11 @@ export default {
   border: none;
   box-shadow: 0px 4px 0px #8F8F8F;
   outline: none;
-  font-family: 'Inter-Bold';
   letter-spacing: 1.2px;
 }
 
 .finAidButton:active {
   box-shadow: 0px 0px 0px #8F8F8F;
   transform: translateY(2px);
-}
-
-/* Desktop styles */
-@media(min-width: 1000px) {
-  .whyUs {
-    width: 98%;
-    min-height: 800px;
-    max-width: 1060px;
-    margin-top: -7rem;
-  }
-  
-  .whyUsHeader {
-    font-size: 5rem;
-    z-index: 2;
-  }
-
-  .aboveReasonsContainer {
-    margin-bottom: 7rem;
-  }
-
-  .reasonContainer {
-    position: absolute;
-    width: 100%;
-    max-width: 460px;
-    min-height: 198px;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 2;
-  }
-
-  .greenReasonContainer {
-    position: absolute;
-    width: 100%;
-    max-width: 1045px;
-    min-height: 250px;
-    background-repeat: no-repeat;
-    z-index: 2;
-  }
-
-  .reasonText {
-    font-size: 1.1rem;
-  }
-
-  .greenReasonContainer {
-    width: 98vw;
-  }
-
-  .firstGray {
-    top: 4rem;
-    left: 1rem;
-  }
-
-  .secondGray {
-    top: 4rem;
-    right: 1rem;
-  }
-
-  .thirdGray {
-    top: 21rem;
-    left: 1rem;
-  }
-
-  .fourthGray {
-    top: 21rem;
-    right: 1rem;
-  }
-
-  .firstGreen {
-    top: 37rem;
-  }
-
-  .bookmarkImage {
-    position: absolute;
-    bottom: -2.4rem;
-    left: 3rem;
-    z-index: -1;
-  }
-  
-  .greenBookmarkImage {
-    position: absolute;
-    bottom: 2.2rem;
-    left: 3.5rem;
-  }
-
-  .finAidButton {
-    font-size: 1.1rem;
-    width: 379px;
-    height: 89px;
-  }
-}
-
-@media (min-width: 1050px){
-  .greenReasonContainer {
-    min-width: 1045px;
-  }
-}
-
-/* Mobile styles */
-@media(max-width: 1000px) {
-  .bookLampPaper {
-    width: 90%;
-  }
-
-  .whyUsHeader {
-    bottom: 2.5rem;
-    font-size: 2rem;
-  }
-
-  .reasonContainer {
-    max-width: 400px;
-    min-height: 290px;
-    position: relative;
-    background-size: contain; 
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-top: 2rem;
-    margin-bottom: 4rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    z-index: 2;
-  }
-
-  .reasonText {
-    font-size: 0.8rem;
-    text-align: center;
-    max-width: 360px;
-  }
-
-  .bookmarkImage {
-    position: absolute;
-    bottom: 0rem;
-    left: 1rem;
-    z-index: 1;
-  }
-  
-  .greenBookmarkImage {
-    position: absolute;
-    bottom: -5rem;
-    left: 50%;
-    transform: translateX(-118px);
-  }
-
-  .finAidButton {
-    position: absolute;
-    bottom: -2.4rem;
-    width: 264px;
-    height: 63px;
-  }
-}
-
-@media (min-width: 380px) and (max-width: 400px) {
-  .bookmarkImage {
-    bottom: 0.5rem !important;
-  }
-}
-
-@media (min-width: 340px) and (max-width: 380px) {
-  .bookmarkImage {
-    bottom: 1.1rem !important;
-  }
 }
 </style>

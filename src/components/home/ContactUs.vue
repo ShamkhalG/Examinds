@@ -1,45 +1,87 @@
 <template>
   <!-- FIXME The overall section must be seen (reduce the size of elements) -->
-  <div class="contactUs flex flex-col items-center justify-center">
-    <p class="contactUsHeader">Свяжитесь с нами</p>
+  <div class="flex flex-col items-center justify-center mt-[1rem] mb-[5rem] 
+    md:mt-auto md:mb-auto md:min-h-[1000px]"
+  >
+    <p class="contactUsHeader text-white font-geologicaBold text-[2.1rem] mb-[0.7rem] 
+    md:text-[5rem] md:mb-[-2.7rem] md:mt-0">
+      Свяжитесь с нами
+    </p>
+
     <!-- FIXME Table must be on the ground, not floating -->
-    <img class="contactUsImage" v-if="screenWidth < 767" src="../../assets/images/contact_us_image.png" />
-    <div class="registerContainer relative">
-      <img class="contactUsImage" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
-      <img class="notebookImage" :src="registerBg" />
-      <form @submit.prevent="signUp" class="registerForm absolute" id="registerForm">
+    <img class="w-[90%] md:w-auto" v-if="screenWidth < 767" src="../../assets/images/contact_us_image.png" />
+    <div class="relative flex justify-center mt-[-1.2rem] mx-[0.5rem] min-h-[400px]
+      md:flex-col md:items-center md:m-auto w-[90%] md:w-auto md:min-h-auto"
+    >
+      <img class="w-[90%] md:w-auto" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
+      <!-- Notebook image -->
+      <img class="md:absolute md:top-[46%]" :src="registerBg" />
+
+      <form @submit.prevent="signUp" id="registerForm" 
+        class="absolute w-[290px] mt-[3rem] md:w-[660px] md:mt-[28.5rem] md:ml-[1rem]" 
+      >
         <!-- Name/Surname -->
         <div>
-          <p class="registerText">Имя/Фамилия</p>
-          <input type="text" v-model="registerData.name" class="registerInputBox" />
+          <p class="mr-0 ml-[0.5rem] my-[0.1rem] md:mt-[0.4rem] md:mb-[0.2rem] 
+          font-interRegular italic">
+            Имя/Фамилия
+          </p>
+          <input type="text" v-model="registerData.name" 
+            class="border border-[#D9D9D9] rounded-[4px] 
+            text-[1rem] h-[2rem] w-[98%] md:rounded-[8px] md:border-2 md:w-[96%]" />
         </div>
   
         <!-- Number -->
         <div>
-          <p class="registerText">Номер телефона</p>
-          <input type="text" v-model="registerData.phonenumber" placeholder="Пример: +994501234567" class="registerInputBox" />
+          <p class="font-interRegular italic mr-0 ml-[0.5rem] my-[0.1rem] 
+          md:mt-[0.4rem] md:mb-[0.2rem]">
+            Номер телефона
+          </p>
+          <input type="text" v-model="registerData.phonenumber" placeholder="Пример: +994501234567" 
+            class="border border-[#D9D9D9] rounded-[4px] 
+            text-[1rem] h-[2rem] w-[98%] md:rounded-[8px] md:border-2 md:w-[96%]" />
         </div>
   
         <!-- Email -->
         <div>
-          <p class="registerText">Электронная почта</p>
-          <input type="text" v-model="registerData.email" class="registerInputBox" />
+          <p class="font-interRegular italic mr-0 ml-[0.5rem] my-[0.1rem] 
+          md:mt-[0.4rem] md:mb-[0.2rem]">
+            Электронная почта
+          </p>
+          <input type="text" v-model="registerData.email" 
+            class="border border-[#D9D9D9] rounded-[4px] 
+            text-[1rem] h-[2rem] w-[98%] md:rounded-[8px] md:border-2 md:w-[96%]" />
         </div>
   
         <!-- Password -->
         <div>
-          <p class="registerText">Пароль</p>
-          <input type="text" v-model="registerData.password" class="registerInputBox" />
+          <p class="font-interRegular italic mr-0 ml-[0.5rem] my-[0.1rem] 
+          md:mt-[0.4rem] md:mb-[0.2rem]">
+            Пароль
+          </p>
+          <input type="text" v-model="registerData.password" 
+            class="border border-[#D9D9D9] rounded-[4px] 
+            text-[1rem] h-[2rem] w-[98%] md:rounded-[8px] md:border-2 md:w-[96%]" />
         </div>
         
         <!-- Parent number -->
         <div>
-          <p class="registerText">Номер телефона Родителя</p>
-          <input type="text" v-model="registerData.parentnumber" class="registerInputBox" /> 
+          <p class="font-interRegular italic mr-0 ml-[0.5rem] my-[0.1rem] 
+          md:mt-[0.4rem] md:mb-[0.2rem]">
+            Номер телефона Родителя
+          </p>
+          <input type="text" v-model="registerData.parentnumber" 
+            class="border border-[#D9D9D9] rounded-[4px] 
+            text-[1rem] h-[2rem] w-[98%] md:rounded-[8px] md:border-2 md:w-[96%]" /> 
         </div>
         
-        <div class="buttonContainer flex flex-col items-center justify-center">
-          <button type="submit" class="findOutPriceButton">УЗНАТЬ ЦЕНУ</button>
+        <div class="mt-[1rem] md:mt-auto flex flex-col items-center justify-center">
+          <button type="submit" 
+            class="findOutPriceButton font-interBold text-white cursor-pointer
+            mt-[1rem] w-[250px] h-[60px] md:text-[1.1rem] md:w-[379px] md:h-[90px]"
+          >
+            УЗНАТЬ ЦЕНУ
+          </button>
         </div>
       </form>
     </div>
@@ -195,26 +237,8 @@ export default {
 </script>
 
 <style>
-.contactUsHeader {
-  color: white;
-  font-family: 'Geologica-bold';
-}
-
-.registerInputBox {
-  border: 1px solid #D9D9D9;
-  border-radius: 4px;
-}
-
-.registerText {
-  font-family: 'Inter-Regular';
-  font-style: italic;
-}
-
 .findOutPriceButton {
-  font-family: 'Inter-Bold';
   letter-spacing: 1.5px;
-  cursor: pointer;
-  color: white;
   background: 
   linear-gradient(
     to right, 
@@ -238,123 +262,5 @@ export default {
 .findOutPriceButton:active {
   box-shadow: 0px 0px 0px #046b26;
   transform: translateY(2px);
-}
-
-@media(max-width: 1717px) {
-  .contactUsImage {
-    max-width: 100%;
-  }
-}
-
-/* Desktop styles */
-@media(min-width: 767px) {
-  .contactUs {
-    min-height: 1000px;
-  }
-
-  .contactUsHeader {
-    font-size: 5rem;
-    margin-bottom: -2.7rem;
-    margin-top: 0;
-  }
-
-  .registerContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .contactUsImage {
-    height: auto;
-  }
-
-  .notebookImage {
-    position: absolute;
-    top: 46%;
-  }
-
-  .registerForm {
-    margin-top: 28.5rem;
-    margin-left: 1rem;
-    width: 660px;
-  }
-
-  .registerText {
-    margin: 0;
-    margin-top: 0.4rem;
-    margin-bottom: 0.2rem;
-    margin-left: 0.5rem;
-  }
-
-  .registerInputBox {
-    border-radius: 8px;
-    border-width: 2px;
-    font-size: 1rem;
-    height: 2rem;
-    width: 96%;
-  }
-
-  .findOutPriceButton {
-    margin-top: 1rem;
-    font-size: 1.1rem;
-    width: 379px;
-    height: 90px;
-  }
-}
-
-/* Mobile styles */
-@media(max-width: 767px) {
-  .contactUs {
-    margin-top: 1rem;
-    margin-bottom: 5rem;
-  }
-
-  .contactUsHeader {
-    font-size: 2.1rem;
-    margin-bottom: 0.7rem;
-  }
-
-  .contactUsImage {
-    width: 90%;
-  }
-
-  .registerContainer {
-    display: flex;
-    justify-content: center;
-    margin-top: -1.2rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    min-height: 400px;
-    width: 90%;
-  }
-
-  .registerForm {
-    margin-top: 3rem;
-    width: 290px;
-  }
-  
-  .registerText {
-    margin: 0;
-    margin-top: 0.1rem;
-    margin-bottom: 0.1rem;
-    margin-left: 0.5rem;
-  }
-  
-  .registerInputBox {
-    font-size: 1rem;
-    height: 2rem;
-    width: 98%;
-  }
-
-  .buttonContainer {
-    margin-top: 1rem;
-  }
-
-  .findOutPriceButton {
-    margin-top: 1rem;
-    width: 250px;
-    height: 60px;
-  }
 }
 </style>

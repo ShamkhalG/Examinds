@@ -1,8 +1,11 @@
 <template>
-  <div class="teachers flex flex-col items-center justify-center" id="teachers">
-    <p class="teachersHeader">Преподаватели Exa<span class="text-minds">Minds</span></p>
+  <div class="flex flex-col items-center justify-center mt-[2rem] md:mt-[4rem]" id="teachers">
+    <p class="text-[1.6rem] text-white text-center font-geologicaBold md:text-[5rem] md:mb-0"
+    >
+      Преподаватели Exa<span class="text-minds">Minds</span>
+    </p>
     <div v-for="(teacher, index) in teachers" :key="index" class="flex flex-col items-center justify-center">
-      <img :src="teacher.img" class="teacherImage" />
+      <img :src="teacher.img" class="w-[90%] ml-[1.7rem] md:ml-auto md:mb-[3rem]" />
     </div>
   </div>
 </template>
@@ -36,43 +39,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.teachersHeader {
-  color: white;
-  font-family: 'Geologica-Bold';
-  text-align: center;
-}
-
-/* Desktop styles */
-@media(min-width: 767px) {
-  .teachers {
-    margin-top: 4rem;
-  }
-
-  .teachersHeader {
-    font-size: 5rem;
-    margin-bottom: 0;
-  }
-
-  .teacherImage {
-    width: 90%;
-    margin-bottom: 3rem;
-  }
-}
-
-/* Mobile styles */
-@media(max-width: 767px) {
-  .teachers {
-    margin-top: 2rem;
-  }
-  .teachersHeader {
-    font-size: 1.6rem;
-  }
-  
-  .teacherImage {
-    width: 90%;
-    margin-left: 1.7rem;
-  }
-}
-</style>
