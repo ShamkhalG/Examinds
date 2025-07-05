@@ -1,5 +1,4 @@
-<!-- FIXME The positioning of the elements are scrambled -->
-<!-- FIXME The size of images are too big (at least for mobile) -->
+<!-- FIXME The positioning of the elements are scrambled (for PC) -->
 <template>
   <div class="mt-[6rem] lg:mt-[-13rem] lg:min-h-[1930px]">
     <p class="text-[1.3rem] mb-[0.5rem] text-white text-center font-geologicaBold 
@@ -9,8 +8,8 @@
     </p>
     <div class="relative min-h-[1100px] max-w-[1100px]">
       <div v-for="(eduInfo, index) in eduInfos" :key="index" :class="screenWidth < 1000 ? 'flex flex-col items-center justify-center' : eduInfo.divClass" class="mt-[1.5rem] lg:m-auto">
-        <img :src="eduInfo.img" class="w-[80%] lg:w-auto" :class="eduInfo.imgClass" v-if="index !== 4 || screenWidth < 1000" />
-        <p v-html="eduInfo.text" class="text-white text-center mt-0 font-interRegular lg:mt-auto lg:text-[1.2rem] lg:mb-0"></p>
+        <img :src="eduInfo.img" class="lg:w-auto" :class="eduInfo.imgClass" v-if="index !== 4 || screenWidth < 1000" />
+        <p v-html="eduInfo.text" class="text-white text-center text-[0.85rem] leading-[1.1rem] mt-1 font-interRegular lg:mt-auto lg:text-[1.2rem] lg:mb-0"></p>
         <!-- The position of the text and the image is reversed for PC -->
         <img :src="eduInfo.img" class="w-[80%] lg:w-auto" :class="eduInfo.imgClass" v-if="index === 4 && screenWidth > 1000" />
       </div>
@@ -36,8 +35,15 @@ export default {
   name: "EduInfo",
   data() {
     return {
-      screenWidth: window.innerWidth,
-      eduInfos: [
+      screenWidth: 0
+    }
+  },
+  mounted() {
+    this.screenWidth = window.innerWidth
+  },
+  computed: {
+    eduInfos() {
+      return [
         { // Laptop
           text: `
           На платформе размещаются<br class="lg:hidden" /><br class="hidden lg:inline" />
@@ -45,7 +51,7 @@ export default {
           и практикой
           `,
           img: this.screenWidth < 1000 ? laptopMobile : laptopDesktop,
-          imgClass: "mr-[2rem] lg:mr-auto",
+          imgClass: "w-[63%] lg:w-auto",
           divClass: "lg:absolute lg:left-[1rem]"
         },
         { // Notebook and Pen
@@ -53,8 +59,8 @@ export default {
             Домашние задания <span class="text-minds font-interSemiBold">после<br class="hidden lg:inline" />
             <br class="lg:hidden" />каждого</span> видео-урока
           `,
-          img: this.screenWidth < 1000 ? notebookPenDesktop : notebookPenMobile,
-          imgClass: "ml-[1rem] lg:ml-auto",
+          img: this.screenWidth < 1000 ? notebookPenMobile : notebookPenDesktop,
+          imgClass: "w-[55%] lg:w-auto",
           divClass: "lg:absolute lg:right-[1rem]"
         },
         { // Puzzle
@@ -64,7 +70,7 @@ export default {
             изучен материал
           `,
           img: this.screenWidth < 1000 ? puzzleMobile : puzzleDesktop,
-          imgClass: "mr-[4rem] lg:mr-auto",
+          imgClass: "w-[72%] lg:w-auto",
           divClass: "lg:absolute lg:top-[55%] lg:left-[1rem]"
         },
         { // Chat and Hearts
@@ -74,7 +80,7 @@ export default {
             чтобы<br class="hidden lg:inline" /> улучшить результаты
           `,
           img: this.screenWidth < 1000 ? chatHeartsMobile : chatHeartsDesktop,
-          imgClass: "mr-[0.5rem] mb-[1rem] lg:mr-auto lg:mb-auto",
+          imgClass: "w-[62%] lg:w-auto",
           divClass: "lg:absolute lg:top-[52%] lg:right-[1rem]"
         },
         { // Paper and Approved
@@ -84,7 +90,7 @@ export default {
             на прямом эфире
           `,
           img: this.screenWidth < 1000 ? papersApprovedMobile : papersApprovedDesktop,
-          imgClass: "",
+          imgClass: "w-[68%] lg:w-auto",
           divClass: "lg:absolute lg:top-[20rem] lg:left-[30%] lg:z-3"
         }
       ]
