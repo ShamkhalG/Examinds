@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col items-center justify-center mt-[2rem] md:mt-[4rem]" id="teachers">
-    <p class="text-[1.6rem] text-white text-center font-geologicaBold md:text-[5rem] md:mb-0"
+  <div class="flex flex-col items-center justify-center mt-8 md:mt-[4rem]" id="teachers">
+    <p class="text-[1.3rem] text-white text-center font-geologicaBold md:text-[5rem] md:mb-0"
     >
       Преподаватели Exa<span class="text-minds">Minds</span>
     </p>
@@ -37,5 +37,5 @@ export default {
       ]
     }
   }
-}
+};
 </script>

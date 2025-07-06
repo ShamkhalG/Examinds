@@ -1,64 +1,59 @@
-<!-- FIXME The little flags must be under the <div> -->
 <template>
-  <div class="relative lg:w-[98%] lg:min-h-[800px] lg:max-w-[1060px] lg:mt-[-7rem]" id="whyUs">
+  <div class="relative lg:w-[98%] lg:min-h-[800px] lg:max-w-[1060px] lg:mt-[-7rem] pb-20 flex flex-col items-center justify-center" id="whyUs">
     <div class="relative flex flex-col items-center justify-center lg:mb-[7rem]">
       <img class="w-[90%] lg:w-auto" src="../../assets/images/why_us/book_lamp_paper.png" 
       v-if="screenWidth < 1024" />
       <!-- FIXME The sign for the desktop is not in its correct place -->
       <p class="whyUsHeader text-white font-geologicaBold 
-      text-[2rem] absolute bottom-[2.5rem] lg:text-[5rem] lg:bottom-auto lg:z-2" 
+      text-[2rem] absolute bottom-[7rem] lg:text-[5rem] lg:bottom-auto lg:z-2" 
       id="whyUsHeader"
       >
         Почему мы?
       </p>
     </div>
 
+    <!-- Reasons -->
     <div v-for="(reason, index) in reasons" :key="index" 
       :style="{ backgroundImage: `url(${reason.bg_img})` }" 
-      class="flex flex-col items-center justify-center" 
+      class="flex items-center justify-center bg-no-repeat bg-center bg-contain" 
       :class="{
-        [reason.class]: true, 
-        'bg-no-repeat bg-center z-[2]': true,
-        'relative max-w-[400px] min-h-[290px] bg-contain mt-8 mb-16 mx-2': index !== 4 || screenWidth < 1024,
-        'absolute w-[98vw] max-w-[1045px] min-h-[250px] bg-no-repeat z-[2]': index === 4 && screenWidth > 1024
+        'w-[320px] min-h-[170px] mb-8': screenWidth < 1024 && index !== 4,
+        'w-[320px] min-h-[210px] pt-4': screenWidth < 1024 && index === 4, // 05 params
+        'absolute w-[98vw] max-w-[1045px] min-h-[250px] z-[2]': screenWidth > 1024,
+        [reason.pos]: true // Absolute positioning, for PC
       }
     ">
-      <img :src="reason.number_img" alt="Number Image" />
+      <!-- Reason text -->
       <p v-html="reason.text" class="text-center text-white font-interRegular 
-        max-w-[360px] text-[0.8rem] lg:w-auto lg:text-[1.1rem] lg:text-left"
+        text-[0.7rem] lg:text-[1.1rem]"
       ></p>
-      <img :src="reason.image" 
-        :class="index === reasons.length - 1 ? 
-        'absolute bottom-[-5rem] left-[50%] translate-x-[-118px] lg:bottom-[2.2rem] lg:left-[3.5rem]' 
-        : 'absolute bottom-0 left-[1rem] z-1 lg:bottom-[-2.4rem] lg:left-[3rem] lg:z-[-1]'" 
-      alt="Reason Image" />
-      <button v-if="index === reasons.length - 1" 
-        class="finAidButton absolute bottom-[-2.4rem] cursor-pointer w-[264px] h-[63px] 
-        font-interBold lg:static lg:bottom-auto lg:w-[379px] lg:h-[89px] lg:text-[1.1rem]" 
-        @click="showAidToast" 
-      >
-        ФИН-ПОМОЩЬ
-      </button>
+
     </div>
+
+    <!-- White bookmark -->
+      <img src="../../assets/images/why_us/05_bookmark.png" 
+      class="absolute bottom-0 left-[18%] w-[8%] z-1"/>
+        
+    <!-- Financial aid Button -->
+    <button
+      class="finAidButton absolute bottom-8 cursor-pointer w-[264px] h-[63px] 
+      font-interBold lg:static lg:bottom-auto lg:w-[379px] lg:h-[89px] lg:text-[1.1rem] z-2" 
+      @click="showAidToast" 
+    >
+      ФИН-ПОМОЩЬ
+    </button>
   </div>
 </template>
 
 <script>
-import one_img from "../../assets/images/why_us/01.png";
-import one_bottom from "../../assets/images/why_us/bottom_img_1.svg";
-import two_img from "../../assets/images/why_us/02.png";
-import two_bottom from "../../assets/images/why_us/bottom_img_2.svg";
-import three_img from "../../assets/images/why_us/03.png";
-import three_bottom from "../../assets/images/why_us/bottom_img_3.svg";
-import four_img from "../../assets/images/why_us/04.png";
-import four_bottom from "../../assets/images/why_us/bottom_img_4.svg";
-import five_img from "../../assets/images/why_us/05.png";
-import five_bottom from "../../assets/images/why_us/bottom_img_5.svg";
-
-import grayRectBgMobile from "../../assets/backgrounds/gray_rect_bg.png";
 import grayRectBgDesktop from "../../assets/backgrounds/gray_rect_bg_pc.png";
-import greenRectBgMobile from "../../assets/backgrounds/green_rect_bg.png";
 import greenRectBgDesktop from "../../assets/backgrounds/green_rect_bg_pc.png";
+
+import one_bg from "../../assets/images/why_us/01_bg.png"
+import two_bg from "../../assets/images/why_us/02_bg.png"
+import three_bg from "../../assets/images/why_us/03_bg.png"
+import four_bg from "../../assets/images/why_us/04_bg.png"
+import five_bg from "../../assets/images/why_us/05_bg.png"
 
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
@@ -85,11 +80,10 @@ export default {
     },
     updateReasons() {
       this.reasons = [
-        {
-          class: "lg:top-[4rem] lg:left-[1rem]",
-          number_img: one_img,
+        { // 01
+          pos: "lg:top-[4rem] lg:left-[1rem]",
           text: this.screenWidth < 1024 ? `
-            <span class="font-interBold">Инновационная система обучения</span>-наша<br />
+            <span class="font-interSemiBold">Инновационная система обучения</span>-наша<br />
             платформа и структура уроков помогают<br />
             ребенку удобно сфокусироваться на теме,<br />
             не пропускать уроки и сохранять интерес.
@@ -100,14 +94,12 @@ export default {
             удобно сфокусироваться на теме, не<br />
             пропускать уроки и сохранять интерес.<br />
           `,
-          image: one_bottom,
-          bg_img: this.screenWidth < 1024 ? grayRectBgMobile : grayRectBgDesktop,
+          bg_img: this.screenWidth < 1024 ? one_bg : grayRectBgDesktop,
         },
-        {
-          class: "lg:top-[4rem] lg:right-[1rem]",
-          number_img: two_img,
+        { // 02
+          pos: "lg:top-[4rem] lg:right-[1rem]",
           text: this.screenWidth < 1024 ? `
-            <span class="font-interBold">Удобный график работы.</span> Вы сами<br />
+            <span class="font-interSemiBold">Удобный график работы.</span> Вы сами<br />
             определяете удобное время и дни<br />
             для учебы благодаря нашей гибкой<br />
             структуре занятий.
@@ -117,14 +109,12 @@ export default {
             для учебы благодаря нашей гибкой<br />
             структуре занятий.
           `,
-          image: two_bottom,
-          bg_img: this.screenWidth < 1024 ? grayRectBgMobile : grayRectBgDesktop,
+          bg_img: this.screenWidth < 1024 ? two_bg : grayRectBgDesktop,
         },
-        {
-          class: "lg:top-[21rem] lg:left-[1rem]",
-          number_img: three_img,
+        { // 03
+          pos: "lg:top-[21rem] lg:left-[1rem]",
           text: this.screenWidth < 1024 ? `
-            <span class="font-interBold">Постоянный контроль результатов<br /> 
+            <span class="font-interSemiBold">Постоянный контроль результатов<br /> 
             и посещаемости ребенка</span>, чтобы<br />
             родители были уверены в его<br />
             прогрессе.
@@ -133,14 +123,12 @@ export default {
             посещаемости ребенка, чтобы родители<br />
             были уверены в его прогрессе.
           `,
-          image: three_bottom,
-          bg_img: this.screenWidth < 1024 ? grayRectBgMobile : grayRectBgDesktop,
+          bg_img: this.screenWidth < 1024 ? three_bg : grayRectBgDesktop,
         },
-        {
-          class: "lg:top-[21rem] lg:right-[1rem]",
-          number_img: four_img,
+        { // 04
+          pos: "lg:top-[21rem] lg:right-[1rem]",
           text: this.screenWidth < 1024 ? `
-            Лучшие <span class="font-interBold">молодые преподаватели<br />
+            Лучшие <span class="font-interSemiBold">молодые преподаватели<br />
             с многолетним опытом</span> работы в<br />
             ведущих курсах и частных школах<br />
             Азербайджана.
@@ -150,14 +138,12 @@ export default {
             ведущих курсах и частных школах<br />
             Азербайджана.
           `,
-          image: four_bottom,
-          bg_img: this.screenWidth < 1024 ? grayRectBgMobile : grayRectBgDesktop,
+          bg_img: this.screenWidth < 1024 ? four_bg : grayRectBgDesktop,
         },
-        {
-          class: "lg:top-[37rem]",
-          number_img: five_img,
+        { // 05
+          pos: "lg:top-[37rem]",
           text: this.screenWidth < 1024 ? `
-            <span class="font-interBold">Мы предлагаем финансовую помощь всем<br />
+            <span class="font-interSemiBold">Мы предлагаем финансовую помощь всем<br />
             нуждающимся, стремясь повысить уровень<br />
             образования в Азербайджане.
             </span>
@@ -172,8 +158,7 @@ export default {
           образования в Азербайджане. Система грантов позволяет детям получать лучшее образование<br />
           и поступать в ведущие университеты, освобождая от частичной или полной оплаты курса.</span>
           `,
-          image: five_bottom,
-          bg_img: this.screenWidth < 1024 ? greenRectBgMobile : greenRectBgDesktop,
+          bg_img: this.screenWidth < 1024 ? five_bg : greenRectBgDesktop,
         }
       ];
     },
