@@ -1,16 +1,17 @@
 <template>
   <div class="relative lg:w-[98%] lg:min-h-[800px] lg:max-w-[1060px] lg:mt-[-7rem] pb-20 flex flex-col items-center justify-center" id="whyUs">
-    <div class="relative flex flex-col items-center justify-center lg:mb-[7rem]">
-      <img class="w-[90%] lg:w-auto" src="../../assets/images/why_us/book_lamp_paper.png" 
-      v-if="screenWidth < 1024" />
-      <!-- FIXME The sign for the desktop is not in its correct place -->
-      <p class="whyUsHeader text-white font-geologicaBold 
-      text-[2rem] absolute bottom-[7rem] lg:text-[5rem] lg:bottom-auto lg:z-2" 
+    <!-- <div class="relative flex flex-col items-center justify-center lg:mb-[7rem]"> -->
+    <img class="w-[90%] lg:w-auto" src="../../assets/images/why_us/book_lamp_paper.png" 
+    v-if="screenWidth < 1024" />
+    <!-- FIXME The sign for the desktop is not in its correct place -->
+    <h3 class="whyUsHeader text-white font-geologicaBold text-center text-[1.9rem] 
+      absolute top-[13rem] left-[50%] ml-[-95px] lg:text-[4.2rem] lg:ml-[-215px] lg:w-[430px]
+      lg:bottom-auto lg:top-[0rem] lg:z-30" 
       id="whyUsHeader"
-      >
-        Почему мы?
-      </p>
-    </div>
+    >
+      Почему мы?
+    </h3>
+    <!-- </div> -->
 
     <!-- Reasons -->
     <div v-for="(reason, index) in reasons" :key="index" 
@@ -31,8 +32,8 @@
     </div>
 
     <!-- White bookmark -->
-      <img src="../../assets/images/why_us/05_bookmark.png" 
-      class="absolute bottom-0 left-[18%] w-[8%] z-1"/>
+    <img src="../../assets/images/why_us/05_bookmark.png" 
+    class="absolute bottom-0 left-[18%] w-[8%] z-1"/>
         
     <!-- Financial aid Button -->
     <button

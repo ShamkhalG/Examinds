@@ -2,7 +2,7 @@
   <div class="flex flex-row items-center justify-between h-16 w-full mt-4 px-4 lg:w-4/5">
     <!-- Главная -->
     <div class="flex flex-col items-center">
-      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-xl md:mb-0',
+      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-[1rem] md:mb-0',
         activeIndex === 0 ? 'text-[#F96F16]' : 'text-white']" 
         @click="setActive(0)">
           Главная
@@ -15,7 +15,7 @@
 
     <!-- О нас -->
     <div class="flex flex-col items-center">
-      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-xl md:mb-0',
+      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-[1rem] md:mb-0',
         activeIndex === 1 ? 'text-[#F96F16]' : 'text-white']" 
         @click="setActive(1)">
           О <br class="md:hidden" /> нас
@@ -25,7 +25,7 @@
 
     <!-- Преподаватели -->
     <div class="flex flex-col items-center">
-      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-xl md:mb-0',
+      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-[1rem] md:mb-0',
         activeIndex === 2 ? 'text-[#F96F16]' : 'text-white']" 
         @click="setActive(2)">
           Преподаватели
@@ -36,7 +36,7 @@
     <!-- Пробные экзамены -->
     <!-- TODO Functionality of "Evaluation" -->
     <div class="flex flex-col items-center">
-      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-xl md:mb-0',
+      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-[1rem] md:mb-0',
         activeIndex === 3 ? 'text-[#F96F16]' : 'text-white']" 
         @click="setActive(3)">
           Пробные <br class="md:hidden" /> экзамены
@@ -50,7 +50,7 @@
       <button class="navsignin border-2 border-[#F96F16] rounded-[10px] bg-[#d9d9d94c]
         text-[#F96F16] cursor-pointer font-interSemiBold
         text-[0.768rem] w-[100px] h-[37px] mb-2 
-        md:text-xl md:w-[180px] md:h-[60px] md:mb-0" 
+        md:text-[1rem] md:w-[145px] md:h-[48px] md:mb-0" 
         @click="showLoginToast">
           ВОЙТИ
       </button>
