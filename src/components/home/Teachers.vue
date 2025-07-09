@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col items-center justify-center mt-8 md:mt-[4rem]" id="teachers">
-    <p class="text-[1.3rem] text-white text-center font-geologicaBold md:text-[5rem] md:mb-0"
+    <p class="text-[1.3rem] text-white text-center font-geologicaBold md:text-[4.3rem] md:mb-0"
     >
       Преподаватели Exa<span class="text-minds">Minds</span>
     </p>
     <div v-for="(teacher, index) in teachers" :key="index" class="flex flex-col items-center justify-center">
-      <img :src="teacher.img" class="w-[90%] ml-[1.7rem] md:ml-auto md:mb-[3rem]" />
+      <img :src="teacher.img" class="w-[90%] ml-[1.7rem] md:w-[81%] md:ml-0 md:mb-[5rem]" />
     </div>
   </div>
 </template>

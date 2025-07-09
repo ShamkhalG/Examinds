@@ -5,23 +5,28 @@
     >
       Как проходит обучение?
     </p>
+    
+    <!-- Images and "process" text -->
     <div class="relative min-h-[1100px] lg:w-[970px]">
       <div v-for="(eduInfo, index) in eduInfos" :key="index" 
         :class="screenWidth < 1000 ? 'flex flex-col items-center justify-center' 
         : eduInfo.divClass" class="mt-[1.5rem] lg:m-auto"
       >
-        <img :src="eduInfo.img" class="lg:w-auto" :class="eduInfo.imgClass" 
+        <img :src="eduInfo.img" :class="eduInfo.imgClass" 
           v-if="index !== 4 || screenWidth < 1000" />
         <p v-html="eduInfo.text" class="text-white text-center text-[0.85rem] leading-[1.1rem] 
           mt-1 font-interRegular lg:mt-auto lg:text-[1.1rem] lg:mb-0 lg:leading-[1.3rem]"></p>
+        
         <!-- The position of the text and the image is reversed for PC -->
-        <img :src="eduInfo.img" class="w-[80%] lg:w-auto" :class="eduInfo.imgClass" 
+        <img :src="eduInfo.img" :class="eduInfo.imgClass" 
           v-if="index === 4 && screenWidth > 1000" />
       </div>
       
       <!-- Lamp and Book image -->
       <img src="../../assets/images/edu_info/lamp_book.png" 
-        class="absolute w-[750px] top-[30rem] left-[50%] ml-[-375px] z-10" v-if="screenWidth > 1000" />
+        class="absolute w-[750px] top-[30rem] left-[50%] ml-[-375px] z-10" 
+        v-if="screenWidth > 1000" 
+      />
     </div>
   </div>
 </template>

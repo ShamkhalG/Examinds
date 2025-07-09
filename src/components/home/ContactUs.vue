@@ -1,89 +1,92 @@
 <template>
-  <!-- FIXME The overall section must be seen (reduce the size of elements) -->
   <div class="flex flex-col items-center justify-center mt-[1rem] mb-[5rem] 
-    md:mt-auto md:mb-auto md:min-h-[1000px]"
+    md:mt-auto md:mb-auto"
   >
     <p class="contactUsHeader text-white font-geologicaBold text-[2.1rem] mb-[0.7rem] 
-    md:text-[5rem] md:mb-[-2.7rem] md:mt-0">
+    md:text-[4.8rem] md:mb-0 md:mt-0">
       Свяжитесь с нами
     </p>
 
-    <!-- FIXME Table must be on the ground, not floating -->
     <img class="w-[90%] md:w-auto" v-if="screenWidth < 767" src="../../assets/images/contact_us_image.png" />
-    <div class="relative flex justify-center mt-[-1.2rem] mx-[0.5rem] min-h-[400px]
-      md:flex-col md:items-center md:m-auto w-[90%] md:w-auto md:min-h-auto"
+    <div class="relative flex justify-center mt-[-1.2rem] mx-[0.5rem] w-[90%] min-h-[400px]
+    md:flex-col md:items-center md:mt-[-3.8rem] md:mx-0 md:w-auto md:min-h-auto"
     >
-      <img class="w-[90%] md:w-auto" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
-      <!-- Notebook image -->
-      <img class="md:absolute md:top-[46%]" :src="registerBg" />
-
-      <form @submit.prevent="signUp" id="registerForm" 
-        class="absolute w-[290px] mt-[3rem] md:w-[660px] md:mt-[28.5rem] md:ml-[1rem]" 
-      >
-        <!-- Name/Surname -->
-        <div>
-          <p class="mr-0 ml-[0.5rem] my-[0.1rem] md:mt-[0.4rem] md:mb-[0.2rem] 
-          font-interRegular italic">
-            Имя/Фамилия
-          </p>
-          <input type="text" v-model="registerData.name" 
-            class="border border-[#D9D9D9] rounded-[4px] 
-            text-[1rem] h-[2rem] w-[98%] md:rounded-[8px] md:border-2 md:w-[96%]" />
-        </div>
+      <img class="w-[91.5%]" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
+      
+      <div class="md:absolute md:top-[21.5rem] md:w-[590px] md:h-[360px]">
+        <div class="relative flex justify-center">
+          <!-- Notebook image -->
+          <img class="w-[90%] md:w-auto" :src="registerBg" />
   
-        <!-- Number -->
-        <div>
-          <p class="font-interRegular italic mr-0 ml-[0.5rem] my-[0.1rem] 
-          md:mt-[0.4rem] md:mb-[0.2rem]">
-            Номер телефона
-          </p>
-          <input type="text" v-model="registerData.phonenumber" placeholder="Пример: +994501234567" 
-            class="border border-[#D9D9D9] rounded-[4px] 
-            text-[1rem] h-[2rem] w-[98%] md:rounded-[8px] md:border-2 md:w-[96%]" />
-        </div>
-  
-        <!-- Email -->
-        <div>
-          <p class="font-interRegular italic mr-0 ml-[0.5rem] my-[0.1rem] 
-          md:mt-[0.4rem] md:mb-[0.2rem]">
-            Электронная почта
-          </p>
-          <input type="text" v-model="registerData.email" 
-            class="border border-[#D9D9D9] rounded-[4px] 
-            text-[1rem] h-[2rem] w-[98%] md:rounded-[8px] md:border-2 md:w-[96%]" />
-        </div>
-  
-        <!-- Password -->
-        <div>
-          <p class="font-interRegular italic mr-0 ml-[0.5rem] my-[0.1rem] 
-          md:mt-[0.4rem] md:mb-[0.2rem]">
-            Пароль
-          </p>
-          <input type="text" v-model="registerData.password" 
-            class="border border-[#D9D9D9] rounded-[4px] 
-            text-[1rem] h-[2rem] w-[98%] md:rounded-[8px] md:border-2 md:w-[96%]" />
-        </div>
-        
-        <!-- Parent number -->
-        <div>
-          <p class="font-interRegular italic mr-0 ml-[0.5rem] my-[0.1rem] 
-          md:mt-[0.4rem] md:mb-[0.2rem]">
-            Номер телефона Родителя
-          </p>
-          <input type="text" v-model="registerData.parentnumber" 
-            class="border border-[#D9D9D9] rounded-[4px] 
-            text-[1rem] h-[2rem] w-[98%] md:rounded-[8px] md:border-2 md:w-[96%]" /> 
-        </div>
-        
-        <div class="mt-[1rem] md:mt-auto flex flex-col items-center justify-center">
-          <button type="submit" 
-            class="findOutPriceButton font-interBold text-white cursor-pointer
-            mt-[1rem] w-[250px] h-[60px] md:text-[1.1rem] md:w-[379px] md:h-[90px]"
+          <form @submit.prevent="signUp" id="registerForm" 
+            class="absolute w-[260px] mt-[2rem] md:mt-[2rem] md:w-[550px] md:ml-[1rem]" 
           >
-            УЗНАТЬ ЦЕНУ
-          </button>
+            <!-- Name/Surname -->
+            <div class="mb-2 md:mb-auto">
+              <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic
+              md:ml-[0.5rem] md:mt-[0.4rem] md:mb-[0.2rem] md:text-[0.8rem]">
+                Имя/Фамилия
+              </p>
+              <input type="text" v-model="registerData.name" 
+                class="border border-[#D9D9D9] rounded-[4px] 
+                text-[1rem] h-[25px] w-[98%] md:px-2 md:rounded-[8px] md:border-2 md:w-[96%]" />
+            </div>
+      
+            <!-- Number -->
+            <div class="mb-2 md:mb-auto">
+              <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic  
+              md:mt-[0.4rem] md:mb-[0.2rem] md:text-[0.8rem]">
+                Номер телефона
+              </p>
+              <input type="text" v-model="registerData.phonenumber" placeholder="Пример: +994501234567" 
+                class="border border-[#D9D9D9] rounded-[4px] 
+                text-[1rem] h-[30px] w-[98%] px-2 md:rounded-[8px] md:border-2 md:w-[96%]" />
+            </div>
+      
+            <!-- Email -->
+            <div class="mb-2 md:mb-auto">
+              <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic
+              md:mt-[0.4rem] md:mb-[0.2rem] md:text-[0.8rem]">
+                Электронная почта
+              </p>
+              <input type="text" v-model="registerData.email" 
+                class="border border-[#D9D9D9] rounded-[4px] 
+                text-[1rem] h-[30px] w-[98%] px-2 md:rounded-[8px] md:border-2 md:w-[96%]" />
+            </div>
+      
+            <!-- Password -->
+            <div class="mb-2 md:mb-auto">
+              <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic
+              md:mt-[0.4rem] md:mb-[0.2rem] md:text-[0.8rem]">
+                Пароль
+              </p>
+              <input type="text" v-model="registerData.password" 
+                class="border border-[#D9D9D9] rounded-[4px] 
+                text-[1rem] h-[30px] w-[98%] px-2 md:rounded-[8px] md:border-2 md:w-[96%]" />
+            </div>
+            
+            <!-- Parent number -->
+            <div>
+              <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic
+              md:mt-[0.4rem] md:mb-[0.2rem] md:text-[0.8rem]">
+                Номер телефона Родителя
+              </p>
+              <input type="text" v-model="registerData.parentnumber" 
+                class="border border-[#D9D9D9] rounded-[4px] 
+                text-[1rem] h-[30px] w-[98%] px-2 md:rounded-[8px] md:border-2 md:w-[96%]" /> 
+            </div>
+            
+            <div class="mt-2 md:mt-2 flex flex-col items-center justify-center">
+              <button type="submit" 
+                class="findOutPriceButton font-interBold text-white cursor-pointer
+                w-[200px] h-[45px] text-[0.7rem] md:text-[0.9rem] md:w-[310px] md:h-[72px]"
+              >
+                УЗНАТЬ ЦЕНУ
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </template>
