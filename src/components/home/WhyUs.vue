@@ -47,16 +47,16 @@
 </template>
 
 <script>
-import one_bg from "../../assets/images/why_us/01_bg.png"
-import one_bg_pc from "../../assets/images/why_us/01_bg_pc.png"
-import two_bg from "../../assets/images/why_us/02_bg.png"
-import two_bg_pc from "../../assets/images/why_us/02_bg_pc.png"
-import three_bg from "../../assets/images/why_us/03_bg.png"
-import three_bg_pc from "../../assets/images/why_us/03_bg_pc.png"
-import four_bg from "../../assets/images/why_us/04_bg.png"
-import four_bg_pc from "../../assets/images/why_us/04_bg_pc.png"
-import five_bg from "../../assets/images/why_us/05_bg.png"
-import five_bg_pc from "../../assets/images/why_us/05_bg_pc.png"
+import one_bg from "../../assets/backgrounds/why_us/01_bg.png"
+import one_bg_pc from "../../assets/backgrounds/why_us/01_bg_pc.png"
+import two_bg from "../../assets/backgrounds/why_us/02_bg.png"
+import two_bg_pc from "../../assets/backgrounds/why_us/02_bg_pc.png"
+import three_bg from "../../assets/backgrounds/why_us/03_bg.png"
+import three_bg_pc from "../../assets/backgrounds/why_us/03_bg_pc.png"
+import four_bg from "../../assets/backgrounds/why_us/04_bg.png"
+import four_bg_pc from "../../assets/backgrounds/why_us/04_bg_pc.png"
+import five_bg from "../../assets/backgrounds/why_us/05_bg.png"
+import five_bg_pc from "../../assets/backgrounds/why_us/05_bg_pc.png"
 
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';

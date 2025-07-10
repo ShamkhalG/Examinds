@@ -6,18 +6,20 @@
       <EduInfo />
       <WhyUs />
       <Teachers />
+      <Bacheliers />
       <ContactUs />
     </div>
   </div>
 </template>
 
 <script>
-import ContactUs from './home/ContactUs.vue';
-import EduInfo from './home/EduInfo.vue';
-import EMBlock from './home/EMBlock.vue';
 import Navigation from './home/Navigation.vue';
-import Teachers from './home/Teachers.vue';
+import EMBlock from './home/EMBlock.vue';
+import EduInfo from './home/EduInfo.vue';
 import WhyUs from './home/WhyUs.vue';
+import Teachers from './home/Teachers.vue';
+import Bacheliers from './home/Bacheliers.vue';
+import ContactUs from './home/ContactUs.vue';
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -28,6 +30,7 @@ export default {
     EduInfo,
     WhyUs,
     Teachers,
+    Bacheliers,
     ContactUs
   }
 }
