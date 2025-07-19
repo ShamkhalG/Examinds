@@ -7,6 +7,7 @@
       <WhyUs />
       <Teachers />
       <Bacheliers />
+      <DiscoveryWeek />
       <ContactUs />
     </div>
   </div>
@@ -19,6 +20,7 @@ import EduInfo from './home/EduInfo.vue';
 import WhyUs from './home/WhyUs.vue';
 import Teachers from './home/Teachers.vue';
 import Bacheliers from './home/Bacheliers.vue';
+import DiscoveryWeek from './home/DiscoveryWeek.vue';
 import ContactUs from './home/ContactUs.vue';
 
 export default {
@@ -31,6 +33,7 @@ export default {
     WhyUs,
     Teachers,
     Bacheliers,
+    DiscoveryWeek,
     ContactUs
   }
 }
