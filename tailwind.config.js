@@ -8,8 +8,11 @@ module.exports = {
     extend: {
       fontFamily: {
         interRegular: ['Inter-Regular', 'sans-serif'],
+        interMedium: ['Inter-Medium', 'sans-serif'],
         interSemiBold: ['Inter-SemiBold', 'sans-serif'],
         interBold: ['Inter-Bold', 'sans-serif'],
+        interExtraBold: ['Inter-ExtraBold', 'sans-serif'],
+        geologicaMedium: ['Geologica-Medium', 'sans-serif'],
         geologicaBold: ['Geologica-Bold', 'sans-serif']
       },
       colors: {

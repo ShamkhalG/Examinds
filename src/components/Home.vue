@@ -8,6 +8,7 @@
       <Teachers />
       <Bacheliers />
       <DiscoveryWeek />
+      <Practice />
       <ContactUs />
     </div>
   </div>
@@ -21,6 +22,7 @@ import WhyUs from './home/WhyUs.vue';
 import Teachers from './home/Teachers.vue';
 import Bacheliers from './home/Bacheliers.vue';
 import DiscoveryWeek from './home/DiscoveryWeek.vue';
+import Practice from './home/Practice.vue';
 import ContactUs from './home/ContactUs.vue';
 
 export default {
@@ -34,6 +36,7 @@ export default {
     Teachers,
     Bacheliers,
     DiscoveryWeek,
+    Practice,
     ContactUs
   }
 }
@@ -43,18 +46,18 @@ export default {
 /* Desktop styles */
 @media (min-width: 767px) {
   .home {
-    background-image: url('../assets/backgrounds/main_bg_pc.png');
+    background-image: url('@/assets/backgrounds/main_bg_pc.png');
   }
 }
 
 /* Mobile styles */
 @media (max-width: 767px){ 
   .home {
-    background-image: url('../assets/backgrounds/main_bg_mobile.png');
+    background-image: url('@/assets/backgrounds/main_bg_mobile.png');
   }
 
   .subHome {
-    background-image: url('../assets/backgrounds/subhome_bg.png');
+    background-image: url('@/assets/backgrounds/subhome_bg.png');
     margin-top: -3.5rem;
   }
 }

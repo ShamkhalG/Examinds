@@ -6,6 +6,13 @@
 }
 
 @font-face {
+  font-family: 'Inter-Medium';
+  src: url('../fonts/Inter-Medium.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Inter-SemiBold';
   src: url('../fonts/Inter-SemiBold.ttf');
   font-weight: normal;
@@ -20,8 +27,22 @@
 }
 
 @font-face {
+  font-family: 'Inter-ExtraBold';
+  src: url('../fonts/Inter-ExtraBold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Geologica-Bold';
   src: url('../fonts/Geologica-Bold.ttf');
   font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Geologica-Medium';
+  src: url('../fonts/Geologica-Medium.ttf');
+  font-weight: normal;
   font-style: normal;
 }
