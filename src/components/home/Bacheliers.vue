@@ -13,7 +13,7 @@
       <button v-if="screenWidth >= 767" @click="curr_index -= 1"
         class="w-20 h-20 bg-contain bg-center bg-no-repeat"
         :disabled="curr_index === 0"
-        :style="{ backgroundImage: `url(${curr_index !== 0 ? left_arrow : left_arrow_disabled})` }">
+        :style="{ backgroundImage: `url(${curr_index !== 0 ? left_arrow_enabled : left_arrow_disabled})` }">
       </button>
 
       <!-- Results of students -->
@@ -30,7 +30,7 @@
       <button v-if="screenWidth >= 767" @click="curr_index += 1" 
         class="w-20 h-20 bg-contain bg-center bg-no-repeat"
         :disabled="curr_index === 5"
-        :style="{ backgroundImage: `url(${curr_index !== 5 ? right_arrow : right_arrow_disabled})` }">
+        :style="{ backgroundImage: `url(${curr_index !== 5 ? right_arrow_enabled : right_arrow_disabled})` }">
       </button>
     </div>
     
@@ -39,12 +39,12 @@
       <button @click="curr_index -= 1"
         class="w-12 h-12 bg-contain bg-center bg-no-repeat"
         :disabled="curr_index === 0"
-        :style="{ backgroundImage: `url(${curr_index !== 0 ? left_arrow : left_arrow_disabled})` }">
+        :style="{ backgroundImage: `url(${curr_index !== 0 ? left_arrow_enabled : left_arrow_disabled})` }">
       </button>
       <button @click="curr_index += 1" 
         class="w-12 h-12 bg-contain bg-center bg-no-repeat"
         :disabled="curr_index === 5"
-        :style="{ backgroundImage: `url(${curr_index !== 5 ? right_arrow : right_arrow_disabled})` }">
+        :style="{ backgroundImage: `url(${curr_index !== 5 ? right_arrow_enabled : right_arrow_disabled})` }">
       </button>
     </div>
   </div>
@@ -91,9 +91,9 @@ export default {
         result_05_pc,
         result_06_pc,
       ],
-      left_arrow: new URL("../../assets/images/bacheliers/left_arrow.png", import.meta.url).href,
+      left_arrow_enabled: new URL("../../assets/images/bacheliers/left_arrow_enabled.png", import.meta.url).href,
       left_arrow_disabled: new URL("../../assets/images/bacheliers/left_arrow_disabled.png", import.meta.url).href,
-      right_arrow: new URL("../../assets/images/bacheliers/right_arrow.png", import.meta.url).href,
+      right_arrow_enabled: new URL("../../assets/images/bacheliers/right_arrow_enabled.png", import.meta.url).href,
       right_arrow_disabled: new URL("../../assets/images/bacheliers/right_arrow_disabled.png", import.meta.url).href
     }
   },

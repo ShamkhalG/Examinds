@@ -1,5 +1,4 @@
 <template>
-  <!-- FIXME Curve of the background is not seen -->
   <div class="practiceDiv bg-cover bg-center flex flex-col justify-center items-center w-full">
     <h3 class="font-geologicaBold text-[1.65rem] mt-8 mb-[-0.5rem]">Практика</h3>
     <h4 class="font-geologicaMedium text-[1.17rem] mb-2">в передовых лабораториях</h4>
@@ -15,21 +14,28 @@
     <!-- Lab photos -->
     <img class="w-[84%] mb-[4.75rem]" src="@/assets/images/practice/lab_photos.png" alt="Lab photos"/>
 
-    <!-- Arrows -->
-    <div class="flex flex-row justify-end mb-6 mr-auto">
-      <!-- TODO Dynamic change of buttons -->
-      <img src="@/assets/images/practice/inactive_button.png" alt="Left Button" 
-        class="w-[18%]" />
-      <img src="@/assets/images/practice/active_button.png" alt="Right Button" 
-        class="w-[18%] ml-2" />
+    <!-- Buttons -->
+    <div class="flex flex-row justify-end mb-6 w-[270px]">
+      <!-- Left button -->
+      <button @click="curr_index -= 1" 
+        class="w-12 h-12 bg-contain bg-center bg-no-repeat"
+        :disabled="curr_index === 0"
+        :style="{ backgroundImage: `url(${curr_index === 0 ? left_arrow_disabled : left_arrow_enabled})` }">
+      </button>
+
+      <!-- Right button -->
+      <button @click="curr_index += 1" 
+        class="w-12 h-12 ml-2 bg-contain bg-center bg-no-repeat"
+        :disabled="curr_index === 1"
+        :style="{ backgroundImage: `url(${curr_index === 0 ? right_arrow_enabled : right_arrow_disabled})` }">
+      </button>
     </div>
 
     <!-- Videos -->
-    <!-- FIXME Frame background is too big to fit. Decrease its size -->
-    <div class="videoDiv bg-cover bg-center mb-16">
+    <div class="videoDiv bg-cover bg-center flex flex-col justify-center items-center mb-16 w-[300px] h-[175px]">
       <iframe
-        class="w-[95%] h-[95%]"
-        src="https://www.youtube.com/embed/uukmHfraa68"
+        class="w-[285px] h-[161px]"
+        :src="curr_index === 0 ? 'https://www.youtube.com/embed/QusWbUPXuqQ' : 'https://www.youtube.com/embed/uukmHfraa68'"
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -56,6 +62,11 @@ export default {
   data() {
     return {
       screenWidth: window.innerWidth,
+      curr_index: 0,
+      left_arrow_enabled: new URL("@/assets/images/practice/left_arrow_enabled.png", import.meta.url).href,
+      left_arrow_disabled: new URL("@/assets/images/practice/left_arrow_disabled.png", import.meta.url).href,
+      right_arrow_enabled: new URL("@/assets/images/practice/right_arrow_enabled.png", import.meta.url).href,
+      right_arrow_disabled: new URL("@/assets/images/practice/right_arrow_disabled.png", import.meta.url).href
     }
   }
 };
