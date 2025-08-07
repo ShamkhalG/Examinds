@@ -1,18 +1,18 @@
 <template>
-  <div class="flex flex-col items-center relative w-full h-[80%] md:mt-[0.5rem]">
+  <div class="flex flex-col items-center relative w-full h-[80%] lg:mt-[0.5rem]">
     <!-- Above bulb -->
     <div class="flex flex-col items-center">
       <h1 class="text-white font-geologicaBold 
-        text-[3.2rem] mb-[-0.5rem] md:text-[4rem] md:mb-[-1.2rem] md:mt-[1rem]">
+        text-[3.2rem] mb-[-0.5rem] lg:text-[4rem] lg:mb-[-1.2rem] lg:mt-[1rem]">
         Exa<span class="text-minds">Minds</span></h1>
       <h4 class="text-white text-center font-interSemiBold
-      text-[0.65rem] mb-0 md:text-[1.25rem] md:mb-[-0.4rem]">
+      text-[0.65rem] mb-0 lg:text-[1.25rem] lg:mb-[-0.4rem]">
         Лучшие революционные курсы с топовыми
         <br v-if="screenWidth < 768" />
         преподавателями и гибким графиком
       </h4>
       <p class="text-white text-center font-interRegular
-      text-[0.6rem] mt-1 md:text-base md:mt-0">
+      text-[0.6rem] mt-1 lg:text-base lg:mt-0">
         Меняем подход к образованию и
         <br v-if="screenWidth < 768" />
         вдохновляем любовь к учёбе у детей
@@ -20,19 +20,19 @@
     </div>
 
     <!-- ///// Around the light bulb ///// -->
-    <div class="w-full relative max-w-[398px] md:max-w-[975px] mt-1">
+    <div class="w-full relative max-w-[398px] lg:max-w-[975px] mt-1">
       <!-- Bulb image -->
       <div class="flex flex-col items-center justify-center">
-        <img :src="bulbPath" class="mix-blend-color-dodge w-[70%] md:w-[51%]" />
+        <img :src="bulbPath" class="mix-blend-color-dodge w-[70%] lg:w-[51%]" />
       </div>
 
       <div v-for="(achievement, index) in achievements" :key=index :class="achievement.class">
         <h3 class="emBigTexts text-transparent text-center font-interBold mb-[-0.2rem]
-        text-[1.4rem] md:text-[3.1rem]">
+        text-[1.4rem] lg:text-[3.1rem]">
           {{ achievement.bigText }}
         </h3>
         <h5 class="text-white text-center font-interRegular mt-0
-        text-[0.6rem] md:text-[1rem] md:leading-[1.2]" 
+        text-[0.6rem] lg:text-[1rem] lg:leading-[1.2]" 
           v-html="achievement.smallText">
         </h5>
       </div>
@@ -41,7 +41,7 @@
       <button class="registerButton text-white tracking-[1.5px] font-interBold cursor-pointer z-2
       absolute left-[50%] ml-[-125px]
       top-[210px] text-[0.8rem] w-[250px] h-[60px] 
-      md:top-[390px] md:ml-[-155px] md:text-[1rem] md:w-[310px] md:h-[75px] z-20" 
+      lg:top-[390px] lg:ml-[-155px] lg:text-[1rem] lg:w-[310px] lg:h-[75px] z-20" 
       @click="toRegister">
         РЕГИСТРАЦИЯ
       </button>
@@ -50,7 +50,7 @@
     <!-- Dust image -->
     <div class="flex flex-col items-center justify-center">
       <img :src="dustPath" class="mix-blend-lighten mt-[-2.5rem] h-auto
-      w-screen z-10 md:mt-[-4.5rem] md:w-full" />
+      w-screen z-10 lg:mt-[-4.5rem] lg:w-full" />
     </div>
   </div>
 </template>
@@ -66,28 +66,28 @@ export default {
   data() {
     return {
       screenWidth: window.innerWidth,
-      bulbPath: window.innerWidth < 767 ? bulbMobile : bulbDesktop,
-      dustPath: window.innerWidth < 767 ? dustMobile : dustDesktop,
+      bulbPath: window.innerWidth < 1024 ? bulbMobile : bulbDesktop,
+      dustPath: window.innerWidth < 1024 ? dustMobile : dustDesktop,
       achievements: [
         { // 6 лет
-          class: "absolute top-[48px] left-[25px] md:top-[107px] md:left-[70px]",
+          class: "absolute top-[48px] left-[25px] lg:top-[107px] lg:left-[70px]",
           bigText: "6 лет",
-          smallText: window.innerWidth < 767 ? "Готовим к экзамену" : "Профессионально <br /> готовим к экзаменам",
+          smallText: window.innerWidth < 1024 ? "Готовим к экзамену" : "Профессионально <br /> готовим к экзаменам",
         },
         { // 20
-          class: "absolute top-[48px] right-[30px] md:top-[110px] md:right-[85px]",
+          class: "absolute top-[48px] right-[30px] lg:top-[110px] lg:right-[85px]",
           bigText: "20",
           smallText: "Стобалльников",
         },
         { // 600+
-          class: "absolute top-[105px] left-[55px] md:top-[260px] md:left-[190px]",
+          class: "absolute top-[105px] left-[55px] lg:top-[260px] lg:left-[190px]",
           bigText: "600+",
           smallText: "Выпускников",
         },
         { // 70+
-          class: "absolute top-[105px] right-[58px] md:top-[253px] md:right-[110px]",
+          class: "absolute top-[105px] right-[58px] lg:top-[253px] lg:right-[110px]",
           bigText: "70+",
-          smallText: window.innerWidth < 767 ? "Средний балл" : "Средний балл учеников",
+          smallText: window.innerWidth < 1024 ? "Средний балл" : "Средний балл учеников",
         }
       ]
     }

@@ -1,87 +1,87 @@
 <template>
   <div class="flex flex-col items-center justify-center mt-[1rem] mb-[5rem] 
-    md:mt-auto md:mb-auto"
+    lg:mt-auto lg:mb-auto"
   >
     <p class="contactUsHeader text-white font-geologicaBold text-[2.1rem] mb-[0.7rem] 
-    md:text-[4.8rem] md:mb-0 md:mt-0">
+    lg:text-[4.8rem] lg:mb-0 lg:mt-0">
       Свяжитесь с нами
     </p>
 
-    <img class="w-[90%] md:w-auto" v-if="screenWidth < 767" src="../../assets/images/contact_us_image.png" />
+    <img class="w-[90%] lg:w-auto" v-if="screenWidth < 1024" src="../../assets/images/contact_us_image.png" />
     <div class="relative flex justify-center mt-[-1.2rem] mx-[0.5rem] w-[90%] min-h-[400px]
-    md:flex-col md:items-center md:mt-[-3.8rem] md:mx-0 md:w-auto md:min-h-auto"
+    lg:flex-col lg:items-center lg:mt-[-3.8rem] lg:mx-0 lg:w-auto lg:min-h-auto"
     >
-      <img class="w-[91.5%]" v-if="screenWidth >= 767" src="../../assets/images/contact_us_image_pc.png" />
+      <img class="w-[91.5%]" v-if="screenWidth >= 1024" src="../../assets/images/contact_us_image_pc.png" />
       
-      <div class="md:absolute md:top-[21.5rem] md:w-[590px] md:h-[360px]">
+      <div class="lg:absolute lg:top-[21.5rem] lg:w-[590px] lg:h-[360px]">
         <div class="relative flex justify-center">
           <!-- Notebook image -->
-          <img class="w-[90%] md:w-auto" :src="registerBg" />
+          <img class="w-[90%] lg:w-auto" :src="registerBg" />
   
           <form @submit.prevent="signUp" id="registerForm" 
-            class="absolute w-[260px] mt-[2rem] md:mt-[2rem] md:w-[550px] md:ml-[1rem]" 
+            class="absolute w-[260px] mt-[2rem] lg:mt-[2rem] lg:w-[550px] lg:ml-[1rem]" 
           >
             <!-- Name/Surname -->
-            <div class="mb-2 md:mb-auto">
+            <div class="mb-2 lg:mb-auto">
               <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic
-              md:ml-[0.5rem] md:mt-[0.4rem] md:mb-[0.2rem] md:text-[0.8rem]">
+              lg:ml-[0.5rem] lg:mt-[0.4rem] lg:mb-[0.2rem] lg:text-[0.8rem]">
                 Имя/Фамилия
               </p>
               <input type="text" v-model="registerData.name" 
                 class="border border-[#D9D9D9] rounded-[4px] 
-                text-[1rem] h-[25px] w-[98%] md:px-2 md:rounded-[8px] md:border-2 md:w-[96%]" />
+                text-[1rem] h-[25px] w-[98%] lg:px-2 lg:rounded-[8px] lg:border-2 lg:w-[96%]" />
             </div>
       
             <!-- Number -->
-            <div class="mb-2 md:mb-auto">
+            <div class="mb-2 lg:mb-auto">
               <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic  
-              md:mt-[0.4rem] md:mb-[0.2rem] md:text-[0.8rem]">
+              lg:mt-[0.4rem] lg:mb-[0.2rem] lg:text-[0.8rem]">
                 Номер телефона
               </p>
               <input type="text" v-model="registerData.phonenumber" placeholder="Пример: +994501234567" 
                 class="border border-[#D9D9D9] rounded-[4px] 
-                text-[1rem] h-[30px] w-[98%] px-2 md:rounded-[8px] md:border-2 md:w-[96%]" />
+                text-[1rem] h-[30px] w-[98%] px-2 lg:rounded-[8px] lg:border-2 lg:w-[96%]" />
             </div>
       
             <!-- Email -->
-            <div class="mb-2 md:mb-auto">
+            <div class="mb-2 lg:mb-auto">
               <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic
-              md:mt-[0.4rem] md:mb-[0.2rem] md:text-[0.8rem]">
+              lg:mt-[0.4rem] lg:mb-[0.2rem] lg:text-[0.8rem]">
                 Электронная почта
               </p>
               <input type="text" v-model="registerData.email" 
                 class="border border-[#D9D9D9] rounded-[4px] 
-                text-[1rem] h-[30px] w-[98%] px-2 md:rounded-[8px] md:border-2 md:w-[96%]" />
+                text-[1rem] h-[30px] w-[98%] px-2 lg:rounded-[8px] lg:border-2 lg:w-[96%]" />
             </div>
       
             <!-- Password -->
-            <div class="mb-2 md:mb-auto">
+            <div class="mb-2 lg:mb-auto">
               <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic
-              md:mt-[0.4rem] md:mb-[0.2rem] md:text-[0.8rem]">
+              lg:mt-[0.4rem] lg:mb-[0.2rem] lg:text-[0.8rem]">
                 Пароль
               </p>
               <input type="text" v-model="registerData.password" 
                 class="border border-[#D9D9D9] rounded-[4px] 
-                text-[1rem] h-[30px] w-[98%] px-2 md:rounded-[8px] md:border-2 md:w-[96%]" />
+                text-[1rem] h-[30px] w-[98%] px-2 lg:rounded-[8px] lg:border-2 lg:w-[96%]" />
             </div>
             
             <!-- Parent number -->
             <div>
               <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic
-              md:mt-[0.4rem] md:mb-[0.2rem] md:text-[0.8rem]">
+              lg:mt-[0.4rem] lg:mb-[0.2rem] lg:text-[0.8rem]">
                 Номер телефона Родителя
               </p>
               <input type="text" v-model="registerData.parentnumber" 
                 class="border border-[#D9D9D9] rounded-[4px] 
-                text-[1rem] h-[30px] w-[98%] px-2 md:rounded-[8px] md:border-2 md:w-[96%]" /> 
+                text-[1rem] h-[30px] w-[98%] px-2 lg:rounded-[8px] lg:border-2 lg:w-[96%]" /> 
             </div>
             
-            <div class="mt-2 md:mt-2 flex flex-col items-center justify-center">
+            <div class="mt-2 lg:mt-2 flex flex-col items-center justify-center">
               <button type="submit" 
                 class="findOutPriceButton font-interBold text-white cursor-pointer
-                w-[200px] h-[45px] text-[0.7rem] md:text-[0.9rem] md:w-[310px] md:h-[72px]"
+                w-[250px] h-[45px] text-[0.7rem] lg:text-[0.9rem] lg:w-[310px] lg:h-[72px]"
               >
-                УЗНАТЬ ЦЕНУ
+                ЗАРЕГИСТРИРОВАТЬСЯ
               </button>
             </div>
           </form>
@@ -115,7 +115,7 @@ export default {
   },
   computed: {
     registerBg() {
-      return this.screenWidth < 767 ? registerBgMobile : registerBgDesktop;
+      return this.screenWidth < 1024 ? registerBgMobile : registerBgDesktop;
     }
   },
   mounted() {

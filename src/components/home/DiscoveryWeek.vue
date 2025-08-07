@@ -27,13 +27,13 @@ export default {
       screenWidth: window.innerWidth,
       images: [
         {
-          img: window.innerWidth < 767 ? image_1 : image_1_pc
+          img: window.innerWidth < 1024 ? image_1 : image_1_pc
         },
         {
-          img: window.innerWidth < 767 ? image_2 : image_2_pc
+          img: window.innerWidth < 1024 ? image_2 : image_2_pc
         },
         {
-          img: window.innerWidth < 767 ? image_3 : image_3_pc
+          img: window.innerWidth < 1024 ? image_3 : image_3_pc
         }
       ]
     }

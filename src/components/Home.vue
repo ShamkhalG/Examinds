@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <Navigation />
     <EMBlock />
     <div class="subHome">
       <EduInfo />
@@ -15,7 +14,6 @@
 </template>
 
 <script>
-import Navigation from './home/Navigation.vue';
 import EMBlock from './home/EMBlock.vue';
 import EduInfo from './home/EduInfo.vue';
 import WhyUs from './home/WhyUs.vue';
@@ -29,7 +27,6 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Home',
   components: {
-    Navigation,
     EMBlock,
     EduInfo,
     WhyUs,
@@ -44,14 +41,14 @@ export default {
 
 <style>
 /* Desktop styles */
-@media (min-width: 767px) {
+@media (min-width: 1024px) {
   .home {
     background-image: url('@/assets/backgrounds/main_bg_pc.png');
   }
 }
 
 /* Mobile styles */
-@media (max-width: 767px){ 
+@media (max-width: 1024px){ 
   .home {
     background-image: url('@/assets/backgrounds/main_bg_mobile.png');
   }

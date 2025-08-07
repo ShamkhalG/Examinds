@@ -1,14 +1,15 @@
 <template>
-  <Home />
+  <Navigation />
+  <RouterView />
 </template>
 
 <script>
-import Home from './components/Home.vue'
+import Navigation from './components/home/Navigation.vue'
 
 export default {
   name: 'App',
   components: {
-    Home
+    Navigation
   }
 }
 </script>

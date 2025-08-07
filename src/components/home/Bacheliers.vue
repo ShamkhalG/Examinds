@@ -10,7 +10,7 @@
     
     <div class="lg:flex lg:flex-row lg:items-center lg:w-[805px]">
       <!-- Left arrow button (PC) -->
-      <button v-if="screenWidth >= 767" @click="curr_index -= 1"
+      <button v-if="screenWidth >= 1024" @click="curr_index -= 1"
         class="w-20 h-20 bg-contain bg-center bg-no-repeat"
         :disabled="curr_index === 0"
         :style="{ backgroundImage: `url(${curr_index !== 0 ? left_arrow_enabled : left_arrow_disabled})` }">
@@ -19,7 +19,7 @@
       <!-- Results of students -->
       <div class="flex flex-col justify-center items-center mt-6
         bg-contain bg-center bg-no-repeat h-[270px] lg:h-[500px] lg:w-[700px]"
-        :style="{ backgroundImage: `url(${screenWidth < 767 ? bacheliers_bg : bacheliers_bg_pc})` }"
+        :style="{ backgroundImage: `url(${screenWidth < 1024 ? bacheliers_bg : bacheliers_bg_pc})` }"
       >
         <!-- Student results -->
         <img class="mt-8 w-[73%] lg:w-[73%]" :src="currentImage" alt="Results of students"/>
@@ -27,7 +27,7 @@
       </div>
 
       <!-- Right arrow button (PC) -->
-      <button v-if="screenWidth >= 767" @click="curr_index += 1" 
+      <button v-if="screenWidth >= 1024" @click="curr_index += 1" 
         class="w-20 h-20 bg-contain bg-center bg-no-repeat"
         :disabled="curr_index === 5"
         :style="{ backgroundImage: `url(${curr_index !== 5 ? right_arrow_enabled : right_arrow_disabled})` }">
@@ -35,7 +35,7 @@
     </div>
     
     <!-- Scroll buttons (Mobile) -->
-    <div v-if="screenWidth < 767" class="mt-4 w-[132px] flex flex-row justify-between">
+    <div v-if="screenWidth < 1024" class="mt-4 w-[132px] flex flex-row justify-between">
       <button @click="curr_index -= 1"
         class="w-12 h-12 bg-contain bg-center bg-no-repeat"
         :disabled="curr_index === 0"
@@ -99,7 +99,7 @@ export default {
   },
   computed: {
     currentImage() {
-      return this.screenWidth < 767
+      return this.screenWidth < 1024
         ? this.student_results[this.curr_index] // Mobile images
         : this.student_results_pc[this.curr_index] // Desktop images
     }

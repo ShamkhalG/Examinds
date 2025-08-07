@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-col items-center justify-center mt-8 md:mt-[4rem]" id="teachers">
-    <p class="text-[1.3rem] text-white text-center font-geologicaBold md:text-[4.3rem] md:mb-0"
+  <div class="flex flex-col items-center justify-center mt-8 lg:mt-[4rem]" id="teachers">
+    <p class="text-[1.3rem] text-white text-center font-geologicaBold lg:text-[4.3rem] lg:mb-0"
     >
       Преподаватели Exa<span class="text-minds">Minds</span>
     </p>
     <div v-for="(teacher, index) in teachers" :key="index" class="flex flex-col items-center justify-center">
-      <img :src="teacher.img" class="w-[90%] ml-[1.7rem] md:w-[81%] md:ml-0 md:mb-[5rem]" />
+      <img :src="teacher.img" class="w-[90%] ml-[1.7rem] lg:w-[81%] lg:ml-0 lg:mb-[5rem]" />
     </div>
   </div>
 </template>
@@ -26,13 +26,13 @@ export default {
       screenWidth: window.innerWidth,
       teachers: [
         {
-          img: window.innerWidth < 767 ? saraInfoMobile : saraInfoDesktop
+          img: window.innerWidth < 1024 ? saraInfoMobile : saraInfoDesktop
         },
         {
-          img: window.innerWidth < 767 ? elnaraInfoMobile : elnaraInfoDesktop
+          img: window.innerWidth < 1024 ? elnaraInfoMobile : elnaraInfoDesktop
         },
         {
-          img: window.innerWidth < 767 ? ninaInfoMobile : ninaInfoDesktop
+          img: window.innerWidth < 1024 ? ninaInfoMobile : ninaInfoDesktop
         }
       ]
     }

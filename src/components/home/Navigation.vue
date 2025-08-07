@@ -1,68 +1,67 @@
 <template>
-  <div class="flex flex-row items-center justify-between h-16 w-full mt-4 px-4 lg:w-4/5">
-    <!-- Главная -->
-    <div class="flex flex-col items-center">
-      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-[1rem] md:mb-0',
-        activeIndex === 0 ? 'text-[#F96F16]' : 'text-white']" 
-        @click="setActive(0)">
-          Главная
-      </button>
-      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] 
-      duration-300 ease-in-out md:hidden" 
-      :class="{ 'opacity-0': activeIndex !== 0 }">
+  <div class="w-full bg-[#222222] flex justify-center">
+    <div class="flex flex-row items-center justify-between h-16 pt-4 px-4 w-full lg:w-[80%]">
+      <!-- Главная -->
+      <div class="flex flex-col items-center">
+        <RouterLink to="/" :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 lg:text-[1rem] lg:mb-0',
+          activeIndex === 0 ? 'text-[#F96F16]' : 'text-white']" 
+          @click="setActive(0)">
+            Главная
+        </RouterLink>
+        <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] 
+        duration-300 ease-in-out lg:hidden" 
+        :class="{ 'opacity-0': activeIndex !== 0 }">
+        </div>
       </div>
-    </div>
 
-    <!-- О нас -->
-    <div class="flex flex-col items-center">
-      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-[1rem] md:mb-0',
-        activeIndex === 1 ? 'text-[#F96F16]' : 'text-white']" 
-        @click="setActive(1)">
-          О <br class="md:hidden" /> нас
-      </button>
-      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out md:hidden" :class="{ 'opacity-0': activeIndex !== 1 }"></div>
-    </div>
+      <!-- О нас -->
+      <div class="flex flex-col items-center">
+        <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 lg:text-[1rem] lg:mb-0',
+          activeIndex === 1 ? 'text-[#F96F16]' : 'text-white']" 
+          @click="setActive(1)">
+            О <br class="lg:hidden" /> нас
+        </button>
+        <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out lg:hidden" :class="{ 'opacity-0': activeIndex !== 1 }"></div>
+      </div>
 
-    <!-- Преподаватели -->
-    <div class="flex flex-col items-center">
-      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-[1rem] md:mb-0',
-        activeIndex === 2 ? 'text-[#F96F16]' : 'text-white']" 
-        @click="setActive(2)">
-          Преподаватели
-      </button>
-      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out md:hidden" :class="{ 'opacity-0': activeIndex !== 2 }"></div>
-    </div>
-    
-    <!-- Пробные экзамены -->
-    <!-- TODO Functionality of "Evaluation" -->
-    <div class="flex flex-col items-center">
-      <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 md:text-[1rem] md:mb-0',
-        activeIndex === 3 ? 'text-[#F96F16]' : 'text-white']" 
-        @click="setActive(3)">
-          Пробные <br class="md:hidden" /> экзамены
-      </button>
-      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out md:hidden" :class="{ 'opacity-0': activeIndex !== 3 }"></div>
-    </div>
+      <!-- Преподаватели -->
+      <div class="flex flex-col items-center">
+        <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 lg:text-[1rem] lg:mb-0',
+          activeIndex === 2 ? 'text-[#F96F16]' : 'text-white']" 
+          @click="setActive(2)">
+            Преподаватели
+        </button>
+        <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out lg:hidden" :class="{ 'opacity-0': activeIndex !== 2 }"></div>
+      </div>
+      
+      <!-- Пробные экзамены -->
+      <!-- TODO Functionality of "Evaluation" -->
+      <div class="flex flex-col items-center">
+        <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 lg:text-[1rem] lg:mb-0',
+          activeIndex === 3 ? 'text-[#F96F16]' : 'text-white']" 
+          @click="setActive(3)">
+            Пробные <br class="lg:hidden" /> экзамены
+        </button>
+        <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out lg:hidden" :class="{ 'opacity-0': activeIndex !== 3 }"></div>
+      </div>
 
-    <!-- ВОЙТИ -->
-    <!-- FIXME Button border colour is a linear-gradient -->
-    <div class="flex flex-col items-center">
-      <button class="navsignin border-2 border-[#F96F16] rounded-[10px] bg-[#d9d9d94c]
-        text-[#F96F16] cursor-pointer font-interSemiBold
-        text-[0.768rem] w-[100px] h-[37px] mb-2 
-        md:text-[1rem] md:w-[145px] md:h-[48px] md:mb-0" 
-        @click="showLoginToast">
+      <!-- ВОЙТИ -->
+      <!-- FIXME Button border colour is a linear-gradient -->
+      <div class="flex flex-col items-center">
+        <RouterLink to="/login" @click="setActive(4)" class="flex flex-col items-center justify-center border-2 border-[#F96F16] rounded-[10px] bg-[#d9d9d94c]
+          text-[#F96F16] cursor-pointer font-interSemiBold
+          text-[0.768rem] w-[100px] h-[37px] mb-2 
+          lg:text-[1rem] lg:w-[145px] lg:h-[48px] lg:mb-0"
+        >
           ВОЙТИ
-      </button>
-      <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out opacity-0"></div>
+        </RouterLink>
+        <div class="w-3 h-3 rounded-full bg-[#F96F16] transition-[left] duration-300 ease-in-out opacity-0"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Toastify from 'toastify-js';
-import 'toastify-js/src/toastify.css';
-
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Navigation",
@@ -103,22 +102,6 @@ export default {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     },
-    showLoginToast() {
-      Toastify({
-        text: "Вход в аккаунт на данный момент невозможен!",
-        duration: 5000,
-        close: true,
-        gravity: "top",
-        position: "right",
-        style: {
-          background: "red",
-          fontFamily: 'Inter-Regular',
-          borderRadius: 
-          '6px'
-        },
-        stopOnFocus: true,
-      }).showToast();
-    }
   },
 }
 </script>
