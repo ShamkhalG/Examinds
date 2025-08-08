@@ -22,6 +22,11 @@ module.exports = {
         'video-frame-large': "url('@/assets/images/practice/video_frame_pc.png')",
         'dwnote_bg-small': "url('@/assets/images/practice/dwnote_bg.png')",
         'dwnote_bg-large': "url('@/assets/images/practice/dwnote_bg_pc.png')",
+        'login_bg': "url('@/assets/backgrounds/login_bg.png')",
+        'login_check': "url('@/assets/images/login/check.svg')"
+      },
+      backgroundSize: {
+        'login_check': '13px 13px',
       },
       colors: {
         minds: '#F96F16'

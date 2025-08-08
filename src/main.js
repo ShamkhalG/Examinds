@@ -16,6 +16,12 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to) {
+    if (to.hash) { // Checks if a specific hash (div ID) is present
+      return { el: to.hash } // Scrolls to the specified section
+    }
+    return { top: 0 } // Default scroll behavior (scroll to top of the page)
+  },
 })
 
 createApp(App).use(router).mount('#app')

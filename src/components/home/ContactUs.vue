@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center justify-center mt-[1rem] mb-[5rem] 
     lg:mt-auto lg:mb-auto"
   >
-    <p class="contactUsHeader text-white font-geologicaBold text-[2.1rem] mb-[0.7rem] 
+    <p class="text-white font-geologicaBold text-[2.1rem] mb-[0.7rem] 
     lg:text-[4.8rem] lg:mb-0 lg:mt-0">
       Свяжитесь с нами
     </p>
