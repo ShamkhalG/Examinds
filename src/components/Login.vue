@@ -1,8 +1,7 @@
 <template>
-  <div class="bg-login_bg bg-cover bg-center flex flex-col relative
+  <div class="bg-login_bg bg-cover lg:bg-center flex flex-col relative
     items-center px-8 py-4 min-h-[610px]"
   >
-    <!-- NOTE Login Bulb??? -->
     <!-- Welcome text -->
     <h1 class="text-white text-center font-geologicaMedium text-[1.7rem] mb-4">
       Добро пожаловать! <br />
@@ -19,7 +18,7 @@
 
         <input type="email" v-model="email" name="email"
           class="w-full mt-1 px-4 py-2 rounded-lg bg-[#222222] text-white 
-          border border-minds" required
+          border border-minds focus:outline-none" required
         />
       </div>
 
@@ -28,10 +27,9 @@
         <label for="password" class="text-sm text-white font-interMedium">
           Пароль
         </label>
-
         <input type="password" v-model="password" name="password"
           class="w-full mt-1 px-4 py-2 rounded-lg bg-[#222222] text-white 
-          border border-minds" required 
+          border border-minds focus:outline-none" required 
         />
       </div>
 
@@ -75,21 +73,25 @@
 </template>
 
 <script>
+import { showToast } from '@/utils/utils';
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Login',
   data() {
     return {
-      email: "",
-      password: "",
-      rememberMe: false,
+      loginData: {
+        email: '',
+        password: '',
+        rememberMe: false
+      }
     };
   },
   methods: {
     // TODO Verify data (async function)
     login() {
-      // TODO Toastify
-      console.log("Logged in")
+      // Login successful
+      showToast("green", "Вход успешный!")
     }
   }
 }

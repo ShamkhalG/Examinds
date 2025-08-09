@@ -93,8 +93,7 @@
 
 <script>
 import axios from 'axios';
-import Toastify from 'toastify-js';
-import 'toastify-js/src/toastify.css';
+import { showToast } from '@/utils/utils.js';
 
 import registerBgMobile from "../../assets/backgrounds/register_bg.png";
 import registerBgDesktop from "../../assets/backgrounds/register_bg_pc.png";
@@ -128,92 +127,75 @@ export default {
     updateScreenWidth() {
       this.screenWidth = window.innerWidth;
     },
-    
-    showToast(toastType, toastMessage) {
-      Toastify({
-        text: toastMessage,
-        duration: 5000,
-        close: true,
-        gravity: "top",
-        position: "right",
-        style: {
-          background: toastType === 0 ? "green" : "red",
-          fontFamily: 'Inter-Regular',
-          borderRadius: '6px'
-        },
-        stopOnFocus: true,
-      }).showToast();
-    },
-    
     async validateData() {
       // Required rule validation
       if (Object.values(this.registerData).some(value => !value)) {
-        this.showToast(1, "Все поля должны быть заполнены!")
+        showToast("red", "Все поля должны быть заполнены!")
         return false
       }
 
       // Name validation
       const [name, surname] = this.registerData.name.trim().split(' ');
       if (!this.registerData.name.includes(' ')) {
-        this.showToast(1, "Имя / Фамилия должно содержать имя и фамилию, разделенные пробелом!");
+        showToast("red", "Имя / Фамилия должно содержать имя и фамилию, разделенные пробелом!");
         return false;
       } else if (!name || name.length < 2) {
-        this.showToast(1, "Имя должно содержать как минимум 2 буквы!");
+        showToast("red", "Имя должно содержать как минимум 2 буквы!");
         return false;
       } else if (!surname || surname.length < 2) {
-        this.showToast(1, "Фамилия должна содержать как минимум 2 буквы!");
+        showToast("red", "Фамилия должна содержать как минимум 2 буквы!");
         return false;
       }
 
       // Number verification
       if (this.registerData.phonenumber[0] !== '+') {
-        this.showToast(1, "Номер должен начатся с '+'!")
+        showToast("red", "Номер должен начатся с '+'!")
         return false;
       } else if (this.registerData.phonenumber.length !== 13 || !/^\+\d{12}$/.test(this.registerData.phonenumber)) {
-        this.showToast(1, "Номер должен состоять из 13 символов: + и 12 цифр")
+        showToast("red", "Номер должен состоять из 13 символов: + и 12 цифр")
         return false;
       }
       
       // Email validation
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.registerData.email)) {
-        this.showToast(1, "Введённый мейл недействительный!")
+        showToast("red", "Введённый мейл недействительный!")
         return false
       }
 
       // Password verification
       const commonPasswords = ["123456", "password", "qwerty", "111111"];
       if (this.registerData.password.length < 10) { // Length check
-        this.showToast(1, "Пароль должен состоять как минимум из 10 символов!")
+        showToast("red", "Пароль должен состоять как минимум из 10 символов!")
         return false
       } else if (!/[A-Z]/.test(this.registerData.password)) { // Uppercase letter check
-        this.showToast(1, "Пароль должен содержать хотя бы одну заглавную букву (A-Z)!");
+        showToast("red", "Пароль должен содержать хотя бы одну заглавную букву (A-Z)!");
         return false;
       } else if (!/[a-z]/.test(this.registerData.password)) { // Lowercase letter check
-        this.showToast(1, "Пароль должен содержать хотя бы одну строчную букву (a-z)!");
+        showToast("red", "Пароль должен содержать хотя бы одну строчную букву (a-z)!");
         return false;
       } else if (!/[0-9]/.test(this.registerData.password)) { // Number check
-        this.showToast(1, "Пароль должен содержать хотя бы одну цифру (0-9)!");
+        showToast("red", "Пароль должен содержать хотя бы одну цифру (0-9)!");
         return false;
       } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(this.registerData.password)) { // Special character check
-        this.showToast(1, "Пароль должен содержать хотя бы один специальный символ (например, !@#$%^&*)!");
+        showToast("red", "Пароль должен содержать хотя бы один специальный символ (например, !@#$%^&*)!");
         return false;
       } else if (/(\d)\1{2}/.test(this.registerData.password)) { // 3 consecutive numbers check
-        this.showToast(1, "Пароль не должен содержать три одинаковых подряд идущих цифры!")
+        showToast("red", "Пароль не должен содержать три одинаковых подряд идущих цифры!")
         return false
       } else if (commonPasswords.includes(this.registerData.password)) { // Common passwords check
-        this.showToast(1, "Пароль слишком простой, выберите более сложный!");
+        showToast("red", "Пароль слишком простой, выберите более сложный!");
         return false;
       }
 
       // Parent number verification
       if (this.registerData.parentnumber[0] !== '+') {
-        this.showToast(1, "Номер родителя должен начатся с '+'!")
+        showToast("red", "Номер родителя должен начатся с '+'!")
         return false;
       } else if (this.registerData.parentnumber.length !== 13 || !/^\+\d{12}$/.test(this.registerData.parentnumber)) {
-        this.showToast(1, "Номер родителя должен состоять из 13 символов: + и 12 цифр")
+        showToast("red", "Номер родителя должен состоять из 13 символов: + и 12 цифр")
         return false;
       } else if (this.registerData.parentnumber === this.registerData.phonenumber) {
-        this.showToast(1, "Номер родителя не должен быть одинаковым с вашим номером!")
+        showToast("red", "Номер родителя не должен быть одинаковым с вашим номером!")
         return false;
       }
 
@@ -227,11 +209,11 @@ export default {
         const url = baseURL + "auth/signup";
         axios.post(url, this.registerData)
           .then(() => {
-            this.showToast(0, "С вами в скором времени свяжутся.");
+            showToast("green", "Регистрация успешна! С вами в скором времени свяжутся.");
           })
           .catch(error => {
             console.error('Error: ', error.message);
-            this.showToast(1, "Произошла ошибка! Пожалуйста, повторите ещё раз.");
+            showToast("red", "Произошла ошибка! Пожалуйста, повторите ещё раз.");
           });
       }
     },

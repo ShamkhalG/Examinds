@@ -39,7 +39,7 @@
     <button
       class="finAidButton absolute bottom-8 cursor-pointer w-[264px] h-[63px] 
       font-interBold lg:bottom-0 lg:w-[379px] lg:h-[89px] lg:text-[1.1rem] z-2" 
-      @click="showAidToast" 
+      @click="triggerToast" 
     >
       ФИН-ПОМОЩЬ
     </button>
@@ -58,8 +58,7 @@ import four_bg_pc from "../../assets/backgrounds/why_us/04_bg_pc.png"
 import five_bg from "../../assets/backgrounds/why_us/05_bg.png"
 import five_bg_pc from "../../assets/backgrounds/why_us/05_bg_pc.png"
 
-import Toastify from 'toastify-js';
-import 'toastify-js/src/toastify.css';
+import { showToast } from '@/utils/utils.js';
 
 export default {
   name: "WhyUs",
@@ -165,20 +164,8 @@ export default {
         }
       ];
     },
-    showAidToast() {
-      Toastify({
-        text: "Информация по поводу финансовой помощи будет представлена позже",
-        duration: 5000,
-        close: true,
-        gravity: "top",
-        position: "right",
-        style: {
-          background: "blue",
-          fontFamily: 'Inter-Regular',
-          borderRadius: '6px'
-        },
-        stopOnFocus: true,
-      }).showToast();
+    triggerToast() {
+      showToast('blue', 'Информация по поводу финансовой помощи будет представлена позже')
     }
   }
 };
