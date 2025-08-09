@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO Desktop version -->
   <div class="bg-login_bg bg-cover lg:bg-center flex flex-col relative
     items-center px-8 py-4 min-h-[610px]"
   >
@@ -16,9 +17,9 @@
           Email
         </label>
 
-        <input type="email" v-model="email" name="email"
+        <input type="email" v-model="loginData.email" name="email"
           class="w-full mt-1 px-4 py-2 rounded-lg bg-[#222222] text-white 
-          border border-minds focus:outline-none" required
+          border border-minds focus:outline-none"
         />
       </div>
 
@@ -27,16 +28,16 @@
         <label for="password" class="text-sm text-white font-interMedium">
           Пароль
         </label>
-        <input type="password" v-model="password" name="password"
+        <input type="password" v-model="loginData.password" name="password"
           class="w-full mt-1 px-4 py-2 rounded-lg bg-[#222222] text-white 
-          border border-minds focus:outline-none" required 
+          border border-minds focus:outline-none" 
         />
       </div>
 
       <!-- Remember me checkbox -->
       <div class="flex justify-between items-center mb-6">
         <div class="flex items-center">
-          <input type="checkbox" id="remember" v-model="rememberMe" name="remember"
+          <input type="checkbox" id="remember" v-model="loginData.rememberMe" name="remember"
             class="w-4 h-4 mr-2 rounded-sm peer appearance-none bg-white bg-center bg-cover
             checked:bg-login_check bg-no-repeat"
           />
@@ -45,7 +46,7 @@
           </label>
         </div>
 
-        <!-- TODO Forgot Password? -->
+        <!-- LONGTODO Forgot Password? -->
         <RouterLink to="" class="text-[#D9D9D9] text-[0.8rem] font-interMedium">
           Забыли пароль?
         </RouterLink>
@@ -88,10 +89,31 @@ export default {
     };
   },
   methods: {
-    // TODO Verify data (async function)
-    login() {
-      // Login successful
-      showToast("green", "Вход успешный!")
+    async validateData() {
+      // Required rule validation
+      if (Object.values(this.loginData).some(value => value === '' || value === null)) {
+        showToast("red", "Все поля должны быть заполнены!")
+        return false
+      }
+      
+      // Email validation
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.loginData.email)) {
+        showToast("red", "Введённый мейл недействительный!")
+        return false
+      }
+
+      return true;
+    },
+
+    async login() {
+      const isValid = await this.validateData();
+      if (isValid) {
+        // LONGTODO Sending API request for login
+
+        // Login successful
+        showToast("red", "Ошибка. Попробуйте позже!")
+        // showToast("green", "Вход успешный!")
+      }
     }
   }
 }
