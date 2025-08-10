@@ -117,16 +117,7 @@ export default {
       return this.screenWidth < 1024 ? registerBgMobile : registerBgDesktop;
     }
   },
-  mounted() {
-    window.addEventListener('resize', this.updateScreenWidth);
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.updateScreenWidth);
-  },
   methods: {
-    updateScreenWidth() {
-      this.screenWidth = window.innerWidth;
-    },
     async validateData() {
       // Required rule validation
       if (Object.values(this.registerData).some(value => !value)) {
@@ -213,7 +204,7 @@ export default {
           })
           .catch(error => {
             console.error('Error: ', error.message);
-            showToast("red", "Произошла ошибка! Пожалуйста, повторите ещё раз.");
+            showToast("red", "Произошла ошибка! Пожалуйста, попробуйте позже.");
           });
       }
     },

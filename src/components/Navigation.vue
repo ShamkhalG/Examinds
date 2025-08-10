@@ -35,7 +35,6 @@
       </div>
       
       <!-- Пробные экзамены -->
-      <!-- TODO Functionality of "Evaluation" -->
       <div class="flex flex-col items-center">
         <button :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 lg:text-[1rem] lg:mb-0',
           activeIndex === 3 ? 'text-[#F96F16]' : 'text-white']" 
@@ -62,13 +61,15 @@
 </template>
 
 <script>
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Navigation",
   data() {
     return {
       screenWidth: window.innerWidth,
-      activeIndex: 0
     }
   },
   methods: {
@@ -103,5 +104,15 @@ export default {
       }
     },
   },
+  setup() {
+    const route = useRoute()
+    let activeIndex = ref(route.path === '/' ? 0 : -1)
+
+    watch(() => route.path, (newPath) => {
+      activeIndex.value = newPath === '/' ? 0 : -1
+    })
+
+    return { activeIndex }
+  }
 }
 </script>
