@@ -87,8 +87,7 @@
 import { showToast } from '@/utils/utils';
 
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Login',
+  name: 'LoginView',
   data() {
     return {
       screenWidth: window.innerWidth,

@@ -24,8 +24,7 @@ import Practice from './home/Practice.vue';
 import ContactUs from './home/ContactUs.vue';
 
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Home',
+  name: 'HomeView',
   components: {
     EMBlock,
     EduInfo,
