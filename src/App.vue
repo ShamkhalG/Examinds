@@ -1,11 +1,6 @@
 <template>
-  <div class="min-h-[100dvh] grid grid-rows-[auto,1fr]">
-    <Navigation />
-    <main class="min-h-0">
-      <RouterView />
-    </main>
-  </div>
-
+  <Navigation />
+  <RouterView />
 </template>
 
 <script>
