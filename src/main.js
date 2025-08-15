@@ -3,14 +3,16 @@ import { createWebHistory, createRouter } from 'vue-router'
 
 import App from './App.vue'
 import HomeView from './components/HomeView.vue'
+import NotFoundView from './components/NotFoundView.vue'
 import LoginView from './components/LoginView.vue'
 import ProfileView from './components/ProfileView.vue'
 
-import './assets/styles/tailwind.css'
-import './assets/styles/fonts.css'
+import '@/assets/styles/tailwind.css'
+import '@/assets/styles/fonts.css'
 
 const routes = [
   { path: '/', component: HomeView },
+  { path: '/:pathMatch(.*)*', component: NotFoundView },
   { path: '/login', component: LoginView },
   { path: '/profile', component: ProfileView}
 ]

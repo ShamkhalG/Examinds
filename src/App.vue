@@ -1,6 +1,11 @@
 <template>
-  <Navigation />
-  <RouterView />
+  <div class="min-h-[100dvh] grid grid-rows-[auto,1fr]">
+    <Navigation />
+    <main class="min-h-0">
+      <RouterView />
+    </main>
+  </div>
+
 </template>
 
 <script>
@@ -13,10 +18,3 @@ export default {
   }
 }
 </script>
-
-<style>
-html, body, #app {
-  height: 100%;
-  margin: 0;
-}
-</style>

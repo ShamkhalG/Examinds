@@ -3,7 +3,7 @@
   <div class="flex flex-col justify-center items-center bg-[#222222]">
     <!-- Profile -->
      <!-- TODO Desktop version of Profile section -->
-    <div class="">
+    <div class="mb-4">
       <h3 class="text-white font-geologicaBold text-[1.8rem] mb-2">Личная информация</h3>
       <div class="flex flex-col bg-[#303030] rounded-xl p-4">
         <!-- Name and Surname -->
@@ -25,14 +25,12 @@
       <h3 class="text-white font-geologicaBold text-[1.8rem]">Экзамены</h3>
       <!-- TODO Message if no exams -->
       <div v-for="exam in mockExams" :key="exam.index">
-        <RouterLink :to="'/exam/' + exam.link" class="text-white">
-          Разбор
-        </RouterLink>
+        <ExamItem :examProps="exam" />
       </div>
     </div>
 
     <!-- Something wrong, write to us -->
-    <p class="text-white text-center font-geologicaMedium">
+    <p class="text-white text-center text-[0.7rem] italic font-geologicaMedium">
       Если любая указанная информация не соответствует действительности, сообщите нам!
     </p>
   </div>
@@ -40,11 +38,13 @@
 
 <script>
 import PersonalData from './profile/PersonalData.vue'
+import ExamItem from './profile/ExamItem.vue'
 
 export default {
   name: 'ProfileView',
   components: {
-    PersonalData
+    PersonalData,
+    ExamItem
   },
   data() {
     return {
