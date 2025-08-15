@@ -1,41 +1,51 @@
 <template>
   <!-- TODO Restricting access to ProfileView if not logged in -->
-  <div class="flex flex-col justify-center items-center">
-    <!-- TODO Profile -->
-    <div>
-      <!-- Name and Surname -->
-      
-      <p>{{ personalData.name }} {{ personalData.surname }}</p>
-      
-      <!-- Email -->
-      <p>{{ hiddenEmail }}</p>
-      
-      <!-- Phone number -->
-      <p>{{ personalData.phonenumber }}</p>
+  <div class="flex flex-col justify-center items-center bg-[#222222]">
+    <!-- Profile -->
+     <!-- TODO Desktop version of Profile section -->
+    <div class="">
+      <h3 class="text-white font-geologicaBold text-[1.8rem] mb-2">Личная информация</h3>
+      <div class="flex flex-col bg-[#303030] rounded-xl p-4">
+        <!-- Name and Surname -->
+        <PersonalData label="Имя / Фамилия" :value="personalData.name + ' ' + personalData.surname" />
+        
+        <!-- Email -->
+        <PersonalData label="Email" :value="hiddenEmail" />
+        
+        <!-- Phone number -->
+        <PersonalData label="Номер телефона" :value="personalData.phonenumber" />
 
-      <!-- Parent phone number -->
-      <p>{{ personalData.parentnumber }}</p>
+        <!-- Parent phone number -->
+        <PersonalData label="Номер телефона родителя" :value="personalData.parentnumber" />
+      </div>
     </div>
 
     <!-- TODO Exams -->
-    <div>
+    <div class="flex flex-col justify-center items-center">
+      <h3 class="text-white font-geologicaBold text-[1.8rem]">Экзамены</h3>
       <!-- TODO Message if no exams -->
       <div v-for="exam in mockExams" :key="exam.index">
-        <RouterLink :to="'/exam/' + exam.link">
+        <RouterLink :to="'/exam/' + exam.link" class="text-white">
           Разбор
         </RouterLink>
       </div>
     </div>
 
     <!-- Something wrong, write to us -->
-    <p>Если любая указанная информация не соответствует действительности, сообщите нам!</p>
+    <p class="text-white text-center font-geologicaMedium">
+      Если любая указанная информация не соответствует действительности, сообщите нам!
+    </p>
   </div>
 </template>
 
 <script>
+import PersonalData from './profile/PersonalData.vue'
 
 export default {
   name: 'ProfileView',
+  components: {
+    PersonalData
+  },
   data() {
     return {
       screenWidth: window.innerWidth,
@@ -44,7 +54,7 @@ export default {
         surname: "SGovich",
         email: "shamkhalguliyev83@gmail.com",
         phonenumber: "+994514982421",
-        parentnumber: "994704982121"
+        parentnumber: "+994704982121"
       },
       mockExams: [ // LONGTODO Defining the structure of each exam object
         {
