@@ -1,11 +1,17 @@
 <template>
   <!-- TODO Restricting access to ProfileView if not logged in -->
   <div class="flex flex-col relative bg-[#222222] min-h-screen pt-16 pb-4 px-4">
-    <div class="flex flex-col lg:flex-row lg:justify-around items-center lg:items-start">
-      <!-- Profile -->
-      <!-- TODO Desktop version of Profile section -->
-      <div class="mb-6 w-full lg:w-auto flex flex-col items-center">
-        <h3 class="text-white font-geologicaBold text-[1.8rem] mb-2">Личная информация</h3>
+    <div class="flex flex-col lg:flex-row lg:justify-center lg:gap-20 lg:mt-12
+      items-center lg:items-start"
+    >  
+      <!-- Personal info -->
+      <div class="mb-6 w-full max-w-[500px] lg:max-w-auto lg:w-auto flex flex-col items-center">
+        <!-- PI header -->
+        <h3 class="text-white text-center font-geologicaBold text-[1.8rem] lg:text-[2.5rem] mb-2">
+          Личная информация
+        </h3>
+
+        <!-- Personal data -->
         <div class="flex flex-col w-full bg-[#303030] rounded-xl p-4">
           <!-- Name and Surname -->
           <PersonalData label="Имя / Фамилия" :value="personalData.name + ' ' + personalData.surname" />
@@ -21,9 +27,10 @@
         </div>
       </div>
   
-      <!-- TODO Exams -->
+      <!-- Exams -->
+      <!-- TODO Scrolling if there are many exams -->
       <div class="mb-4 flex flex-col items-center">
-        <h3 class="text-white font-geologicaBold text-[1.8rem] mb-2">
+        <h3 class="text-white font-geologicaBold text-[1.8rem] lg:text-[2.5rem] mb-2">
           Экзамены
         </h3>
 
@@ -32,23 +39,25 @@
           <table class="border-separate border-spacing-y-2">
             <thead>
               <tr class="text-white text-center">
-                <th class="pb-2 border-b border-white">Имя</th>
-                <th class="pb-2 border-b border-white">Статус</th>
-                <th class="pb-2 border-b border-white">Результат</th>
+                <th class="pb-2 border-b border-white lg:text-[1.3rem]">Имя</th>
+                <th class="pb-2 border-b border-white lg:text-[1.3rem]">Статус</th>
+                <th class="pb-2 border-b border-white lg:text-[1.3rem]">Результат</th>
                 <th class="pb-2 border-b border-white"></th>
               </tr>
             </thead>
     
             <tbody>
-              <tr v-for="exam in mockExams" :key="exam.id" class="text-white text-center text-sm">
-                <td class="py-2 border-b border-white">{{ exam.name }}</td>
-                <td class="py-2 border-b border-white" 
+              <tr v-for="exam in mockExams" :key="exam.id" 
+                class="text-white text-center text-sm lg:text-lg"
+              >
+                <td class="py-2 lg:px-3 border-b border-white">{{ exam.name }}</td>
+                <td class="py-2 lg:px-3 border-b border-white" 
                   :style="{ color: statusColors[exam.status] }"
                 >
                   {{ exam.status }}
                 </td>
                 <td class="py-2 border-b border-white">{{ exam.result }}</td>
-                <td class="py-2 border-b border-white">
+                <td class="py-2 pl-6 border-b border-white">
                   <RouterLink :to="'/exam/' + exam.link" class="underline text-[#009EFF]">
                     Разбор
                   </RouterLink>
@@ -64,7 +73,8 @@
     <p class="text-white text-center text-[0.7rem] lg:text-[1rem] 
       lg:absolute lg:bottom-8 lg:left-0 lg:right-0 italic font-geologicaMedium"
     >
-      Если любая указанная информация не соответствует действительности, сообщите нам!
+      Если любая указанная информация не соответствует действительности, 
+      <span class="text-minds">сообщите нам!</span>
     </p>
   </div>
 </template>
@@ -93,7 +103,7 @@ export default {
           name: "Пробник Август 2025",
           status: "Результаты готовы",
           result: "82/100",
-          link: "aug2025" // NOTE Maybe random strings would be better
+          link: "aug2025" // NOTE Maybe random strings for the link would be better
         },
         {
           id: 2,
@@ -107,14 +117,14 @@ export default {
           name: "Пробник Октябрь 2025",
           status: "Ожидание начало",
           result: "-",
-          link: "oct2025" // NOTE Maybe random strings would be better
+          link: "oct2025"
         },
         {
           id: 4,
           name: "Пробник Ноябрь 2025",
           status: "Отменено",
           result: "-",
-          link: "nov2025" // NOTE Maybe random strings would be better
+          link: "nov2025"
         },
       ],
       statusColors: {
