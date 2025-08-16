@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home pt-16">
     <EMBlock />
     <div class="subHome">
       <EduInfo />

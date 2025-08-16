@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full bg-[#222222] flex justify-center">
+  <div class="w-full bg-[#222222] absolute top-0 left-0 z-50 flex justify-center">
     <div class="flex flex-row items-center justify-between h-16 pt-4 px-4 w-full lg:w-[80%]">
       <!-- Главная -->
       <div class="flex flex-col items-center">

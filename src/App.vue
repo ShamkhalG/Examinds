@@ -1,6 +1,8 @@
 <template>
-  <Navigation />
-  <RouterView />
+  <div class="relative">
+    <Navigation />
+    <RouterView />
+  </div>
 </template>
 
 <script>
