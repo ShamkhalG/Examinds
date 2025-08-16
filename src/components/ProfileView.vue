@@ -1,7 +1,7 @@
 <template>
   <!-- TODO Restricting access to ProfileView if not logged in -->
   <div class="flex flex-col relative bg-[#222222] min-h-screen pt-16 pb-4 px-4">
-    <div class="flex flex-col lg:flex-row lg:justify-center lg:gap-20 lg:mt-12
+    <div class="flex flex-col lg:flex-row lg:justify-center lg:gap-20 lg:mt-16
       items-center lg:items-start"
     >  
       <!-- Personal info -->
@@ -28,16 +28,17 @@
       </div>
   
       <!-- Exams -->
-      <!-- TODO Scrolling if there are many exams -->
-      <div class="mb-4 flex flex-col items-center">
+      <div class="mb-6 flex flex-col items-center">
+        <!-- Exams header -->
         <h3 class="text-white font-geologicaBold text-[1.8rem] lg:text-[2.5rem] mb-2">
           Экзамены
         </h3>
 
-        <!-- TODO Message if no exams -->
-        <div class="flex flex-col bg-[#303030] rounded-xl px-4 py-2">
-          <table class="border-separate border-spacing-y-2">
-            <thead>
+        <div class="flex flex-col bg-[#303030] max-h-[393px] overflow-y-auto rounded-xl px-4 pb-2"> 
+          <!-- Table -->
+          <table v-if="mockExams.length !== 0" class="border-separate border-spacing-y-2 mt-2">
+            <!-- Table header -->
+            <thead class="sticky top-0 bg-[#303030]">
               <tr class="text-white text-center">
                 <th class="pb-2 border-b border-white lg:text-[1.3rem]">Имя</th>
                 <th class="pb-2 border-b border-white lg:text-[1.3rem]">Статус</th>
@@ -46,6 +47,7 @@
               </tr>
             </thead>
     
+            <!-- Table data -->
             <tbody>
               <tr v-for="exam in mockExams" :key="exam.id" 
                 class="text-white text-center text-sm lg:text-lg"
@@ -65,6 +67,11 @@
               </tr>
             </tbody>
           </table>
+
+          <!-- Message if no exams -->
+          <p v-else class="text-minds text-center text-sm lg:text-[1.2rem] mt-2 font-geologicaBold">
+            Вы не зарегистрированы ни на один экзамен.
+          </p>
         </div>
       </div>
     </div>
