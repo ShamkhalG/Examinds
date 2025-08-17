@@ -1,6 +1,6 @@
 <template>
   <div class="bg-login_bg bg-cover lg:bg-center flex flex-col flex-grow relative
-    items-center lg:items-end lg:pr-[24rem] px-8 py-4 min-h-screen pt-16"
+    items-center lg:items-end lg:pr-[24rem] px-8 py-4 min-h-screen pt-20"
   >
     <img v-if="screenWidth > 1024" src="@/assets/images/login/login_bulb.png" 
       class="absolute w-[600px] left-[12rem]" />
