@@ -1,4 +1,5 @@
 <template>
+  <!-- FIXME Remove some buttons for authenticated users -->
   <div class="w-full bg-[#222222] absolute top-0 left-0 z-50 flex justify-center">
     <div class="flex flex-row items-center justify-between h-16 pt-4 px-4 w-full lg:w-[80%]">
       <!-- Главная -->
@@ -56,7 +57,6 @@
       </div>
 
       <!-- ВОЙТИ -->
-      <!-- FIXME Button border colour is a linear-gradient -->
       <div class="flex flex-col items-center">
         <RouterLink to="/login" @click="setActive(4)" 
           class="flex flex-col items-center justify-center border-2 

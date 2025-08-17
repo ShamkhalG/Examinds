@@ -6,7 +6,7 @@
     >  
       <!-- Personal info -->
       <div class="mb-6 w-full max-w-[500px] lg:max-w-auto lg:w-auto flex flex-col items-center">
-        <!-- PI header -->
+        <!-- PI Header -->
         <h3 class="text-white text-center font-geologicaBold text-[1.8rem] lg:text-[2.5rem] mb-2">
           Личная информация
         </h3>
@@ -104,7 +104,7 @@ export default {
         phonenumber: "+994514982421",
         parentnumber: "+994704982121"
       },
-      mockExams: [ // LONGTODO Defining the structure of each exam object
+      mockExams: [ // LONGTODO Retrieving exams from the database
         {
           id: 1,
           name: "Пробник Август 2025",
