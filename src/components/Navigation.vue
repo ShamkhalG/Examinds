@@ -16,7 +16,7 @@
       </div>
 
       <!-- О нас -->
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center text-center lg:text-start">
         <RouterLink :to="{ path: '/', hash: '#whyUs'}" 
           :class="[
             'text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 lg:text-[1rem] lg:mb-0',

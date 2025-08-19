@@ -1,5 +1,5 @@
 <template>
-  <!-- TODO RegisterExam page -->
+  <!-- TODO RegisterExam page (Mobile and PC) -->
   <div class="flex flex-col lg:flex-row items-center lg:justify-center gap-7 lg:gap-20 bg-[#222222] min-h-screen pt-20">
     <!-- Header -->
     <!-- TODO Remove this -->
@@ -33,12 +33,11 @@
           
           <!-- Remaining places -->
           <!-- FIXME Changing word "место" according to the number of remaining places -->
+          <!-- Remaining places -->
           <p class="text-minds font-interRegular"> Осталось {{ exam.remainingPlaces }} мест</p>
 
           <!-- Register button -->
-          <!-- TODO Popup window that contains a form and a submit button -->
-          <!-- NOTE No popup for logged in users -->
-          <button class="px-4 py-2 mt-2 self-end examRegisterButton">
+          <button class="px-4 py-2 mt-2 self-end examRegisterButton" @click="checkUser">
             Зарегистрироваться
           </button>
         </div>
@@ -72,13 +71,36 @@
           <p class="text-minds font-interRegular"> Осталось {{ exam.remainingPlaces }} мест</p>
 
           <!-- Register button -->
-          <button class="px-4 py-2 mt-2 self-end examRegisterButton">
+          <button class="px-4 py-2 mt-2 self-end examRegisterButton" @click="checkUser">
             Зарегистрироваться
           </button>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- TODO Modal -->
+  <Teleport to="body">
+    <transition name="fade">
+      <div v-if="open" class="fixed inset-0 z-50">
+        <div class="absolute inset-0 bg-black/50" @click="close"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+          <div role="dialog" aria-modal="true"
+               class="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
+            <div class="mb-4 flex items-center justify-between">
+              <h2 class="text-lg font-semibold">Заголовок</h2>
+              <button class="text-gray-500" @click="close">✕</button>
+            </div>
+            <p class="text-sm text-gray-700">Контент модального окна…</p>
+            <div class="mt-6 flex justify-end gap-3">
+              <button class="px-4 py-2 rounded-md bg-gray-200" @click="close">Отмена</button>
+              <button class="px-4 py-2 rounded-md bg-orange-600 text-white" @click="registerToExam">Подтвердить</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </Teleport>
 </template>
 
 <script>
@@ -86,6 +108,8 @@ export default {
   name: 'RegisterExamView.vue',
   data() {
     return {
+      open: false,
+      logged: false, // NOTE This must be imported from Vuex store
       mockOfflineExams: [ // LONGTODO Retrieving exams from the database
         {
           id: 1,
@@ -123,7 +147,18 @@ export default {
         }
       ]
     }
-  }
+  },
+  methods: {
+    checkUser() {
+      !this.logged ? this.open = true : this.registerToExam()
+    },
+    registerToExam() {
+      // LONGTODO Sends API request to register the user for the exam
+      // TODO Toastify that tells the registration was successfull
+      console.log("Register successful.")
+    },
+    close() { this.open = false }
+  },
 }
 </script>
 
