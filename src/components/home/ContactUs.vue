@@ -38,7 +38,7 @@
               lg:mt-[0.4rem] lg:mb-[0.2rem] lg:text-[0.8rem]">
                 Номер телефона
               </p>
-              <input type="text" v-model="registerData.phonenumber" placeholder="Пример: +994501234567" 
+              <input type="text" v-model="registerData.phonenumber" placeholder="Пример: +994505593259" 
                 class="border border-[#D9D9D9] rounded-[4px] 
                 text-[1rem] h-[30px] w-[98%] px-2 lg:rounded-[8px] lg:border-2 lg:w-[96%]" />
             </div>
@@ -67,11 +67,11 @@
             
             <!-- Parent number -->
             <div>
-              <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic
+              <p class="ml-1 my-[0.2rem] text-[0.8rem] font-interRegular italic 
               lg:mt-[0.4rem] lg:mb-[0.2rem] lg:text-[0.8rem]">
                 Номер телефона Родителя
               </p>
-              <input type="text" v-model="registerData.parentnumber" 
+              <input type="text" v-model="registerData.parentnumber" placeholder="Пример: +994519289282"
                 class="border border-[#D9D9D9] rounded-[4px] 
                 text-[1rem] h-[30px] w-[98%] px-2 lg:rounded-[8px] lg:border-2 lg:w-[96%]" /> 
             </div>
@@ -138,7 +138,7 @@ export default {
         return false;
       }
 
-      // Number verification
+      // Number validation
       if (this.registerData.phonenumber[0] !== '+') {
         showToast("red", "Номер должен начатся с '+'!")
         return false;
@@ -153,7 +153,7 @@ export default {
         return false
       }
 
-      // Password verification
+      // Password validation
       const commonPasswords = ["123456", "password", "qwerty", "111111"];
       if (this.registerData.password.length < 10) { // Length check
         showToast("red", "Пароль должен состоять как минимум из 10 символов!")
@@ -178,7 +178,7 @@ export default {
         return false;
       }
 
-      // Parent number verification
+      // Parent number validation
       if (this.registerData.parentnumber[0] !== '+') {
         showToast("red", "Номер родителя должен начатся с '+'!")
         return false;

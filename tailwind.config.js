@@ -29,7 +29,8 @@ module.exports = {
         'login_check': '13px 13px',
       },
       colors: {
-        minds: '#F96F16'
+        minds: '#F96F16',
+        mindsBlack: '#222222'
       }
     },
   },

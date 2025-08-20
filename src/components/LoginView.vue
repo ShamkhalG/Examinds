@@ -14,7 +14,7 @@
     </h1>
 
     <!-- Form -->
-    <form @submit.prevent="login" class="w-full max-w-[400px] lg:z-10">
+    <form @submit.prevent="login" class="w-full max-w-[400px] lg:z-10" id="loginForm">
       <!-- Email -->
       <div class="mb-4 lg:mb-6">
         <label for="email" class="text-sm lg:text-[1rem] text-white font-interMedium">
@@ -122,7 +122,7 @@ export default {
 
         // Login successful
         showToast("red", "Произошла ошибка! Пожалуйста, попробуйте позже.")
-        // showToast("green", "Вход успешный!")
+        // showToast("green", "Вы успешно авторизовались!")
       }
     },
 
