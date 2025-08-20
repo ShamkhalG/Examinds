@@ -1,7 +1,9 @@
 <template>
-  <!-- TODO RegisterExam page (PC) -->
-  <div class="flex flex-col lg:flex-row items-center lg:justify-center gap-7 lg:gap-20 bg-mindsBlack min-h-screen pt-20">
+  <div class="flex flex-col lg:flex-row items-center lg:items-start lg:justify-center 
+    gap-7 lg:gap-32 bg-mindsBlack min-h-screen pt-20 lg:pt-24"
+  >
     <!-- Offline exams -->
+    <!-- TODO Scrolling??? -->
     <div class="flex flex-col items-center justify-center">
       <!-- Header -->
       <h2 class="text-white text-center font-geologicaBold text-[1.8rem] lg:text-[2.5rem] mb-2">
@@ -9,27 +11,31 @@
       </h2>
       
       <!-- Exams -->
-      <div class="flex flex-col gap-2">
-        <div class="flex flex-col gap-0.5 bg-[#303030] rounded-xl p-3" v-for="exam in mockOfflineExams" :key="exam.id">
+      <div class="flex flex-col gap-2 lg:gap-4">
+        <div v-for="exam in mockOfflineExams" :key="exam.id" 
+          class="flex flex-col gap-0.5 bg-[#303030] rounded-xl p-3" 
+        >
           <!-- Name and date -->
-          <div class="flex flex-row justify-between gap-5">
-            <p class="text-white font-interBold"> {{ exam.name }} </p>
-            <p class="text-white font-interRegular"> {{ exam.date }} </p>
+          <div class="flex flex-row justify-between gap-5 lg:gap-10">
+            <p class="text-white font-interBold lg:text-[1.3rem]"> {{ exam.name }} </p>
+            <p class="text-white font-interRegular lg:text-[1.3rem]"> {{ exam.date }} </p>
           </div>
 
           <!-- Place and time -->
           <div class="flex flex-row justify-between">
-            <p class="text-white font-interRegular"> {{ exam.place }} </p>
-            <p class="text-white font-interRegular"> {{ exam.time }} </p>
+            <p class="text-white font-interRegular lg:text-[1.3rem]"> {{ exam.place }} </p>
+            <p class="text-white font-interRegular lg:text-[1.3rem]"> {{ exam.time }} </p>
           </div>
           
           <!-- Remaining places -->
-          <!-- FIXME Changing word "место" according to the number of remaining places -->
-          <!-- Remaining places -->
-          <p class="text-minds font-interRegular"> Осталось {{ exam.remainingPlaces }} мест</p>
+          <p class="text-minds font-interRegular lg:text-[1.3rem]">
+            Осталось {{ exam.remainingPlaces }} {{ pluralizePlaces(exam.remainingPlaces) }}
+          </p>
 
           <!-- Register button -->
-          <button class="px-4 py-2 mt-2 self-end examRegisterButton" @click="openModal(exam)">
+          <button class="px-4 py-2 mt-2 lg:mt-4 self-end lg:text-[1.3rem] 
+            examRegisterButton font-interRegular" @click="openModal(exam)"
+          >
             Зарегистрироваться
           </button>
         </div>
@@ -44,26 +50,31 @@
       </h2>
       
       <!-- Exams -->
-      <div class="flex flex-col gap-2">
-        <div class="flex flex-col gap-0.5 bg-[#303030] rounded-xl p-3" v-for="exam in mockOnlineExams" :key="exam.id">
+      <div class="flex flex-col gap-2 lg:gap-4">
+        <div v-for="exam in mockOnlineExams" :key="exam.id"
+          class="flex flex-col gap-0.5 bg-[#303030] rounded-xl p-3"           
+        >
           <!-- Name and date -->
-          <div class="flex flex-row justify-between gap-5">
-            <p class="text-white font-interBold"> {{ exam.name }} </p>
-            <p class="text-white font-interRegular"> {{ exam.date }} </p>
+          <div class="flex flex-row justify-between gap-5 lg:gap-10">
+            <p class="text-white font-interBold lg:text-[1.3rem]"> {{ exam.name }} </p>
+            <p class="text-white font-interRegular lg:text-[1.3rem]"> {{ exam.date }} </p>
           </div>
 
           <!-- Place and time -->
           <div class="flex flex-row justify-between">
-            <p class="text-white font-interRegular"> {{ exam.place }} </p>
-            <p class="text-white font-interRegular"> {{ exam.time }} </p>
+            <p class="text-white font-interRegular lg:text-[1.3rem]"> {{ exam.place }} </p>
+            <p class="text-white font-interRegular lg:text-[1.3rem]"> {{ exam.time }} </p>
           </div>
           
-          <!-- FIXME Changing word "место" according to the number of remaining places -->
           <!-- Remaining places -->
-          <p class="text-minds font-interRegular"> Осталось {{ exam.remainingPlaces }} мест</p>
+          <p class="text-minds font-interRegular lg:text-[1.3rem]">
+            Осталось {{ exam.remainingPlaces }} {{ pluralizePlaces(exam.remainingPlaces) }}
+          </p>
 
           <!-- Register button -->
-          <button class="px-4 py-2 mt-2 self-end examRegisterButton font-interRegular" @click="openModal(exam)">
+          <button class="px-4 py-2 mt-2 lg:mt-4 self-end lg:text-[1.3rem] 
+            examRegisterButton font-interRegular" @click="openModal(exam)"
+          >
             Зарегистрироваться
           </button>
         </div>
@@ -79,25 +90,30 @@
         <div class="absolute inset-0 bg-black/50" @click="close"></div> 
         
         <div class="absolute inset-0 flex items-center justify-center p-4">
-          <div role="dialog" aria-modal="true" class="w-full max-w-md rounded-xl 
-            bg-mindsBlack p-4 shadow-xl"
+          <div role="dialog" aria-modal="true" class="w-full max-w-md lg:max-w-[700px] rounded-xl 
+            bg-mindsBlack p-4 lg:p-6 shadow-xl"
           >
             <!-- Modal Header -->
             <div class="mb-4 flex justify-between">
-              <div>
-                <h2 class="text-lg text-white font-interBold">Регистрация на</h2>
+              <h2 class="text-lg lg:text-[1.5rem] text-white font-interBold leading-normal">
+                Регистрация на <br class="lg:hidden"/>
+                <span class="text-minds">{{ selectedExam.name }}</span> <br />
+                
                 <!-- Exam info -->
-                <div class="flex flex-col">
-                  <p class="text-lg text-minds font-interBold">{{ selectedExam.name }}</p>
-                  <p class="text-white font-interRegular">{{ selectedExam.date }}, {{ selectedExam.time }}, {{ selectedExam.place }}</p>
-                </div>
-              </div>
-              <button class="text-white self-start" @click="close">✕</button>
+                <span class="font-interRegular">
+                  {{ selectedExam.date }}, 
+                  {{ selectedExam.time }}, 
+                  {{ selectedExam.place }}
+                </span>
+              </h2>
+
+              <!-- Close button -->
+              <button class="lg:text-[1.8rem] text-white self-start" @click="close">✕</button>
             </div>
 
 
             <!-- Modal form -->
-            <form class="mt-6 flex flex-col gap-4 justify-center" id="examRegisterForm"
+            <form class="mt-6 lg:mt-2 flex flex-col gap-4 justify-center" id="examRegisterForm"
             v-if="!logged">
               <!-- Full name -->
               <input placeholder="Имя/Фамилия" v-model="registerData.fullName" name="fullName"
@@ -194,6 +210,14 @@ export default {
     }
   },
   methods: {
+    pluralizePlaces(n) {
+      const mod10 = n % 10
+      const mod100 = n % 100
+
+      if (mod10 === 1 && mod100 !== 11) return 'место'
+      if (mod10 >= 2 && mod10 <= 4 && !(mod100 >= 12 && mod100 <= 14)) return 'места'
+      return 'мест'
+    },
     openModal(exam) { 
       this.open = true 
       this.selectedExam = exam 
