@@ -3,15 +3,14 @@
     gap-7 lg:gap-32 bg-mindsBlack min-h-screen pt-20 lg:pt-24"
   >
     <!-- Offline exams -->
-    <!-- TODO Scrolling??? -->
     <div class="flex flex-col items-center justify-center">
       <!-- Header -->
       <h2 class="text-white text-center font-geologicaBold text-[1.8rem] lg:text-[2.5rem] mb-2">
         Оффлайн экзамены
       </h2>
       
-      <!-- Exams -->
-      <div class="flex flex-col gap-2 lg:gap-4">
+      <!-- Exam items -->
+      <div class="flex flex-col gap-2 lg:gap-4 max-h-[200px] lg:max-h-[500px] overflow-y-auto">
         <div v-for="exam in mockOfflineExams" :key="exam.id" 
           class="flex flex-col gap-0.5 bg-[#303030] rounded-xl p-3" 
         >
@@ -49,8 +48,8 @@
         Онлайн экзамены
       </h2>
       
-      <!-- Exams -->
-      <div class="flex flex-col gap-2 lg:gap-4">
+      <!-- Exam items -->
+      <div class="flex flex-col gap-2 lg:gap-4 max-h-[200px] lg:max-h-[500px] overflow-y-auto">
         <div v-for="exam in mockOnlineExams" :key="exam.id"
           class="flex flex-col gap-0.5 bg-[#303030] rounded-xl p-3"           
         >
@@ -114,7 +113,7 @@
 
             <!-- Modal form -->
             <form class="mt-6 lg:mt-2 flex flex-col gap-4 justify-center" id="examRegisterForm"
-            v-if="!logged">
+            v-if="!authenticated">
               <!-- Full name -->
               <input placeholder="Имя/Фамилия" v-model="registerData.fullName" name="fullName"
                 class="bg-mindsBlack w-full px-4 py-2 rounded-lg bg-[#222222] 
@@ -163,7 +162,7 @@ export default {
   data() {
     return {
       open: false,
-      logged: false, // TODO Import this from Vuex store
+      authenticated: false,
       selectedExam: null,
       registerData: {
         fullName: '',
@@ -197,6 +196,14 @@ export default {
           time: "14:00",
           place: "Microsoft Teams",
           remainingPlaces: 1
+        },
+        {
+          id: 2,
+          name: "Пробник Сентярбь 2025",
+          date: "13.09.2025",
+          time: "13:30",
+          place: "Microsoft Teams",
+          remainingPlaces: 13
         },
         {
           id: 2,
@@ -273,7 +280,7 @@ export default {
       return true;
     },
     async registerToExam() {
-      if (this.logged) { // User is authenticated
+      if (this.authenticated) { // User is authenticated
         // LONGTODO Sends API request directly using cookies (or Vuex store)
       } else { // User is not authenticated
         const isValid = await this.validateData();

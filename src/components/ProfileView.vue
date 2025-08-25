@@ -1,5 +1,5 @@
 <template>
-  <!-- TODO Restricting access to ProfileView if not logged in -->
+  <!-- TODO Restricting access (Vuex store, authenticated) to ProfileView if not logged in -->
   <div class="flex flex-col relative bg-[#222222] min-h-screen pt-16 pb-4 px-4">
     <div class="flex flex-col lg:flex-row lg:justify-center lg:gap-20 lg:mt-16
       items-center lg:items-start"
