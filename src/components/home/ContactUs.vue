@@ -91,124 +91,113 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios';
-import { showToast } from '@/utils/notifications.js';
+<script setup>
+import { ref } from 'vue'
+import { showToast } from '@/utils/notifications.js'
+import { useAuthStore } from '@/stores/auth'
 
-import registerBgMobile from "../../assets/backgrounds/register_bg.png";
-import registerBgDesktop from "../../assets/backgrounds/register_bg_pc.png";
+import registerBgMobile from "../../assets/backgrounds/register_bg.png"
+import registerBgDesktop from "../../assets/backgrounds/register_bg_pc.png"
 
-export default {
-  name: "ContactUs",
-  data() {
-    return {
-      screenWidth: window.innerWidth,
-      registerData: {
-        name: '',
-        phonenumber: '',
-        email: '',
-        password: '',
-        parentnumber: ''
-      }
+// Data
+const auth = useAuthStore()
+const screenWidth = window.innerWidth
+// TODO Use "reactive" and remove ".value"
+const registerData = ref({
+  name: '',
+  phonenumber: '',
+  email: '',
+  password: '',
+  parentnumber: ''
+})
+const registerBg = screenWidth < 1024 ? registerBgMobile : registerBgDesktop
+
+// Methods
+// TODO Move this function to utils
+async function validateData() {
+  // Required rule validation
+  if (Object.values(registerData).some(value => !value)) {
+    showToast("red", "Все поля должны быть заполнены!")
+    return false
+  }
+
+  // Name validation
+  const [name, surname] = registerData.value.name.trim().split(' ');
+  if (!registerData.value.name.includes(' ')) {
+    showToast("red", "Имя / Фамилия должно содержать имя и фамилию, разделенные пробелом!");
+    return false
+  } else if (!name || name.length < 2) {
+    showToast("red", "Имя должно содержать как минимум 2 буквы!");
+    return false
+  } else if (!surname || surname.length < 2) {
+    showToast("red", "Фамилия должна содержать как минимум 2 буквы!");
+    return false
+  }
+
+  // Number validation
+  if (registerData.value.phonenumber[0] !== '+') {
+    showToast("red", "Номер должен начатся с '+'!")
+    return false
+  } else if (registerData.value.phonenumber.length !== 13 || !/^\+\d{12}$/.test(registerData.value.phonenumber)) {
+    showToast("red", "Номер должен состоять из 13 символов: + и 12 цифр")
+    return false
+  }
+  
+  // Email validation
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(registerData.value.email)) {
+    showToast("red", "Введённый мейл недействительный!")
+    return false
+  }
+
+  // Password validation
+  const commonPasswords = ["123456", "password", "qwerty", "111111"];
+  if (registerData.value.password.length < 10) { // Length check
+    showToast("red", "Пароль должен состоять как минимум из 10 символов!")
+    return false
+  } else if (!/[A-Z]/.test(registerData.value.password)) { // Uppercase letter check
+    showToast("red", "Пароль должен содержать хотя бы одну заглавную букву (A-Z)!");
+    return false
+  } else if (!/[a-z]/.test(registerData.value.password)) { // Lowercase letter check
+    showToast("red", "Пароль должен содержать хотя бы одну строчную букву (a-z)!");
+    return false
+  } else if (!/[0-9]/.test(registerData.value.password)) { // Number check
+    showToast("red", "Пароль должен содержать хотя бы одну цифру (0-9)!");
+    return false
+  } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(registerData.value.password)) { // Special character check
+    showToast("red", "Пароль должен содержать хотя бы один специальный символ (например, !@#$%^&*)!");
+    return false
+  } else if (/(\d)\1{2}/.test(registerData.value.password)) { // 3 consecutive numbers check
+    showToast("red", "Пароль не должен содержать три одинаковых подряд идущих цифры!")
+    return false
+  } else if (commonPasswords.includes(registerData.value.password)) { // Common passwords check
+    showToast("red", "Пароль слишком простой, выберите более сложный!");
+    return false
+  }
+
+  // Parent number validation
+  if (registerData.value.parentnumber[0] !== '+') {
+    showToast("red", "Номер родителя должен начатся с '+'!")
+    return false
+  } else if (registerData.value.parentnumber.length !== 13 || !/^\+\d{12}$/.test(registerData.value.parentnumber)) {
+    showToast("red", "Номер родителя должен состоять из 13 символов: + и 12 цифр")
+    return false
+  } else if (registerData.value.parentnumber === registerData.value.phonenumber) {
+    showToast("red", "Номер родителя не должен быть одинаковым с вашим номером!")
+    return false
+  }
+
+  return true
+}
+
+async function signUp() {
+  const isValid = await validateData();
+  if (isValid) {
+    if (await auth.login(registerData)) {// Signup successful
+      showToast("green", "Вы успешно зарегистрировались на наш сайт!")
+    } else { // Signup failed
+      showToast("red", "Произошла ошибка! Пожалуйста, попробуйте позже.")
     }
-  },
-  computed: {
-    registerBg() {
-      return this.screenWidth < 1024 ? registerBgMobile : registerBgDesktop;
-    }
-  },
-  methods: {
-    async validateData() {
-      // Required rule validation
-      if (Object.values(this.registerData).some(value => !value)) {
-        showToast("red", "Все поля должны быть заполнены!")
-        return false
-      }
-
-      // Name validation
-      const [name, surname] = this.registerData.name.trim().split(' ');
-      if (!this.registerData.name.includes(' ')) {
-        showToast("red", "Имя / Фамилия должно содержать имя и фамилию, разделенные пробелом!");
-        return false;
-      } else if (!name || name.length < 2) {
-        showToast("red", "Имя должно содержать как минимум 2 буквы!");
-        return false;
-      } else if (!surname || surname.length < 2) {
-        showToast("red", "Фамилия должна содержать как минимум 2 буквы!");
-        return false;
-      }
-
-      // Number validation
-      if (this.registerData.phonenumber[0] !== '+') {
-        showToast("red", "Номер должен начатся с '+'!")
-        return false;
-      } else if (this.registerData.phonenumber.length !== 13 || !/^\+\d{12}$/.test(this.registerData.phonenumber)) {
-        showToast("red", "Номер должен состоять из 13 символов: + и 12 цифр")
-        return false;
-      }
-      
-      // Email validation
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.registerData.email)) {
-        showToast("red", "Введённый мейл недействительный!")
-        return false
-      }
-
-      // Password validation
-      const commonPasswords = ["123456", "password", "qwerty", "111111"];
-      if (this.registerData.password.length < 10) { // Length check
-        showToast("red", "Пароль должен состоять как минимум из 10 символов!")
-        return false
-      } else if (!/[A-Z]/.test(this.registerData.password)) { // Uppercase letter check
-        showToast("red", "Пароль должен содержать хотя бы одну заглавную букву (A-Z)!");
-        return false;
-      } else if (!/[a-z]/.test(this.registerData.password)) { // Lowercase letter check
-        showToast("red", "Пароль должен содержать хотя бы одну строчную букву (a-z)!");
-        return false;
-      } else if (!/[0-9]/.test(this.registerData.password)) { // Number check
-        showToast("red", "Пароль должен содержать хотя бы одну цифру (0-9)!");
-        return false;
-      } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(this.registerData.password)) { // Special character check
-        showToast("red", "Пароль должен содержать хотя бы один специальный символ (например, !@#$%^&*)!");
-        return false;
-      } else if (/(\d)\1{2}/.test(this.registerData.password)) { // 3 consecutive numbers check
-        showToast("red", "Пароль не должен содержать три одинаковых подряд идущих цифры!")
-        return false
-      } else if (commonPasswords.includes(this.registerData.password)) { // Common passwords check
-        showToast("red", "Пароль слишком простой, выберите более сложный!");
-        return false;
-      }
-
-      // Parent number validation
-      if (this.registerData.parentnumber[0] !== '+') {
-        showToast("red", "Номер родителя должен начатся с '+'!")
-        return false;
-      } else if (this.registerData.parentnumber.length !== 13 || !/^\+\d{12}$/.test(this.registerData.parentnumber)) {
-        showToast("red", "Номер родителя должен состоять из 13 символов: + и 12 цифр")
-        return false;
-      } else if (this.registerData.parentnumber === this.registerData.phonenumber) {
-        showToast("red", "Номер родителя не должен быть одинаковым с вашим номером!")
-        return false;
-      }
-
-      return true;
-    },
-
-    async signUp() {
-      const isValid = await this.validateData();
-      if (isValid) {
-        const baseURL = "https://bold-aurelea-examinds-0e0bfd9d.koyeb.app/";
-        const url = baseURL + "auth/signup";
-        axios.post(url, this.registerData)
-          .then(() => {
-            showToast("green", "Регистрация успешна! С вами в скором времени свяжутся.");
-          })
-          .catch(error => {
-            console.error('Error: ', error.message);
-            showToast("red", "Произошла ошибка! Пожалуйста, попробуйте позже.");
-          });
-      }
-    },
-  },
+  }
 }
 </script>
 

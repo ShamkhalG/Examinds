@@ -94,6 +94,7 @@ const auth = useAuthStore()
 const router = useRouter()
 
 const screenWidth = window.innerWidth
+// TODO Use "reactive" and remove ".value"
 const loginData = ref({
   email: '',
   password: '',

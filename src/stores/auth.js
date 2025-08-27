@@ -7,7 +7,6 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: null,
     user: null,
-    status: 'idle', // 'idle' | 'loading' | 'authed' | 'error'
   }),
   getters: {
     isAuthenticated: (state) => !!state.token,
@@ -26,6 +25,18 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
+    async register(registerData) {
+      try {
+        // LONGTODO Does this request return the access token right away?
+        const { data } = await api.post('/auth/register', registerData)
+        await this.setToken(data.accessToken)
+        await this.fetchUser()
+        return true
+      } catch (e) {
+        return false
+      }
+    },
+    
     async login(loginData) {
       try {
         const { data } = await api.post('/auth/login', loginData)
@@ -43,10 +54,8 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async fetchUser() {
-      this.status = 'loading'
       const { data } = await api.get('/me') // Fetch user data with JWT
       this.user = data
-      this.status = 'authed'
     },
 
     async logout() {
@@ -58,7 +67,6 @@ export const useAuthStore = defineStore('auth', {
       localStorage.removeItem(LS_KEY)
       this.token = null
       this.user = null
-      this.status = 'idle'
     },
 
     // Optional: If backend supports refresh token

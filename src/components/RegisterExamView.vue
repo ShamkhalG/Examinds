@@ -113,7 +113,7 @@
 
             <!-- Modal form -->
             <form class="mt-6 lg:mt-2 flex flex-col gap-4 justify-center" id="examRegisterForm"
-            v-if="!authenticated">
+            v-if="!isAuthenticated">
               <!-- Full name -->
               <input placeholder="Имя/Фамилия" v-model="registerData.fullName" name="fullName"
                 class="bg-mindsBlack w-full px-4 py-2 rounded-lg bg-[#222222] 
@@ -154,149 +154,158 @@
   </Teleport>
 </template>
 
-<script>
-// TODO Convert to script setup
+<script setup>
+// import api from '@/api'
+import { ref, computed } from 'vue'
+import { useAuthStore } from '@/stores/auth'
 import { showToast } from '@/utils/notifications'
 
-export default {
-  name: 'RegisterExamView.vue',
-  data() {
-    return {
-      open: false,
-      authenticated: false,
-      selectedExam: null,
-      registerData: {
-        fullName: '',
-        email: '',
-        phoneNumber: '',
-        parentPhoneNumber: ''
-      },
-      mockOfflineExams: [ // LONGTODO Retrieving exams from the database
-        {
-          id: 1,
-          name: "Пробник Август 2025",
-          date: "17.08.2025",
-          time: "10:00",
-          place: "UFAZ 308",
-          remainingPlaces: 2
-        },
-        {
-          id: 2,
-          name: "Пробник Сентярбь 2025",
-          date: "13.09.2025",
-          time: "09:30",
-          place: "UFAZ 204",
-          remainingPlaces: 17
-        }
-      ],
-      mockOnlineExams: [ // LONGTODO Retrieving exams from the database
-        {
-          id: 1,
-          name: "Пробник Август 2025",
-          date: "17.08.2025",
-          time: "14:00",
-          place: "Microsoft Teams",
-          remainingPlaces: 1
-        },
-        {
-          id: 2,
-          name: "Пробник Сентярбь 2025",
-          date: "13.09.2025",
-          time: "13:30",
-          place: "Microsoft Teams",
-          remainingPlaces: 13
-        },
-        {
-          id: 2,
-          name: "Пробник Сентярбь 2025",
-          date: "13.09.2025",
-          time: "13:30",
-          place: "Microsoft Teams",
-          remainingPlaces: 13
-        }
-      ]
-    }
+// Data
+const auth = useAuthStore()
+const isAuthenticated = computed(() => auth.isAuthenticated)
+const open = ref(false)
+const selectedExam = ref(null)
+// TODO Use "reactive" and remove ".value"
+const registerData = ref({
+  fullName: '',
+  email: '',
+  phoneNumber: '',
+  parentPhoneNumber: ''
+})
+
+// LONGTODO Retrieving exams from the database
+// const offlineExams = api.get('/getOfflineExams')
+const mockOfflineExams = [
+  {
+    id: 1,
+    name: "Пробник Август 2025",
+    date: "17.08.2025",
+    time: "10:00",
+    place: "UFAZ 308",
+    remainingPlaces: 2
   },
-  methods: {
-    pluralizePlaces(n) {
-      const mod10 = n % 10
-      const mod100 = n % 100
+  {
+    id: 2,
+    name: "Пробник Сентярбь 2025",
+    date: "13.09.2025",
+    time: "09:30",
+    place: "UFAZ 204",
+    remainingPlaces: 17
+  }
+]
 
-      if (mod10 === 1 && mod100 !== 11) return 'место'
-      if (mod10 >= 2 && mod10 <= 4 && !(mod100 >= 12 && mod100 <= 14)) return 'места'
-      return 'мест'
-    },
-    openModal(exam) { 
-      this.open = true 
-      this.selectedExam = exam 
-    },
-    close() { this.open = false },
-    async validateData() {
-      // Required rule validation
-      if (Object.values(this.registerData).some(value => value === '' || value === null)) {
-        showToast("red", "Все поля должны быть заполнены!")
-        return false
-      }
-      
-      // Name validation
-      const [name, surname] = this.registerData.fullName.trim().split(' ');
-      if (!this.registerData.fullName.includes(' ')) {
-        showToast("red", "Имя / Фамилия должно содержать имя и фамилию, разделенные пробелом!");
-        return false;
-      } else if (!name || name.length < 2) {
-        showToast("red", "Имя должно содержать как минимум 2 буквы!");
-        return false;
-      } else if (!surname || surname.length < 2) {
-        showToast("red", "Фамилия должна содержать как минимум 2 буквы!");
-        return false;
-      }
-
-      // Number validation
-      if (this.registerData.phoneNumber[0] !== '+') {
-        showToast("red", "Номер должен начатся с '+'!")
-        return false;
-      } else if (this.registerData.phoneNumber.length !== 13 || !/^\+\d{12}$/.test(this.registerData.phoneNumber)) {
-        showToast("red", "Номер должен состоять из 13 символов: + и 12 цифр")
-        return false;
-      }
-      
-      // Email validation
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.registerData.email)) {
-        showToast("red", "Введённый мейл недействительный!")
-        return false
-      }
-
-      // Parent number validation
-      if (this.registerData.parentPhoneNumber[0] !== '+') {
-        showToast("red", "Номер родителя должен начатся с '+'!")
-        return false;
-      } else if (this.registerData.parentPhoneNumber.length !== 13 || !/^\+\d{12}$/.test(this.registerData.parentPhoneNumber)) {
-        showToast("red", "Номер родителя должен состоять из 13 символов: + и 12 цифр")
-        return false;
-      } else if (this.registerData.parentPhoneNumber === this.registerData.phoneNumber) {
-        showToast("red", "Номер родителя не должен быть одинаковым с вашим номером!")
-        return false;
-      }
-
-      return true;
-    },
-    async registerToExam() {
-      if (this.authenticated) { // User is authenticated
-        // LONGTODO Sends API request directly using cookies (or Vuex store)
-      } else { // User is not authenticated
-        const isValid = await this.validateData();
-        if (isValid) {
-          // LONGTODO Sends API request to register the user for the exam
-        } else {
-          return
-        }
-      }
-
-      // Registration successful
-      showToast('red', 'Ошибка! Попробуйте позже!')
-      // showToast('green', 'Вы успешно зарегистрировались на экзамен!')
-    }
+// LONGTODO Retrieving exams from the database
+// const onlineExams = api.get('/getOnlineExams')
+const mockOnlineExams = [
+  {
+    id: 1,
+    name: "Пробник Август 2025",
+    date: "17.08.2025",
+    time: "14:00",
+    place: "Microsoft Teams",
+    remainingPlaces: 1
   },
+  {
+    id: 2,
+    name: "Пробник Сентярбь 2025",
+    date: "13.09.2025",
+    time: "13:30",
+    place: "Microsoft Teams",
+    remainingPlaces: 13
+  },
+  {
+    id: 3,
+    name: "Пробник Сентярбь 2025",
+    date: "13.09.2025",
+    time: "13:30",
+    place: "Microsoft Teams",
+    remainingPlaces: 13
+  }
+]
+
+// Methods
+function pluralizePlaces(n) {
+  const mod10 = n % 10
+  const mod100 = n % 100
+
+  if (mod10 === 1 && mod100 !== 11) return 'место'
+  if (mod10 >= 2 && mod10 <= 4 && !(mod100 >= 12 && mod100 <= 14)) return 'места'
+  return 'мест'
+}
+
+function openModal(exam) { 
+  open.value = true 
+  selectedExam.value = exam 
+}
+
+function close() { open.value = false }
+
+// TODO Move this function
+async function validateData() {
+  // Required rule validation
+  if (Object.values(registerData).some(value => value === '' || value === null)) {
+    showToast("red", "Все поля должны быть заполнены!")
+    return false
+  }
+  
+  // Name validation
+  const [name, surname] = registerData.value.fullName.trim().split(' ');
+  if (!registerData.value.fullName.includes(' ')) {
+    showToast("red", "Имя / Фамилия должно содержать имя и фамилию, разделенные пробелом!");
+    return false
+  } else if (!name || name.length < 2) {
+    showToast("red", "Имя должно содержать как минимум 2 буквы!");
+    return false
+  } else if (!surname || surname.length < 2) {
+    showToast("red", "Фамилия должна содержать как минимум 2 буквы!");
+    return false
+  }
+
+  // Number validation
+  if (registerData.value.phoneNumber[0] !== '+') {
+    showToast("red", "Номер должен начатся с '+'!")
+    return false
+  } else if (registerData.value.phoneNumber.length !== 13 || !/^\+\d{12}$/.test(registerData.value.phoneNumber)) {
+    showToast("red", "Номер должен состоять из 13 символов: + и 12 цифр")
+    return false
+  }
+  
+  // Email validation
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(registerData.value.email)) {
+    showToast("red", "Введённый мейл недействительный!")
+    return false
+  }
+
+  // Parent number validation
+  if (registerData.value.parentPhoneNumber[0] !== '+') {
+    showToast("red", "Номер родителя должен начатся с '+'!")
+    return false
+  } else if (registerData.value.parentPhoneNumber.length !== 13 || !/^\+\d{12}$/.test(registerData.value.parentPhoneNumber)) {
+    showToast("red", "Номер родителя должен состоять из 13 символов: + и 12 цифр")
+    return false
+  } else if (registerData.value.parentPhoneNumber === registerData.value.phoneNumber) {
+    showToast("red", "Номер родителя не должен быть одинаковым с вашим номером!")
+    return false
+  }
+
+  return true
+}
+
+async function registerToExam() {
+  if (!isAuthenticated.value) { // User is not authenticated
+    const isValid = await validateData()
+    if (!isValid)
+      return
+  }
+  // LONGTODO Sends API request directly using cookies (or Pinia store)
+  // NOTE Does it take user ID or JWT token to register it?
+  // NOTE What about the exam?
+  // Registration successful
+  // if (await api.post('/registerToExam', id)) {
+  //   showToast('green', 'Вы успешно зарегистрировались на экзамен!')
+  // } else {
+  //   showToast('red', 'Произошла ошибка! Попробуйте позже!')
+  // }
 }
 </script>
 

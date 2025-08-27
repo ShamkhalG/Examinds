@@ -59,9 +59,9 @@
                 </td>
                 <td class="py-2 border-b border-white">{{ exam.result }}</td>
                 <td class="py-2 pl-6 border-b border-white">
-                  <!-- FIXME Button function should change depending on whether the user
+                  <!-- DONE Button function should change depending on whether the user
                   wrote the exam, or still waiting for it -->
-                  <RouterLink :to="'/exam/' + exam.link" class="underline text-[#009EFF]">
+                  <RouterLink v-if="exam.status === 'Результаты готовы'" :to="'/exam/' + exam.link" class="underline text-[#009EFF]">
                     Разбор
                   </RouterLink>
                 </td>
@@ -87,73 +87,70 @@
   </div>
 </template>
 
-<script>
-// TODO Convert to script setup
+<script setup>
+// import api from '@/api'
 import PersonalData from './profile/PersonalData.vue'
+import { computed } from 'vue'
 
-export default {
-  name: 'ProfileView',
-  components: {
-    PersonalData,
-  },
-  data() {
-    return {
-      screenWidth: window.innerWidth,
-      personalData: { // LONGTODO Retrieving data from cookies or from the database
-        name: "SG",
-        surname: "SGovich",
-        email: "shamkhalguliyev83@gmail.com",
-        phonenumber: "+994514982421",
-        parentnumber: "+994704982121"
-      },
-      mockExams: [ // LONGTODO Retrieving exams from the database
-        {
-          id: 1,
-          name: "Пробник Август 2025",
-          status: "Результаты готовы",
-          result: "82/100",
-          link: "aug2025" // NOTE Maybe random strings for the link would be better
-        },
-        {
-          id: 2,
-          name: "Пробник Сентябрь 2025",
-          status: "Ожидание результатов",
-          result: "-",
-          link: "sept2025"
-        },
-        {
-          id: 3,
-          name: "Пробник Октябрь 2025",
-          status: "Ожидание начало",
-          result: "-",
-          link: "oct2025"
-        },
-        {
-          id: 4,
-          name: "Пробник Ноябрь 2025",
-          status: "Отменено",
-          result: "-",
-          link: "nov2025"
-        },
-      ],
-      statusColors: {
-        "Ожидание начало": "#FF9508",
-        "Ожидание результатов": "yellow",
-        "Результаты готовы": "#39D600",
-        "Отменено": "#FF2B00"
-      }
-    }
-  },
-  computed: {
-    hiddenEmail() {
-      let emailParts = this.personalData.email.split('@')
-      let [emailName, domain] = emailParts
-      let firstChars = emailName.slice(0, 2)
-      const lastChars = emailName.slice(-2)
-      firstChars = firstChars.padEnd(emailName.length - 2, '*')
-      firstChars = firstChars.concat(lastChars + "@" + domain)
-      return firstChars
-    }
-  }
+// LONGTODO Retrieving data from cookies or from the database
+// NOTE Is it really from cookies or we have to send a request to backend every time the user
+// comes back?
+// import { useAuthStore } from '@/stores/auth'
+// const auth = useAuthStore()
+// const personalData = computed(() => auth.user)
+
+// Data
+const personalData = {
+  name: "SG",
+  surname: "SGovich",
+  email: "shamkhalguliyev83@gmail.com",
+  phonenumber: "+994514982421",
+  parentnumber: "+994704982121"
 }
+// LONGTODO Retrieving exams from the database
+// const exams = api.get('/getExams')
+const mockExams = [
+  {
+    id: 1,
+    name: "Пробник Август 2025",
+    status: "Результаты готовы",
+    result: "82/100",
+    link: "aug2025" // NOTE Maybe random strings for the link would be better
+  },
+  {
+    id: 2,
+    name: "Пробник Сентябрь 2025",
+    status: "Ожидание результатов",
+    result: "-",
+    link: "sept2025"
+  },
+  {
+    id: 3,
+    name: "Пробник Октябрь 2025",
+    status: "Ожидание начало",
+    result: "-",
+    link: "oct2025"
+  },
+  {
+    id: 4,
+    name: "Пробник Ноябрь 2025",
+    status: "Отменено",
+    result: "-",
+    link: "nov2025"
+  },
+]
+const statusColors = {
+  "Ожидание начало": "#FF9508",
+  "Ожидание результатов": "yellow",
+  "Результаты готовы": "#39D600",
+  "Отменено": "#FF2B00"
+}
+const hiddenEmail = computed(() => {
+  let [emailName, domain] = personalData.email.split('@')
+  let firstChars = emailName.slice(0, 2)
+  const lastChars = emailName.slice(-2)
+  firstChars = firstChars.padEnd(emailName.length - 2, '*')
+  firstChars = firstChars.concat(lastChars + "@" + domain)
+  return firstChars
+})
 </script>
