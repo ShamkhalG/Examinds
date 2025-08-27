@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#222222] h-[calc(100vh-64px)] flex flex-col lg:flex-row lg:justify-center items-center">
+  <div class="bg-[#222222] min-h-screen pt-16 flex flex-col lg:flex-row lg:justify-center items-center">
     <img src="@/assets/images/login/login_bulb.png" 
       class="w-[300px] lg:w-[600px] lg:ml-[-12rem] mb-[-2rem]" />
     <div class="flex flex-col items-center">
@@ -8,9 +8,3 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'NotFoundView'
-}
-</script>

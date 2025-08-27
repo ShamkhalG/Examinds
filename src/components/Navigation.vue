@@ -2,10 +2,10 @@
 <template>
   <div class="w-full bg-[#222222] absolute top-0 left-0 z-50 flex justify-center">
     <div class="flex flex-row items-center h-16 pt-4 px-4 w-full lg:w-[80%]"
-      :class="authenticated ? 'justify-around' : 'justify-between'"
+      :class="isAuthenticated ? 'justify-around' : 'justify-between'"
     >
       <!-- Главная -->
-      <div v-if="!authenticated" class="flex flex-col items-center">
+      <div v-if="!isAuthenticated" class="flex flex-col items-center">
         <RouterLink to="/" :class="['text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 lg:text-[1rem] lg:mb-0',
           activeIndex === 0 ? 'text-minds' : 'text-white']" 
           @click="setActive(0)">
@@ -18,7 +18,7 @@
       </div>
 
       <!-- О нас -->
-      <div v-if="!authenticated" class="flex flex-col items-center text-center lg:text-start">
+      <div v-if="!isAuthenticated" class="flex flex-col items-center text-center lg:text-start">
         <RouterLink :to="{ path: '/', hash: '#whyUs'}" 
           :class="[
             'text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 lg:text-[1rem] lg:mb-0',
@@ -35,7 +35,7 @@
       </div>
 
       <!-- Преподаватели -->
-      <div v-if="!authenticated" class="flex flex-col items-center">
+      <div v-if="!isAuthenticated" class="flex flex-col items-center">
         <RouterLink :to="{ path: '/', hash: '#teachers'}" 
           :class="[
             'text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 lg:text-[1rem] lg:mb-0',
@@ -68,7 +68,7 @@
       </div>
 
       <!-- Personal cabinet -->
-      <div v-if="authenticated" class="flex flex-col items-center">
+      <div v-if="isAuthenticated" class="flex flex-col items-center">
         <RouterLink to="/profile" :class="[
             'text-[0.6rem] border-none cursor-pointer font-interRegular mb-2 lg:text-[1rem] lg:mb-0',
             activeIndex === 6 ? 'text-minds' : 'text-white'
@@ -84,7 +84,7 @@
       </div>
 
       <!-- Log out -->
-      <div v-if="authenticated" class="flex flex-col items-center">
+      <div v-if="isAuthenticated" class="flex flex-col items-center">
         <RouterLink to="/" @click="logout" 
           class="flex flex-col items-center justify-center border-2 
           border-minds rounded-[10px] bg-[#d9d9d94c]
@@ -98,7 +98,7 @@
       </div>
 
       <!-- ВОЙТИ -->
-      <div v-if="!authenticated" class="flex flex-col items-center">
+      <div v-if="!isAuthenticated" class="flex flex-col items-center">
         <RouterLink to="/login" @click="setActive(4)" 
           class="flex flex-col items-center justify-center border-2 
           border-minds rounded-[10px] bg-[#d9d9d94c]
@@ -125,7 +125,7 @@ const route = useRoute()
 const router = useRouter()
 
 const activeIndex = ref(route.path === '/' ? 0 : -1)
-const authenticated = computed(() => auth.isAuthenticated)
+const isAuthenticated = computed(() => auth.isAuthenticated)
 
 // Methods
 function routeToIndex(path) {
