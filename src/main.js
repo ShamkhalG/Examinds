@@ -1,33 +1,20 @@
 import { createApp } from 'vue'
-import { createWebHistory, createRouter } from 'vue-router'
+import { createPinia } from 'pinia'
+import { useAuthStore } from './stores/auth'
+import { router } from './router'
 
 import App from './App.vue'
-import HomeView from './components/HomeView.vue'
-import NotFoundView from './components/NotFoundView.vue'
-import LoginView from './components/LoginView.vue'
-import ProfileView from './components/ProfileView.vue'
-import RegisterExamView from './components/RegisterExamView.vue'
-
 import '@/assets/styles/tailwind.css'
 import '@/assets/styles/fonts.css'
 
-const routes = [
-  { path: '/', component: HomeView },
-  { path: '/:pathMatch(.*)*', component: NotFoundView },
-  { path: '/login', component: LoginView },
-  { path: '/profile', component: ProfileView },
-  { path: '/exams', component: RegisterExamView }
-]
+const app = createApp(App)
+const pinia = createPinia()
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-  scrollBehavior(to) {
-    if (to.hash) { // Checks if a specific hash (div ID) is present
-      return { el: to.hash, behavior: 'smooth' } // Scrolls to the specified section
-    }
-    return { top: 0 } // Default scroll behavior (scroll to top of the page)
-  },
+app.use(pinia)
+app.use(router)
+
+// Calls init() before mounting the app
+const auth = useAuthStore()
+auth.init().finally(() => {
+  app.mount('#app')
 })
-
-createApp(App).use(router).mount('#app')

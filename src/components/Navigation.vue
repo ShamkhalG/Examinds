@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="w-full bg-[#222222] absolute top-0 left-0 z-50 flex justify-center">
     <div class="flex flex-row items-center h-16 pt-4 px-4 w-full lg:w-[80%]"
@@ -113,46 +114,39 @@
   </div>
 </template>
 
-<script>
-import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+<script setup>
+import { ref, computed, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
-export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: "Navigation",
-  data() {
-    return {
-      screenWidth: window.innerWidth,
-      authenticated: true
-    }
-  },
-  methods: {
-    setActive(index) {
-      this.activeIndex = index;
-    },
-    logout() {
-      // LONGTODO Send an API request to log out
-      // TODO Change this value to false in Vuex
-      this.authenticated = false;
-    }
-  },
-  setup() {
-    const route = useRoute()
-    let activeIndex = ref(route.path === '/' ? 0 : -1)
+// Data
+const auth = useAuthStore()
+const route = useRoute()
+const router = useRouter()
 
-    const routeToIndex = (path) => {
-      if (path === '/') return 0
-      if (path === '/exams') return 3
-      if (path === '/profile') return 6
-      
-      return -1
-    }
+const activeIndex = ref(route.path === '/' ? 0 : -1)
+const authenticated = computed(() => auth.isAuthenticated)
 
-    watch(() => route.path, (newPath) => {
-      activeIndex.value = routeToIndex(newPath)
-    }, { immediate: true })
-
-    return { activeIndex }
-  }
+// Methods
+function routeToIndex(path) {
+  if (path === '/') return 0
+  if (path === '/exams') return 3
+  if (path === '/profile') return 6
+  
+  return -1
 }
+
+function setActive(index) {
+  activeIndex.value = index
+}
+
+function logout() {
+  auth.logout()
+  router.push('/login')
+}
+
+// Watcher
+watch(() => route.path, (newPath) => {
+  activeIndex.value = routeToIndex(newPath)
+}, { immediate: true })
 </script>

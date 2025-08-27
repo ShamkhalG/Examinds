@@ -155,7 +155,8 @@
 </template>
 
 <script>
-import { showToast } from '@/utils/utils'
+// TODO Convert to script setup
+import { showToast } from '@/utils/notifications'
 
 export default {
   name: 'RegisterExamView.vue',

@@ -58,7 +58,7 @@ import four_bg_pc from "../../assets/backgrounds/why_us/04_bg_pc.png"
 import five_bg from "../../assets/backgrounds/why_us/05_bg.png"
 import five_bg_pc from "../../assets/backgrounds/why_us/05_bg_pc.png"
 
-import { showToast } from '@/utils/utils.js';
+import { showToast } from '@/utils/notifications.js';
 
 export default {
   name: "WhyUs",

@@ -83,65 +83,71 @@
   </div>
 </template>
 
-<script>
-import { showToast } from '@/utils/utils';
+<script setup>
+import { ref } from 'vue'
+import { showToast } from '@/utils/notifications'
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
 
-export default {
-  name: 'LoginView',
-  data() {
-    return {
-      screenWidth: window.innerWidth,
-      loginData: {
-        email: '',
-        password: '',
-        rememberMe: false
-      }
-    };
-  },
-  methods: {
-    async validateData() {
-      // Required rule validation
-      if (Object.values(this.loginData).some(value => value === '' || value === null)) {
-        showToast("red", "Все поля должны быть заполнены!")
-        return false
-      }
-      
-      // Email validation
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.loginData.email)) {
-        showToast("red", "Введённый мейл недействительный!")
-        return false
-      }
+// Data
+const auth = useAuthStore()
+const router = useRouter()
 
-      return true;
-    },
+const screenWidth = window.innerWidth
+const loginData = ref({
+  email: '',
+  password: '',
+  rememberMe: false
+})
 
-    async login() {
-      const isValid = await this.validateData();
-      if (isValid) {
-        // LONGTODO Sending API request for login
+// Methods
+// TODO Move this to utils
+async function validateData() {
+  // Required rule validation
+  if (Object.values(loginData).some(value => value === '' || value === null)) {
+    showToast("red", "Все поля должны быть заполнены!")
+    return false
+  }
+  
+  // Email validation
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginData.value.email)) {
+    showToast("red", "Введённый мейл недействительный!")
+    return false
+  }
 
-        // Login successful
-        showToast("red", "Произошла ошибка! Пожалуйста, попробуйте позже.")
-        // showToast("green", "Вы успешно авторизовались!")
-      }
-    },
+  return true
+}
 
-    async reinitializePassword() {
-      if (this.loginData.email === "") {
-        showToast("red", "Введите ваш мейл!")
-        return
-      }
-      
-      // Email validation
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.loginData.email)) {
-        showToast("red", "Введённый мейл недействительный!")
-        return
-      }
-
-      // LONGTODO Sending API request for password reinitialization
+async function login() {
+  const isValid = await validateData()
+  if (isValid) {
+    if (await auth.login(loginData)) {// Login successful
+      showToast("green", "Вы успешно авторизовались!")
+      router.push("/profile")
+    } else { // Login failed
       showToast("red", "Произошла ошибка! Пожалуйста, попробуйте позже.")
-      // showToast("blue", "Инструкции по сбросу пароля отправлены на вашу почту.")
     }
   }
+}
+
+async function reinitializePassword() {
+  // Email required validation
+  if (loginData.value.email === "") {
+    showToast("red", "Введите ваш мейл!")
+    return
+  }
+  
+  // Email validation
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginData.value.email)) {
+    showToast("red", "Введённый мейл недействительный!")
+    return
+  }
+
+  // LONGTODO Sending API request for password reinitialization
+  // if (await auth.login(loginData)) {// Login successful
+  //   showToast("blue", "Инструкции по сбросу пароля отправлены на вашу почту.")
+  // } else { // Login failed
+  //   showToast("red", "Произошла ошибка! Пожалуйста, попробуйте позже.")
+  // }
 }
 </script>

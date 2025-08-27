@@ -1,7 +1,7 @@
-import Toastify from 'toastify-js';
-import 'toastify-js/src/toastify.css';
+import Toastify from 'toastify-js'
+import 'toastify-js/src/toastify.css'
 
-export function showToast(toastBgColor = "blue", toastMessage = "No text for this toast.") {
+export function showToast(toastBgColor = "blue", toastMessage = "No message for this toast.") {
   Toastify({
     text: toastMessage,
     duration: 5000,
@@ -14,5 +14,5 @@ export function showToast(toastBgColor = "blue", toastMessage = "No text for thi
       borderRadius: '6px',
     },
     stopOnFocus: true,
-  }).showToast();
+  }).showToast()
 }

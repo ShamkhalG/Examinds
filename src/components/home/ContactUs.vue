@@ -93,7 +93,7 @@
 
 <script>
 import axios from 'axios';
-import { showToast } from '@/utils/utils.js';
+import { showToast } from '@/utils/notifications.js';
 
 import registerBgMobile from "../../assets/backgrounds/register_bg.png";
 import registerBgDesktop from "../../assets/backgrounds/register_bg_pc.png";

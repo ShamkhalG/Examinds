@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO Restricting access (Vuex store, authenticated) to ProfileView if not logged in -->
   <div class="flex flex-col relative bg-[#222222] min-h-screen pt-16 pb-4 px-4">
     <div class="flex flex-col lg:flex-row lg:justify-center lg:gap-20 lg:mt-16
       items-center lg:items-start"
@@ -61,7 +60,7 @@
                 <td class="py-2 border-b border-white">{{ exam.result }}</td>
                 <td class="py-2 pl-6 border-b border-white">
                   <!-- FIXME Button function should change depending on whether the user
-                   wrote the exam, or still waiting for it -->
+                  wrote the exam, or still waiting for it -->
                   <RouterLink :to="'/exam/' + exam.link" class="underline text-[#009EFF]">
                     Разбор
                   </RouterLink>
@@ -89,6 +88,7 @@
 </template>
 
 <script>
+// TODO Convert to script setup
 import PersonalData from './profile/PersonalData.vue'
 
 export default {
