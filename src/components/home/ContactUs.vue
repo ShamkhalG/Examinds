@@ -27,7 +27,7 @@
               lg:ml-[0.5rem] lg:mt-[0.4rem] lg:mb-[0.2rem] lg:text-[0.8rem]">
                 Имя/Фамилия
               </p>
-              <input type="text" v-model="registerData.name" 
+              <input type="text" v-model="registerData.fullName" 
                 class="border border-[#D9D9D9] rounded-[4px] 
                 text-[1rem] h-[25px] w-[98%] lg:px-2 lg:rounded-[8px] lg:border-2 lg:w-[96%]" />
             </div>
@@ -38,7 +38,7 @@
               lg:mt-[0.4rem] lg:mb-[0.2rem] lg:text-[0.8rem]">
                 Номер телефона
               </p>
-              <input type="text" v-model="registerData.phonenumber" placeholder="Пример: +994505593259" 
+              <input type="text" v-model="registerData.phoneNumber" placeholder="Пример: +994505593259" 
                 class="border border-[#D9D9D9] rounded-[4px] 
                 text-[1rem] h-[30px] w-[98%] px-2 lg:rounded-[8px] lg:border-2 lg:w-[96%]" />
             </div>
@@ -71,7 +71,7 @@
               lg:mt-[0.4rem] lg:mb-[0.2rem] lg:text-[0.8rem]">
                 Номер телефона Родителя
               </p>
-              <input type="text" v-model="registerData.parentnumber" placeholder="Пример: +994519289282"
+              <input type="text" v-model="registerData.parentNumber" placeholder="Пример: +994519289282"
                 class="border border-[#D9D9D9] rounded-[4px] 
                 text-[1rem] h-[30px] w-[98%] px-2 lg:rounded-[8px] lg:border-2 lg:w-[96%]" /> 
             </div>
@@ -92,9 +92,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import { showToast } from '@/utils/notifications.js'
 import { useAuthStore } from '@/stores/auth'
+import { validateData } from '@/utils/validation'
 
 import registerBgMobile from "../../assets/backgrounds/register_bg.png"
 import registerBgDesktop from "../../assets/backgrounds/register_bg_pc.png"
@@ -102,95 +103,20 @@ import registerBgDesktop from "../../assets/backgrounds/register_bg_pc.png"
 // Data
 const auth = useAuthStore()
 const screenWidth = window.innerWidth
-// TODO Use "reactive" and remove ".value"
-const registerData = ref({
-  name: '',
-  phonenumber: '',
+const registerBg = screenWidth < 1024 ? registerBgMobile : registerBgDesktop
+const registerData = reactive({
+  fullName: '',
+  phoneNumber: '',
   email: '',
   password: '',
-  parentnumber: ''
+  parentNumber: ''
 })
-const registerBg = screenWidth < 1024 ? registerBgMobile : registerBgDesktop
 
 // Methods
-// TODO Move this function to utils
-async function validateData() {
-  // Required rule validation
-  if (Object.values(registerData).some(value => !value)) {
-    showToast("red", "Все поля должны быть заполнены!")
-    return false
-  }
-
-  // Name validation
-  const [name, surname] = registerData.value.name.trim().split(' ');
-  if (!registerData.value.name.includes(' ')) {
-    showToast("red", "Имя / Фамилия должно содержать имя и фамилию, разделенные пробелом!");
-    return false
-  } else if (!name || name.length < 2) {
-    showToast("red", "Имя должно содержать как минимум 2 буквы!");
-    return false
-  } else if (!surname || surname.length < 2) {
-    showToast("red", "Фамилия должна содержать как минимум 2 буквы!");
-    return false
-  }
-
-  // Number validation
-  if (registerData.value.phonenumber[0] !== '+') {
-    showToast("red", "Номер должен начатся с '+'!")
-    return false
-  } else if (registerData.value.phonenumber.length !== 13 || !/^\+\d{12}$/.test(registerData.value.phonenumber)) {
-    showToast("red", "Номер должен состоять из 13 символов: + и 12 цифр")
-    return false
-  }
-  
-  // Email validation
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(registerData.value.email)) {
-    showToast("red", "Введённый мейл недействительный!")
-    return false
-  }
-
-  // Password validation
-  const commonPasswords = ["123456", "password", "qwerty", "111111"];
-  if (registerData.value.password.length < 10) { // Length check
-    showToast("red", "Пароль должен состоять как минимум из 10 символов!")
-    return false
-  } else if (!/[A-Z]/.test(registerData.value.password)) { // Uppercase letter check
-    showToast("red", "Пароль должен содержать хотя бы одну заглавную букву (A-Z)!");
-    return false
-  } else if (!/[a-z]/.test(registerData.value.password)) { // Lowercase letter check
-    showToast("red", "Пароль должен содержать хотя бы одну строчную букву (a-z)!");
-    return false
-  } else if (!/[0-9]/.test(registerData.value.password)) { // Number check
-    showToast("red", "Пароль должен содержать хотя бы одну цифру (0-9)!");
-    return false
-  } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(registerData.value.password)) { // Special character check
-    showToast("red", "Пароль должен содержать хотя бы один специальный символ (например, !@#$%^&*)!");
-    return false
-  } else if (/(\d)\1{2}/.test(registerData.value.password)) { // 3 consecutive numbers check
-    showToast("red", "Пароль не должен содержать три одинаковых подряд идущих цифры!")
-    return false
-  } else if (commonPasswords.includes(registerData.value.password)) { // Common passwords check
-    showToast("red", "Пароль слишком простой, выберите более сложный!");
-    return false
-  }
-
-  // Parent number validation
-  if (registerData.value.parentnumber[0] !== '+') {
-    showToast("red", "Номер родителя должен начатся с '+'!")
-    return false
-  } else if (registerData.value.parentnumber.length !== 13 || !/^\+\d{12}$/.test(registerData.value.parentnumber)) {
-    showToast("red", "Номер родителя должен состоять из 13 символов: + и 12 цифр")
-    return false
-  } else if (registerData.value.parentnumber === registerData.value.phonenumber) {
-    showToast("red", "Номер родителя не должен быть одинаковым с вашим номером!")
-    return false
-  }
-
-  return true
-}
-
 async function signUp() {
-  const isValid = await validateData();
+  const isValid = await validateData(registerData, ['fullName', 'email', 
+  'password', 'phoneNumber', 'parentNumber'])
+  
   if (isValid) {
     if (await auth.login(registerData)) {// Signup successful
       showToast("green", "Вы успешно зарегистрировались на наш сайт!")

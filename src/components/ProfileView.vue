@@ -59,8 +59,6 @@
                 </td>
                 <td class="py-2 border-b border-white">{{ exam.result }}</td>
                 <td class="py-2 pl-6 border-b border-white">
-                  <!-- DONE Button function should change depending on whether the user
-                  wrote the exam, or still waiting for it -->
                   <RouterLink v-if="exam.status === 'Результаты готовы'" :to="'/exam/' + exam.link" class="underline text-[#009EFF]">
                     Разбор
                   </RouterLink>

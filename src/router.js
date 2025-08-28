@@ -11,7 +11,7 @@ const routes = [
   { path: '/', component: HomeView },
   { path: '/:pathMatch(.*)*', component: NotFoundView },
   { path: '/login', component: LoginView },
-  // TODO !!! Return this !!!
+  // LONGTODO !!! Return this !!!
   // { path: '/profile', meta: { requiresAuth: true }, component: ProfileView },
   { path: '/profile', component: ProfileView },
   { path: '/exams', component: RegisterExamView }

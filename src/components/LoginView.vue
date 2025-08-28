@@ -84,43 +84,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import { showToast } from '@/utils/notifications'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
+import { validateData } from '@/utils/validation'
 
 // Data
 const auth = useAuthStore()
 const router = useRouter()
 
 const screenWidth = window.innerWidth
-// TODO Use "reactive" and remove ".value"
-const loginData = ref({
+const loginData = reactive({
   email: '',
   password: '',
   rememberMe: false
 })
 
 // Methods
-// TODO Move this to utils
-async function validateData() {
-  // Required rule validation
-  if (Object.values(loginData).some(value => value === '' || value === null)) {
-    showToast("red", "Все поля должны быть заполнены!")
-    return false
-  }
-  
-  // Email validation
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginData.value.email)) {
-    showToast("red", "Введённый мейл недействительный!")
-    return false
-  }
-
-  return true
-}
-
 async function login() {
-  const isValid = await validateData()
+  const isValid = await validateData(loginData, ['email'])
   if (isValid) {
     if (await auth.login(loginData)) {// Login successful
       showToast("green", "Вы успешно авторизовались!")
@@ -133,22 +116,20 @@ async function login() {
 
 async function reinitializePassword() {
   // Email required validation
-  if (loginData.value.email === "") {
+  if (loginData.email === "") {
     showToast("red", "Введите ваш мейл!")
     return
   }
   
   // Email validation
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginData.value.email)) {
-    showToast("red", "Введённый мейл недействительный!")
-    return
+  if (await validateData(loginData, ['email'])) {
+    // LONGTODO Sending API request for password reinitialization
+    // if (await auth.login(loginData)) {// Login successful
+    //   showToast("blue", "Инструкции по сбросу пароля отправлены на вашу почту.")
+    // } else { // Login failed
+    //   showToast("red", "Произошла ошибка! Пожалуйста, попробуйте позже.")
+    // }
   }
 
-  // LONGTODO Sending API request for password reinitialization
-  // if (await auth.login(loginData)) {// Login successful
-  //   showToast("blue", "Инструкции по сбросу пароля отправлены на вашу почту.")
-  // } else { // Login failed
-  //   showToast("red", "Произошла ошибка! Пожалуйста, попробуйте позже.")
-  // }
 }
 </script>

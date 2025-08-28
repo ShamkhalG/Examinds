@@ -134,8 +134,8 @@
               />
 
               <!-- Parent phone number -->
-              <input placeholder="Номер телефона родителя" v-model="registerData.parentPhoneNumber"
-                name="parentPhoneNumber"
+              <input placeholder="Номер телефона родителя" v-model="registerData.parentNumber"
+                name="parentNumber"
                 class="bg-mindsBlack w-full px-4 py-2 rounded-lg bg-[#222222] 
                 text-white border border-minds focus:outline-none"
               />
@@ -156,21 +156,20 @@
 
 <script setup>
 // import api from '@/api'
-import { ref, computed } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
-import { showToast } from '@/utils/notifications'
+import { validateData } from '@/utils/validation'
 
 // Data
 const auth = useAuthStore()
 const isAuthenticated = computed(() => auth.isAuthenticated)
 const open = ref(false)
 const selectedExam = ref(null)
-// TODO Use "reactive" and remove ".value"
-const registerData = ref({
+const registerData = reactive({
   fullName: '',
   email: '',
   phoneNumber: '',
-  parentPhoneNumber: ''
+  parentNumber: ''
 })
 
 // LONGTODO Retrieving exams from the database
@@ -240,60 +239,9 @@ function openModal(exam) {
 
 function close() { open.value = false }
 
-// TODO Move this function
-async function validateData() {
-  // Required rule validation
-  if (Object.values(registerData).some(value => value === '' || value === null)) {
-    showToast("red", "Все поля должны быть заполнены!")
-    return false
-  }
-  
-  // Name validation
-  const [name, surname] = registerData.value.fullName.trim().split(' ');
-  if (!registerData.value.fullName.includes(' ')) {
-    showToast("red", "Имя / Фамилия должно содержать имя и фамилию, разделенные пробелом!");
-    return false
-  } else if (!name || name.length < 2) {
-    showToast("red", "Имя должно содержать как минимум 2 буквы!");
-    return false
-  } else if (!surname || surname.length < 2) {
-    showToast("red", "Фамилия должна содержать как минимум 2 буквы!");
-    return false
-  }
-
-  // Number validation
-  if (registerData.value.phoneNumber[0] !== '+') {
-    showToast("red", "Номер должен начатся с '+'!")
-    return false
-  } else if (registerData.value.phoneNumber.length !== 13 || !/^\+\d{12}$/.test(registerData.value.phoneNumber)) {
-    showToast("red", "Номер должен состоять из 13 символов: + и 12 цифр")
-    return false
-  }
-  
-  // Email validation
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(registerData.value.email)) {
-    showToast("red", "Введённый мейл недействительный!")
-    return false
-  }
-
-  // Parent number validation
-  if (registerData.value.parentPhoneNumber[0] !== '+') {
-    showToast("red", "Номер родителя должен начатся с '+'!")
-    return false
-  } else if (registerData.value.parentPhoneNumber.length !== 13 || !/^\+\d{12}$/.test(registerData.value.parentPhoneNumber)) {
-    showToast("red", "Номер родителя должен состоять из 13 символов: + и 12 цифр")
-    return false
-  } else if (registerData.value.parentPhoneNumber === registerData.value.phoneNumber) {
-    showToast("red", "Номер родителя не должен быть одинаковым с вашим номером!")
-    return false
-  }
-
-  return true
-}
-
 async function registerToExam() {
   if (!isAuthenticated.value) { // User is not authenticated
-    const isValid = await validateData()
+    const isValid = await validateData(registerData, ['fullName', 'email', 'phoneNumber', 'parentNumber'])
     if (!isValid)
       return
   }
