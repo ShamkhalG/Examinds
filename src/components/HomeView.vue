@@ -13,29 +13,15 @@
   </div>
 </template>
 
-<script>
-import EMBlock from './home/EMBlock.vue';
-import EduInfo from './home/EduInfo.vue';
-import WhyUs from './home/WhyUs.vue';
-import Teachers from './home/Teachers.vue';
-import Bacheliers from './home/Bacheliers.vue';
-import DiscoveryWeek from './home/DiscoveryWeek.vue';
-import Practice from './home/Practice.vue';
-import ContactUs from './home/ContactUs.vue';
-
-export default {
-  name: 'HomeView',
-  components: {
-    EMBlock,
-    EduInfo,
-    WhyUs,
-    Teachers,
-    Bacheliers,
-    DiscoveryWeek,
-    Practice,
-    ContactUs
-  }
-}
+<script setup>
+import EMBlock from './home/EMBlock.vue'
+import EduInfo from './home/EduInfo.vue'
+import WhyUs from './home/WhyUs.vue'
+import Teachers from './home/Teachers.vue'
+import Bacheliers from './home/Bacheliers.vue'
+import DiscoveryWeek from './home/DiscoveryWeek.vue'
+import Practice from './home/Practice.vue'
+import ContactUs from './home/ContactUs.vue'
 </script>
 
 <style>

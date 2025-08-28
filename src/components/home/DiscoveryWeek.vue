@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import image_1 from "../../assets/images/discovery_week/image_1.png";
 import image_1_pc from "../../assets/images/discovery_week/image_1_pc.png";
 import image_2 from "../../assets/images/discovery_week/image_2.png";
@@ -20,23 +20,16 @@ import image_2_pc from "../../assets/images/discovery_week/image_2_pc.png";
 import image_3 from "../../assets/images/discovery_week/image_3.png";
 import image_3_pc from "../../assets/images/discovery_week/image_3_pc.png";
 
-export default {
-  name: "DiscoveryWeek",
-  data() {
-    return {
-      screenWidth: window.innerWidth,
-      images: [
-        {
-          img: window.innerWidth < 1024 ? image_1 : image_1_pc
-        },
-        {
-          img: window.innerWidth < 1024 ? image_2 : image_2_pc
-        },
-        {
-          img: window.innerWidth < 1024 ? image_3 : image_3_pc
-        }
-      ]
-    }
+const screenWidth = window.innerWidth
+const images = [
+  {
+    img: screenWidth < 1024 ? image_1 : image_1_pc
+  },
+  {
+    img: screenWidth < 1024 ? image_2 : image_2_pc
+  },
+  {
+    img: screenWidth < 1024 ? image_3 : image_3_pc
   }
-};
+]
 </script>

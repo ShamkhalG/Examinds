@@ -57,19 +57,12 @@
   </div>
 </template>
 
-<script>
-export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: "Practice",
-  data() {
-    return {
-      screenWidth: window.innerWidth,
-      curr_index: 0,
-      left_arrow_enabled: new URL("@/assets/images/practice/left_arrow_enabled.png", import.meta.url).href,
-      left_arrow_disabled: new URL("@/assets/images/practice/left_arrow_disabled.png", import.meta.url).href,
-      right_arrow_enabled: new URL("@/assets/images/practice/right_arrow_enabled.png", import.meta.url).href,
-      right_arrow_disabled: new URL("@/assets/images/practice/right_arrow_disabled.png", import.meta.url).href
-    }
-  }
-};
+<script setup>
+import { ref } from 'vue'
+
+const curr_index = ref(0)
+const left_arrow_enabled = new URL("@/assets/images/practice/left_arrow_enabled.png", import.meta.url).href
+const left_arrow_disabled = new URL("@/assets/images/practice/left_arrow_disabled.png", import.meta.url).href
+const right_arrow_enabled = new URL("@/assets/images/practice/right_arrow_enabled.png", import.meta.url).href
+const right_arrow_disabled = new URL("@/assets/images/practice/right_arrow_disabled.png", import.meta.url).href
 </script>

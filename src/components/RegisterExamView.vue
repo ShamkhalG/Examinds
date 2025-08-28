@@ -159,6 +159,7 @@
 import { ref, reactive, computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { validateData } from '@/utils/validation'
+import { showToast } from '@/utils/notifications'
 
 // Data
 const auth = useAuthStore()
@@ -252,7 +253,7 @@ async function registerToExam() {
   // if (await api.post('/registerToExam', id)) {
   //   showToast('green', 'Вы успешно зарегистрировались на экзамен!')
   // } else {
-  //   showToast('red', 'Произошла ошибка! Попробуйте позже!')
+  showToast('red', 'Произошла ошибка! Попробуйте позже!')
   // }
 }
 </script>

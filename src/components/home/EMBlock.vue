@@ -55,51 +55,44 @@
   </div>
 </template>
 
-<script>
-import bulbMobile from "../../assets/images/bulb.png";
-import bulbDesktop from "../../assets/images/bulb_pc.png";
-import dustMobile from "../../assets/images/dust.png";
-import dustDesktop from "../../assets/images/dust_pc.png";
+<script setup>
+import bulbMobile from "../../assets/images/bulb.png"
+import bulbDesktop from "../../assets/images/bulb_pc.png"
+import dustMobile from "../../assets/images/dust.png"
+import dustDesktop from "../../assets/images/dust_pc.png"
 
-export default {
-  name: "EMBlock",
-  data() {
-    return {
-      screenWidth: window.innerWidth,
-      bulbPath: window.innerWidth < 1024 ? bulbMobile : bulbDesktop,
-      dustPath: window.innerWidth < 1024 ? dustMobile : dustDesktop,
-      achievements: [
-        { // 6 лет
-          class: "absolute top-[48px] left-[25px] lg:top-[107px] lg:left-[70px]",
-          bigText: "6 лет",
-          smallText: window.innerWidth < 1024 ? "Готовим к экзамену" : "Профессионально <br /> готовим к экзаменам",
-        },
-        { // 20
-          class: "absolute top-[48px] right-[30px] lg:top-[110px] lg:right-[85px]",
-          bigText: "20",
-          smallText: "Стобалльников",
-        },
-        { // 600+
-          class: "absolute top-[105px] left-[55px] lg:top-[260px] lg:left-[190px]",
-          bigText: "600+",
-          smallText: "Выпускников",
-        },
-        { // 70+
-          class: "absolute top-[105px] right-[58px] lg:top-[253px] lg:right-[110px]",
-          bigText: "70+",
-          smallText: window.innerWidth < 1024 ? "Средний балл" : "Средний балл учеников",
-        }
-      ]
-    }
+import { useRouter } from "vue-router"
+
+const router = useRouter()
+const screenWidth = window.innerWidth
+const bulbPath = screenWidth < 1024 ? bulbMobile : bulbDesktop
+const dustPath = screenWidth < 1024 ? dustMobile : dustDesktop
+
+const achievements = [
+  { // 6 лет
+    class: "absolute top-[48px] left-[25px] lg:top-[107px] lg:left-[70px]",
+    bigText: "6 лет",
+    smallText: screenWidth < 1024 ? "Готовим к экзамену" : "Профессионально <br /> готовим к экзаменам",
   },
-  methods: {
-    toRegister() {
-      const element = document.getElementById('registerForm');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+  { // 20
+    class: "absolute top-[48px] right-[30px] lg:top-[110px] lg:right-[85px]",
+    bigText: "20",
+    smallText: "Стобалльников",
+  },
+  { // 600+
+    class: "absolute top-[105px] left-[55px] lg:top-[260px] lg:left-[190px]",
+    bigText: "600+",
+    smallText: "Выпускников",
+  },
+  { // 70+
+    class: "absolute top-[105px] right-[58px] lg:top-[253px] lg:right-[110px]",
+    bigText: "70+",
+    smallText: screenWidth < 1024 ? "Средний балл" : "Средний балл учеников",
   }
+]
+
+function toRegister() {
+  router.push({ path: '/', hash: '#registerForm' })
 }
 </script>
 
@@ -134,10 +127,5 @@ export default {
   border: none;
   box-shadow: 0px 4px 0px #046b26,
               inset 0px 2.18px 11.06px rgba(255, 255, 255, 0.25);
-}
-
-.registerButton:active {
-  box-shadow: 0px 0px 0px #046b26;
-  transform: translate(-50%, -48%);
 }
 </style>

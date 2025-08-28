@@ -50,7 +50,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import bacheliers_bg from "../../assets/backgrounds/bacheliers_bg.png"
 import bacheliers_bg_pc from "../../assets/backgrounds/bacheliers_bg_pc.png"
 import result_01 from "../../assets/images/bacheliers/result_01.png"
@@ -66,43 +66,26 @@ import result_05_pc from "../../assets/images/bacheliers/result_05_pc.png"
 import result_06 from "../../assets/images/bacheliers/result_06.png"
 import result_06_pc from "../../assets/images/bacheliers/result_06_pc.png"
 
-export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: "Bacheliers",
-  data() {
-    return {
-      screenWidth: window.innerWidth,
-      bacheliers_bg: bacheliers_bg,
-      bacheliers_bg_pc: bacheliers_bg_pc,
-      curr_index: 0,
-      student_results: [
-        result_01,
-        result_02,
-        result_03,
-        result_04,
-        result_05,
-        result_06
-      ],
-      student_results_pc: [
-        result_01_pc,
-        result_02_pc,
-        result_03_pc,
-        result_04_pc,
-        result_05_pc,
-        result_06_pc,
-      ],
-      left_arrow_enabled: new URL("../../assets/images/bacheliers/left_arrow_enabled.png", import.meta.url).href,
-      left_arrow_disabled: new URL("../../assets/images/bacheliers/left_arrow_disabled.png", import.meta.url).href,
-      right_arrow_enabled: new URL("../../assets/images/bacheliers/right_arrow_enabled.png", import.meta.url).href,
-      right_arrow_disabled: new URL("../../assets/images/bacheliers/right_arrow_disabled.png", import.meta.url).href
-    }
-  },
-  computed: {
-    currentImage() {
-      return this.screenWidth < 1024
-        ? this.student_results[this.curr_index] // Mobile images
-        : this.student_results_pc[this.curr_index] // Desktop images
-    }
-  }
-}
+import { ref, computed } from 'vue'
+
+const screenWidth = window.innerWidth
+const curr_index = ref(0)
+
+// Images
+const student_results = [
+  result_01, result_02, result_03, result_04, result_05, result_06
+]
+const student_results_pc = [
+  result_01_pc, result_02_pc, result_03_pc, result_04_pc, result_05_pc, result_06_pc
+]
+const left_arrow_enabled  = new URL("../../assets/images/bacheliers/left_arrow_enabled.png", import.meta.url).href
+const left_arrow_disabled = new URL("../../assets/images/bacheliers/left_arrow_disabled.png", import.meta.url).href
+const right_arrow_enabled = new URL("../../assets/images/bacheliers/right_arrow_enabled.png", import.meta.url).href
+const right_arrow_disabled= new URL("../../assets/images/bacheliers/right_arrow_disabled.png", import.meta.url).href
+
+const currentImage = computed(() =>
+  screenWidth < 1024
+    ? student_results[curr_index.value]      // Mobile images
+    : student_results_pc[curr_index.value]   // Desktop images
+)
 </script>

@@ -2,7 +2,7 @@ import { showToast } from "./notifications"
 
 export async function validateData(formData, rules) {
   // Required rule validation
-  if (Object.values(formData).some(value => !value || value === null)) {
+  if (Object.values(formData).some(value => value === '' || value === null || value === undefined)) {
     showToast("red", "Все поля должны быть заполнены!")
     return false
   }

@@ -31,77 +31,63 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import laptop from "../../assets/images/edu_info/laptop.png";
 import notebookPen from "../../assets/images/edu_info/notebook_pen.png";
 import puzzle from "../../assets/images/edu_info/puzzle.png";
 import chatHearts from "../../assets/images/edu_info/chat_hearts.png";
 import papersApproved from "../../assets/images/edu_info/papers_approved.png";
 
-export default {
-  name: "EduInfo",
-  data() {
-    return {
-      screenWidth: 0
-    }
+const screenWidth = window.innerWidth
+const eduInfos = [
+  { // Laptop
+    text: `
+    На платформе размещаются<br class="lg:hidden" /><br class="hidden lg:inline" />
+    <span class="text-minds font-interSemiBold">видео-уроки</span> с разбором<br class="hidden lg:inline" /> темы<br class="lg:hidden" />
+    и практикой
+    `,
+    img: laptop,
+    imgClass: "w-[63%] lg:w-[330px]",
+    divClass: "lg:absolute lg:top-[-1rem] lg:left-0"
   },
-  mounted() {
-    this.screenWidth = window.innerWidth
+  { // Notebook and Pen
+    text: `
+      Домашние задания <span class="text-minds font-interSemiBold">после<br class="hidden lg:inline" />
+      <br class="lg:hidden" />каждого</span> видео-урока
+    `,
+    img: notebookPen,
+    imgClass: "w-[55%] lg:w-[285px] lg:mb-4",
+    divClass: "lg:absolute lg:top-[1.1rem] lg:right-[1rem]"
   },
-  computed: {
-    eduInfos() {
-      return [
-        { // Laptop
-          text: `
-          На платформе размещаются<br class="lg:hidden" /><br class="hidden lg:inline" />
-          <span class="text-minds font-interSemiBold">видео-уроки</span> с разбором<br class="hidden lg:inline" /> темы<br class="lg:hidden" />
-          и практикой
-          `,
-          img: laptop,
-          imgClass: "w-[63%] lg:w-[330px]",
-          divClass: "lg:absolute lg:top-[-1rem] lg:left-0"
-        },
-        { // Notebook and Pen
-          text: `
-            Домашние задания <span class="text-minds font-interSemiBold">после<br class="hidden lg:inline" />
-            <br class="lg:hidden" />каждого</span> видео-урока
-          `,
-          img: notebookPen,
-          imgClass: "w-[55%] lg:w-[285px] lg:mb-4",
-          divClass: "lg:absolute lg:top-[1.1rem] lg:right-[1rem]"
-        },
-        { // Puzzle
-          text: `
-            <span class="text-minds font-interSemiBold">Проверочная работа</span>, чтобы<br class="lg:hidden" /><br class="hidden lg:inline" />
-            проверить насколько хорошо<br class="lg:hidden" /><br class="hidden lg:inline" />
-            изучен материал
-          `,
-          img: puzzle,
-          imgClass: "w-[72%] lg:w-[380px]",
-          divClass: "lg:absolute lg:top-[37%] lg:left-0"
-        },
-        { // Chat and Hearts
-          text: `
-            <span class="text-minds font-interSemiBold">Обратная связь</span> и <span class="text-minds font-interSemiBold">поддержка<br class="lg:hidden" />
-            от<br class="hidden lg:inline" /> преподавателя и куратора</span>,<br class="lg:hidden" />
-            чтобы<br class="hidden lg:inline" /> улучшить результаты
-          `,
-          img: chatHearts,
-          imgClass: "w-[62%] lg:w-[325px] lg:mb-[-0.2rem]",
-          divClass: "lg:absolute lg:top-[35%] lg:right-0"
-        },
-        { // Papers and Approved
-          text: `
-            <span class="text-minds font-interSemiBold">Разбор вопросов</span> и<br class="hidden lg:inline" /> 
-            <span class="text-minds font-interSemiBold">ошибок</span><br class="lg:hidden" />
-            на прямом эфире
-          `,
-          img: papersApproved,
-          imgClass: "w-[68%] lg:w-[360px]",
-          divClass: "lg:absolute lg:top-[12rem] lg:left-[50%] lg:ml-[-180px] lg:z-20"
-        }
-      ]
-    }
+  { // Puzzle
+    text: `
+      <span class="text-minds font-interSemiBold">Проверочная работа</span>, чтобы<br class="lg:hidden" /><br class="hidden lg:inline" />
+      проверить насколько хорошо<br class="lg:hidden" /><br class="hidden lg:inline" />
+      изучен материал
+    `,
+    img: puzzle,
+    imgClass: "w-[72%] lg:w-[380px]",
+    divClass: "lg:absolute lg:top-[37%] lg:left-0"
+  },
+  { // Chat and Hearts
+    text: `
+      <span class="text-minds font-interSemiBold">Обратная связь</span> и <span class="text-minds font-interSemiBold">поддержка<br class="lg:hidden" />
+      от<br class="hidden lg:inline" /> преподавателя и куратора</span>,<br class="lg:hidden" />
+      чтобы<br class="hidden lg:inline" /> улучшить результаты
+    `,
+    img: chatHearts,
+    imgClass: "w-[62%] lg:w-[325px] lg:mb-[-0.2rem]",
+    divClass: "lg:absolute lg:top-[35%] lg:right-0"
+  },
+  { // Papers and Approved
+    text: `
+      <span class="text-minds font-interSemiBold">Разбор вопросов</span> и<br class="hidden lg:inline" /> 
+      <span class="text-minds font-interSemiBold">ошибок</span><br class="lg:hidden" />
+      на прямом эфире
+    `,
+    img: papersApproved,
+    imgClass: "w-[68%] lg:w-[360px]",
+    divClass: "lg:absolute lg:top-[12rem] lg:left-[50%] lg:ml-[-180px] lg:z-20"
   }
-}
+]
 </script>
