@@ -16,7 +16,7 @@ api.interceptors.request.use((config) => {
   return config
 })
 
-// FIXME Understand this
+// TODO Understand this
 // Optional: auto-refresh on 401 error if backend exposes refresh route
 let refreshing = null
 api.interceptors.response.use(

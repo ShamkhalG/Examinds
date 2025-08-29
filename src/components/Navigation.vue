@@ -85,7 +85,7 @@
 
       <!-- Log out -->
       <div v-if="isAuthenticated" class="flex flex-col items-center">
-        <RouterLink to="/" @click="logout" 
+        <button @click="onLogout" 
           class="flex flex-col items-center justify-center border-2 
           border-minds rounded-[10px] bg-[#d9d9d94c]
           text-minds cursor-pointer font-interSemiBold
@@ -93,7 +93,7 @@
           lg:text-[1rem] lg:w-[145px] lg:h-[48px] lg:mb-0"
         >
           ВЫЙТИ
-        </RouterLink>
+        </button>
         <div class="w-3 h-3 rounded-full bg-minds transition-[left] duration-300 ease-in-out opacity-0"></div>
       </div>
 
@@ -140,7 +140,7 @@ function setActive(index) {
   activeIndex.value = index
 }
 
-function logout() {
+function onLogout() {
   auth.logout()
   router.push('/login')
 }

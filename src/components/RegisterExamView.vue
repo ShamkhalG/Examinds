@@ -193,9 +193,10 @@ const registerData = reactive({
 
 // LONGTODO Retrieving exams from the database
 // const offlineExams = api.get('/getOfflineExams')
+// const onlineExams = api.get('/getOnlineExams')
 
-const mockOfflineExams = []
-const mockOnlineExams = []
+const offlineExams = []
+const onlineExams = []
 
 // const mockOfflineExams = [
 //   {
@@ -205,19 +206,9 @@ const mockOnlineExams = []
 //     time: "10:00",
 //     place: "UFAZ 308",
 //     remainingPlaces: 2
-//   },
-//   {
-//     id: 2,
-//     name: "Пробник Сентярбь 2025",
-//     date: "13.09.2025",
-//     time: "09:30",
-//     place: "UFAZ 204",
-//     remainingPlaces: 17
 //   }
 // ]
 
-// LONGTODO Retrieving exams from the database
-// const onlineExams = api.get('/getOnlineExams')
 // const mockOnlineExams = [
 //   {
 //     id: 1,
@@ -227,22 +218,6 @@ const mockOnlineExams = []
 //     place: "Microsoft Teams",
 //     remainingPlaces: 1
 //   },
-//   {
-//     id: 2,
-//     name: "Пробник Сентярбь 2025",
-//     date: "13.09.2025",
-//     time: "13:30",
-//     place: "Microsoft Teams",
-//     remainingPlaces: 13
-//   },
-//   {
-//     id: 3,
-//     name: "Пробник Сентярбь 2025",
-//     date: "13.09.2025",
-//     time: "13:30",
-//     place: "Microsoft Teams",
-//     remainingPlaces: 13
-//   }
 // ]
 
 // Methods

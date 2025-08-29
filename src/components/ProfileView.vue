@@ -93,18 +93,18 @@ import { computed } from 'vue'
 // LONGTODO Retrieving data from cookies or from the database
 // NOTE Is it really from cookies or we have to send a request to backend every time the user
 // comes back?
-// import { useAuthStore } from '@/stores/auth'
-// const auth = useAuthStore()
-// const personalData = computed(() => auth.user)
+import { useAuthStore } from '@/stores/auth'
+const auth = useAuthStore()
+const personalData = computed(() => auth.user)
 
 // Data
-const personalData = {
-  name: "SG",
-  surname: "SGovich",
-  email: "shamkhalguliyev83@gmail.com",
-  phonenumber: "+994514982421",
-  parentnumber: "+994704982121"
-}
+// const personalData = {
+//   name: "SG",
+//   surname: "SGovich",
+//   email: "shamkhalguliyev83@gmail.com",
+//   phonenumber: "+994514982421",
+//   parentnumber: "+994704982121"
+// }
 // LONGTODO Retrieving exams from the database
 // const exams = api.get('/getExams')
 const mockExams = [
@@ -144,7 +144,7 @@ const statusColors = {
   "Отменено": "#FF2B00"
 }
 const hiddenEmail = computed(() => {
-  let [emailName, domain] = personalData.email.split('@')
+  let [emailName, domain] = personalData.value.email.split('@')
   let firstChars = emailName.slice(0, 2)
   const lastChars = emailName.slice(-2)
   firstChars = firstChars.padEnd(emailName.length - 2, '*')

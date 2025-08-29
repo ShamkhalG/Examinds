@@ -18,7 +18,7 @@ export const useAuthStore = defineStore('auth', {
       if (token) {
         await this.setToken(token)
         try {
-          await this.fetchUser() // Validates token
+          await this.fetchUser() // Validates token and gets user information
         } catch {
           await this.logout()
         }
@@ -39,7 +39,11 @@ export const useAuthStore = defineStore('auth', {
     
     async login(loginData) {
       try {
-        const { data } = await api.post('/auth/login', loginData)
+        // const { data } = await api.post('/auth/login', loginData)
+        // FIXME Remove this
+        const data = {
+          accessToken: 'testToken'
+        }
         await this.setToken(data.accessToken)
         await this.fetchUser()
         return true
@@ -55,18 +59,22 @@ export const useAuthStore = defineStore('auth', {
 
     async fetchUser() {
       const { data } = await api.get('/me') // Fetches user data with JWT
+      // FIXME Remove this
+      // const data = {
+      //   name: "SG",
+      //   surname: "SGovich",
+      //   email: "shamkhalguliyev83@gmail.com",
+      //   phonenumber: "+994514982421",
+      //   parentnumber: "+994704982121"
+      // }
       this.user = data
     },
 
     async logout() {
-      try { 
-        await api.post('/auth/logout')
-      } catch {
-        // Nothing.
-      }
       localStorage.removeItem(LS_KEY)
       this.token = null
       this.user = null
+      api.post('/auth/logout').catch(() => {})
     },
 
     // Optional: If backend supports refresh token
