@@ -10,8 +10,10 @@
       </h2>
       
       <!-- Exam items -->
-      <div class="flex flex-col gap-2 lg:gap-4 max-h-[200px] lg:max-h-[500px] overflow-y-auto">
-        <div v-for="exam in mockOfflineExams" :key="exam.id" 
+      <div class="flex flex-col gap-2 lg:gap-4 max-h-[200px] lg:max-h-[500px] overflow-y-auto"
+        :class="mockOfflineExams.length > 0 ? 'overflow-y-auto' : 'overflow-y-hidden'"
+      >
+        <div v-if="mockOfflineExams.length !== 0" v-for="exam in mockOfflineExams" :key="exam.id" 
           class="flex flex-col gap-0.5 bg-[#303030] rounded-xl p-3" 
         >
           <!-- Name and date -->
@@ -38,6 +40,13 @@
             Зарегистрироваться
           </button>
         </div>
+
+        <!-- Message if no exams -->
+        <p v-else class="text-minds text-center text-sm lg:text-[1.2rem] 
+          mt-2 font-geologicaBold bg-[#303030] p-3 lg:p-4 rounded-xl"
+        >
+          Предстоящих оффлайн экзаменов нет
+        </p>
       </div>
     </div>
 
@@ -49,8 +58,10 @@
       </h2>
       
       <!-- Exam items -->
-      <div class="flex flex-col gap-2 lg:gap-4 max-h-[200px] lg:max-h-[500px] overflow-y-auto">
-        <div v-for="exam in mockOnlineExams" :key="exam.id"
+      <div class="flex flex-col gap-2 lg:gap-4 max-h-[200px] lg:max-h-[500px] overflow-y-auto"
+        :class="mockOnlineExams.length > 0 ? 'overflow-y-auto' : 'overflow-y-hidden'"  
+      >
+        <div v-if="mockOnlineExams.length !== 0" v-for="exam in mockOnlineExams" :key="exam.id"
           class="flex flex-col gap-0.5 bg-[#303030] rounded-xl p-3"           
         >
           <!-- Name and date -->
@@ -77,6 +88,13 @@
             Зарегистрироваться
           </button>
         </div>
+
+        <!-- Message if no exams -->
+        <p v-else class="text-minds text-center text-sm lg:text-[1.2rem] 
+          mt-2 font-geologicaBold bg-[#303030] p-3 lg:p-4 rounded-xl"
+        >
+          Предстоящих онлайн экзаменов нет
+        </p>
       </div>
     </div>
   </div>
@@ -175,53 +193,57 @@ const registerData = reactive({
 
 // LONGTODO Retrieving exams from the database
 // const offlineExams = api.get('/getOfflineExams')
-const mockOfflineExams = [
-  {
-    id: 1,
-    name: "Пробник Август 2025",
-    date: "17.08.2025",
-    time: "10:00",
-    place: "UFAZ 308",
-    remainingPlaces: 2
-  },
-  {
-    id: 2,
-    name: "Пробник Сентярбь 2025",
-    date: "13.09.2025",
-    time: "09:30",
-    place: "UFAZ 204",
-    remainingPlaces: 17
-  }
-]
+
+const mockOfflineExams = []
+const mockOnlineExams = []
+
+// const mockOfflineExams = [
+//   {
+//     id: 1,
+//     name: "Пробник Август 2025",
+//     date: "17.08.2025",
+//     time: "10:00",
+//     place: "UFAZ 308",
+//     remainingPlaces: 2
+//   },
+//   {
+//     id: 2,
+//     name: "Пробник Сентярбь 2025",
+//     date: "13.09.2025",
+//     time: "09:30",
+//     place: "UFAZ 204",
+//     remainingPlaces: 17
+//   }
+// ]
 
 // LONGTODO Retrieving exams from the database
 // const onlineExams = api.get('/getOnlineExams')
-const mockOnlineExams = [
-  {
-    id: 1,
-    name: "Пробник Август 2025",
-    date: "17.08.2025",
-    time: "14:00",
-    place: "Microsoft Teams",
-    remainingPlaces: 1
-  },
-  {
-    id: 2,
-    name: "Пробник Сентярбь 2025",
-    date: "13.09.2025",
-    time: "13:30",
-    place: "Microsoft Teams",
-    remainingPlaces: 13
-  },
-  {
-    id: 3,
-    name: "Пробник Сентярбь 2025",
-    date: "13.09.2025",
-    time: "13:30",
-    place: "Microsoft Teams",
-    remainingPlaces: 13
-  }
-]
+// const mockOnlineExams = [
+//   {
+//     id: 1,
+//     name: "Пробник Август 2025",
+//     date: "17.08.2025",
+//     time: "14:00",
+//     place: "Microsoft Teams",
+//     remainingPlaces: 1
+//   },
+//   {
+//     id: 2,
+//     name: "Пробник Сентярбь 2025",
+//     date: "13.09.2025",
+//     time: "13:30",
+//     place: "Microsoft Teams",
+//     remainingPlaces: 13
+//   },
+//   {
+//     id: 3,
+//     name: "Пробник Сентярбь 2025",
+//     date: "13.09.2025",
+//     time: "13:30",
+//     place: "Microsoft Teams",
+//     remainingPlaces: 13
+//   }
+// ]
 
 // Methods
 function pluralizePlaces(n) {

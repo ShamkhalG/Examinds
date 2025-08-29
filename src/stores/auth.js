@@ -54,7 +54,7 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async fetchUser() {
-      const { data } = await api.get('/me') // Fetch user data with JWT
+      const { data } = await api.get('/me') // Fetches user data with JWT
       this.user = data
     },
 
