@@ -27,7 +27,7 @@ export const useAuthStore = defineStore('auth', {
 
     async register(registerData) {
       try {
-        // LONGTODO Does this request return the access token right away?
+        // NOTE Does this request return the access token right away?
         const { data } = await api.post('/auth/register', registerData)
         await this.setToken(data.accessToken)
         await this.fetchUser()
@@ -39,11 +39,11 @@ export const useAuthStore = defineStore('auth', {
     
     async login(loginData) {
       try {
-        // const { data } = await api.post('/auth/login', loginData)
         // FIXME Remove this
-        const data = {
-          accessToken: 'testToken'
-        }
+        // const data = {
+        //   accessToken: 'testToken'
+        // }
+        const { data } = await api.post('/auth/login', loginData)
         await this.setToken(data.accessToken)
         await this.fetchUser()
         return true
@@ -58,7 +58,6 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async fetchUser() {
-      const { data } = await api.get('/me') // Fetches user data with JWT
       // FIXME Remove this
       // const data = {
       //   name: "SG",
@@ -67,6 +66,7 @@ export const useAuthStore = defineStore('auth', {
       //   phonenumber: "+994514982421",
       //   parentnumber: "+994704982121"
       // }
+      const { data } = await api.get('/me') // Fetches user data with JWT
       this.user = data
     },
 

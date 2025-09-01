@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useAuthStore } from './stores/auth'
 
 const api = axios.create({
-  baseURL: '/api', // LONGTODO Fix baseURL
+  baseURL: import.meta.env.VITE_BASEURL, // LONGTODO Fix baseURL
   withCredentials: true // LONGTODO keep true if using HttpOnly cookie for refresh token
 })
 

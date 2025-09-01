@@ -56,10 +56,18 @@
       </div>
 
       <!-- Login button -->
-      <button type="submit" class="w-full py-2 lg:py-4 mb-4 lg:mb-8 bg-minds text-white 
-        rounded-[3px] font-interMedium tracking-widest"
+      <!-- TODO Adding loading feature -->
+      <button type="submit" :disabled="loading" class="w-full py-2 lg:py-4 mb-4 lg:mb-8 
+        bg-minds text-white rounded-[3px] font-interMedium tracking-widest 
+        flex items-center justify-center disabled:bg-minds/60 disabled:cursor-not-allowed"
       >
-        ВОЙТИ
+        <span v-if="!loading">ВОЙТИ</span>
+
+        <!-- Spinner -->
+        <svg v-else class="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24" aria-hidden="true">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4A4 4 0 008 12H4z"/>
+        </svg>
       </button>
     </form>
 
@@ -84,7 +92,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import { showToast } from '@/utils/notifications'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
@@ -95,6 +103,7 @@ const auth = useAuthStore()
 const router = useRouter()
 
 const screenWidth = window.innerWidth
+const loading = ref(false)
 const loginData = reactive({
   email: '',
   password: '',
@@ -103,6 +112,8 @@ const loginData = reactive({
 
 // Methods
 async function login() {
+  loading.value = true
+
   const isValid = await validateData(loginData, ['email'])
   if (isValid) {
     if (await auth.login(loginData)) {// Login successful
@@ -112,6 +123,7 @@ async function login() {
       showToast("red", "Произошла ошибка! Пожалуйста, попробуйте позже.")
     }
   }
+  loading.value = false
 }
 
 async function reinitializePassword() {
